@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9da4f4041ba61a49855de81cfed17b9, type: 3}
+  m_Name: Weapon_FoldMissile
+  m_EditorClassIdentifier: Assembly-CSharp::AvionesPapelVR.WeaponDefinition
+  displayName: Misil plegable
+  type: 1
+  damage: 25
+  speed: 10
+  cooldown: 0.8
+  projectilePrefab: {fileID: 546896405036319522, guid: f3ef87d9bc114424995629d8fbd0ec3e, type: 3}

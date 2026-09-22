@@ -1,0 +1,1657 @@
+[Licensing::Module] Trying to connect to existing licensing client channel...
+Built from '6000.5/staging' branch; Version is '6000.5.6f1 (0e0577a1a2ac) revision 918903'; Using compiler version '194234433'; Build Type 'Release'
+OS: 'Windows 10  (10.0.19045) 64bit Education' Language: 'es' Physical Memory: 32633 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
+System  architecture: x64
+Process architecture: x64
+Date: 2026-09-22T15:59:32Z
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-Estudiante" at "2026-09-22T15:59:32.3536424Z"
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\6000.5.6f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorkerHW0
+-projectPath
+C:/Users/Usuariocc/Downloads/Avion_VR 1/Avion_VR
+-logFile
+Logs/AssetImportWorkerHW0.log
+-srvPort
+53742
+-parentPid
+10676
+-analyticsCloudUserId
+anonymous
+-analyticsCloudProjectId
+2ab9ea38-da91-46ff-b0e3-f0a45b97c093
+-analyticsLocalProjectId
+70b2b93b148323e46a48ff5802077c9f
+-editorAnalyticsEnabled
+1
+-cbmEditorLicense
+e9defd09d44aa8d83404725852c9ee85a146f078
+-cbmMachineId
+q62SqGutQS+9FySXBEK7bYqzfC8=
+-licensingIpc
+LicenseClient-Estudiante
+-noDiagnosticSwitchPersistentStore
+-job-worker-count
+2
+-background-job-worker-count
+8
+-asset-garbage-collectors
+1
+-force-d3d12
+-name
+AssetImport
+Successfully changed project path to: C:/Users/Usuariocc/Downloads/Avion_VR 1/Avion_VR
+C:/Users/Usuariocc/Downloads/Avion_VR 1/Avion_VR
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gfx=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-main-allocator-mimalloc-enabled=0"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+Player connection [14592]  Target information:
+
+Player connection [14592]  * "[IP] 192.168.13.40 [Port] 0 [Flags] 2 [Guid] 2427147695 [EditorId] 2427147695 [Version] 1048832 [Id] WindowsEditor(7,T104-18) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [14592]  * "[IP] 172.20.224.1 [Port] 0 [Flags] 2 [Guid] 2427147695 [EditorId] 2427147695 [Version] 1048832 [Id] WindowsEditor(7,T104-18) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [14592] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [14592] Host joined alternative multi-casting on [225.0.0.222:34997]...
+JobSystem: Creating JobQueue using job-worker-count value 2
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+Library Redirect Path: Library/
+Default GameObject Tag: Player already registered
+[Physics::Module] Selected backend.
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+Refreshing native plugins compatible for Editor in 16.07 ms, found 10 plugins.
+Initialize engine version: 6000.5.6f1 (0e0577a1a2ac)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/6000.5.6f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/Usuariocc/Downloads/Avion_VR 1/Avion_VR/Assets
+Forcing GfxDevice: Direct3D 12
+GfxDevice: creating device client; kGfxThreadingModeNonThreaded
+d3d12: failed to query info queue interface (0x80004002).
+Direct3D:
+    Version:         Direct3D 12 [level 12.0]
+    Renderer:        Radeon RX 550X (ID=0x699f)
+    Vendor:          ATI
+    VRAM:            4075 MB
+    App VRAM Budget: 3464 MB
+    Driver:          31.0.21924.3004
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/6000.5.6f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/6000.5.6f1/Editor/Data/BCLExtensions/runtime/netstandard2.1'
+Mono path[2] = 'C:/Program Files/Unity/Hub/Editor/6000.5.6f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/6000.5.6f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56472
+CodeReloadManager initialized
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.5.6f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.5.6f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.003458 seconds.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+[Licensing::Client] Error: HandshakeResponse reported an error:
+	ResponseCode: 505
+	ResponseStatus: Unsupported protocol version '1.18.1'.
+[Licensing::Module] Error: Failed to handshake to channel: "LicenseClient-Estudiante"
+[Licensing::IpcConnector] LicenseClient-Estudiante channel disconnected successfully.
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-Estudiante-6000.5.6" at "2026-09-22T15:59:34.4655674Z"
+[Licensing::Client] Code 10 while verifying Licensing Client signature (process Id: 14532, path: "C:/Program Files/Unity/Hub/Editor/6000.5.6f1/Editor/Data/Resources/Licensing/Client/Unity.Licensing.Client.exe")
+[Licensing::Module] LicensingClient has failed validation; ignoring
+[Licensing::Client] Handshaking with LicensingClient:
+  Version:                 1.18.1+9fbee8e
+  Session Id:              3ac5a88dedfc416993e2cb053b0758c7
+  Correlation Id:          c3e268dc8e28d0325d1504ca26d305d4
+  External correlation Id: 1057573792151413538
+  Machine Id:              q62SqGutQS+9FySXBEK7bYqzfC8=
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-Estudiante-6000.5.6" (connect: 0.00s, validation: 0.00s, handshake: 0.01s)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-Estudiante-6000.5.6-notifications" at "2026-09-22T15:59:34.4752503Z"
+[Licensing::Module] Licensing Background thread has ended after 2.12s
+Package Manager log level set to [2]
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.566 seconds
+Domain Reload Profiling: 1477ms
+	BeginReloadAssembly (182ms)
+	RebuildCommonClasses (7ms)
+	RebuildNativeTypeToScriptingClass (24ms)
+	initialDomainReloadingComplete (106ms)
+	LoadAllAssembliesAndSetupDomain (589ms)
+		LoadAssemblies (177ms)
+		AnalyzeDomain (473ms)
+			TypeCache.Refresh (470ms)
+				TypeCache.ScanAssembly (447ms)
+	FinalizeReload (569ms)
+		SetupLoadedEditorAssemblies (0ms)
+			InitializePlatformSupportModulesInManaged (3ms)
+			BeforeProcessingInitializeOnLoad (153ms)
+			ProcessInitializeOnLoadAttributes (130ms)
+			ProcessInitializeOnLoadMethodAttributes (170ms)
+Initializing Unity extensions:
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] License group:
+  Id: 4674117524204-UnityPersXXXX
+  Product: Unity Personal
+  Type: Assigned
+  Expiration: Unlimited
+Curl error 3: URL rejected: Malformed input to a URL function
+========================================================================
+Worker process is ready to serve import requests
+Import Worker Mode flag is 0x00
+Begin MonoManager ReloadAssembly
+Refreshing native plugins compatible for Editor in 13.47 ms, found 10 plugins.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+Assertion failed on expression: '!AssetDatabase::IsAssetImportWorkerProcess()'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.XR.OpenXR.Features.FeatureHelpersInternal:GetAllFeatureInfo (UnityEditor.BuildTargetGroup) (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/FeatureSupport/FeatureHelpers.cs:202)
+UnityEditor.XR.OpenXR.Features.FeatureHelpers:RefreshFeatures (UnityEditor.BuildTargetGroup) (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/FeatureSupport/FeatureHelpers.cs:30)
+UnityEditor.XR.OpenXR.OpenXRProjectValidationRulesSetup:AddOpenXRValidationRules () (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/OpenXRProjectValidationRulesSetup.cs:148)
+UnityEditor.XR.OpenXR.OpenXRProjectValidationRulesSetup:UpdateOpenXRProjectValidation () (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/OpenXRProjectValidationRulesSetup.cs:67)
+UnityEditor.XR.OpenXR.OpenXRProjectValidationRulesSetup:OpenXRProjectValidationCheck () (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/OpenXRProjectValidationRulesSetup.cs:43)
+System.Reflection.RuntimeMethodInfo:Invoke (object,System.Reflection.BindingFlags,System.Reflection.Binder,object[],System.Globalization.CultureInfo)
+System.Reflection.MethodBase:Invoke (object,object[])
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadMethodAttributes ()
+
+[./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/FeatureSupport/FeatureHelpers.cs line 202]
+
+Refresh completed but there are assets queued up for importing. Check for code that modifies assets which gets called after OnPostProcessAllAssets. Additional details in Log file
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.XR.OpenXR.Features.FeatureHelpersInternal:GetAllFeatureInfo (UnityEditor.BuildTargetGroup) (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/FeatureSupport/FeatureHelpers.cs:202)
+UnityEditor.XR.OpenXR.Features.FeatureHelpers:RefreshFeatures (UnityEditor.BuildTargetGroup) (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/FeatureSupport/FeatureHelpers.cs:30)
+UnityEditor.XR.OpenXR.OpenXRProjectValidationRulesSetup:AddOpenXRValidationRules () (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/OpenXRProjectValidationRulesSetup.cs:148)
+UnityEditor.XR.OpenXR.OpenXRProjectValidationRulesSetup:UpdateOpenXRProjectValidation () (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/OpenXRProjectValidationRulesSetup.cs:67)
+UnityEditor.XR.OpenXR.OpenXRProjectValidationRulesSetup:OpenXRProjectValidationCheck () (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/OpenXRProjectValidationRulesSetup.cs:43)
+System.Reflection.RuntimeMethodInfo:Invoke (object,System.Reflection.BindingFlags,System.Reflection.Binder,object[],System.Globalization.CultureInfo)
+System.Reflection.MethodBase:Invoke (object,object[])
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadMethodAttributes ()
+
+[./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/FeatureSupport/FeatureHelpers.cs line 202]
+
+Assets queued for import after Refresh completed:
+	Assets/XR/Settings/OpenXRPackageSettings.asset
+Asset Pipeline Refresh (id=34271bc1ea093164ab075dc4274e23c5): Total: 0.001 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Assertion failed on expression: 'm_Ptr'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.XR.OpenXR.Features.FeatureHelpersInternal:GetAllFeatureInfo (UnityEditor.BuildTargetGroup) (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/FeatureSupport/FeatureHelpers.cs:202)
+UnityEditor.XR.OpenXR.Features.FeatureHelpers:RefreshFeatures (UnityEditor.BuildTargetGroup) (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/FeatureSupport/FeatureHelpers.cs:30)
+UnityEditor.XR.OpenXR.OpenXRProjectValidationRulesSetup:AddOpenXRValidationRules () (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/OpenXRProjectValidationRulesSetup.cs:148)
+UnityEditor.XR.OpenXR.OpenXRProjectValidationRulesSetup:UpdateOpenXRProjectValidation () (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/OpenXRProjectValidationRulesSetup.cs:67)
+UnityEditor.XR.OpenXR.OpenXRProjectValidationRulesSetup:OpenXRProjectValidationCheck () (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/OpenXRProjectValidationRulesSetup.cs:43)
+System.Reflection.RuntimeMethodInfo:Invoke (object,System.Reflection.BindingFlags,System.Reflection.Binder,object[],System.Globalization.CultureInfo)
+System.Reflection.MethodBase:Invoke (object,object[])
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadMethodAttributes ()
+
+[./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/FeatureSupport/FeatureHelpers.cs line 202]
+
+Assertion failed on expression: '!AssetDatabase::IsAssetImportWorkerProcess()'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.XR.OpenXR.Features.FeatureHelpersInternal:GetAllFeatureInfo (UnityEditor.BuildTargetGroup) (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/FeatureSupport/FeatureHelpers.cs:202)
+UnityEditor.XR.OpenXR.Features.FeatureHelpers:RefreshFeatures (UnityEditor.BuildTargetGroup) (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/FeatureSupport/FeatureHelpers.cs:30)
+UnityEditor.XR.OpenXR.OpenXRProjectValidationRulesSetup:AddOpenXRValidationRules () (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/OpenXRProjectValidationRulesSetup.cs:148)
+UnityEditor.XR.OpenXR.OpenXRProjectValidationRulesSetup:UpdateOpenXRProjectValidation () (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/OpenXRProjectValidationRulesSetup.cs:67)
+UnityEditor.XR.OpenXR.OpenXRProjectValidationRulesSetup:OpenXRProjectValidationCheck () (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/OpenXRProjectValidationRulesSetup.cs:43)
+System.Reflection.RuntimeMethodInfo:Invoke (object,System.Reflection.BindingFlags,System.Reflection.Binder,object[],System.Globalization.CultureInfo)
+System.Reflection.MethodBase:Invoke (object,object[])
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadMethodAttributes ()
+
+[./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/FeatureSupport/FeatureHelpers.cs line 202]
+
+Refresh completed but there are assets queued up for importing. Check for code that modifies assets which gets called after OnPostProcessAllAssets. Additional details in Log file
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.XR.OpenXR.Features.FeatureHelpersInternal:GetAllFeatureInfo (UnityEditor.BuildTargetGroup) (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/FeatureSupport/FeatureHelpers.cs:202)
+UnityEditor.XR.OpenXR.Features.FeatureHelpers:RefreshFeatures (UnityEditor.BuildTargetGroup) (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/FeatureSupport/FeatureHelpers.cs:30)
+UnityEditor.XR.OpenXR.OpenXRProjectValidationRulesSetup:AddOpenXRValidationRules () (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/OpenXRProjectValidationRulesSetup.cs:148)
+UnityEditor.XR.OpenXR.OpenXRProjectValidationRulesSetup:UpdateOpenXRProjectValidation () (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/OpenXRProjectValidationRulesSetup.cs:67)
+UnityEditor.XR.OpenXR.OpenXRProjectValidationRulesSetup:OpenXRProjectValidationCheck () (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/OpenXRProjectValidationRulesSetup.cs:43)
+System.Reflection.RuntimeMethodInfo:Invoke (object,System.Reflection.BindingFlags,System.Reflection.Binder,object[],System.Globalization.CultureInfo)
+System.Reflection.MethodBase:Invoke (object,object[])
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadMethodAttributes ()
+
+[./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/FeatureSupport/FeatureHelpers.cs line 202]
+
+Assets queued for import after Refresh completed:
+	Assets/XR/Settings/OpenXRPackageSettings.asset
+Asset Pipeline Refresh (id=652e5e899ecf59247aecd12847d40eb3): Total: 0.001 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Assertion failed on expression: 'm_Ptr'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.XR.OpenXR.Features.FeatureHelpersInternal:GetAllFeatureInfo (UnityEditor.BuildTargetGroup) (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/FeatureSupport/FeatureHelpers.cs:202)
+UnityEditor.XR.OpenXR.Features.FeatureHelpers:RefreshFeatures (UnityEditor.BuildTargetGroup) (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/FeatureSupport/FeatureHelpers.cs:30)
+UnityEditor.XR.OpenXR.OpenXRProjectValidationRulesSetup:AddOpenXRValidationRules () (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/OpenXRProjectValidationRulesSetup.cs:148)
+UnityEditor.XR.OpenXR.OpenXRProjectValidationRulesSetup:UpdateOpenXRProjectValidation () (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/OpenXRProjectValidationRulesSetup.cs:67)
+UnityEditor.XR.OpenXR.OpenXRProjectValidationRulesSetup:OpenXRProjectValidationCheck () (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/OpenXRProjectValidationRulesSetup.cs:43)
+System.Reflection.RuntimeMethodInfo:Invoke (object,System.Reflection.BindingFlags,System.Reflection.Binder,object[],System.Globalization.CultureInfo)
+System.Reflection.MethodBase:Invoke (object,object[])
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadMethodAttributes ()
+
+[./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/FeatureSupport/FeatureHelpers.cs line 202]
+
+Assertion failed on expression: '!AssetDatabase::IsAssetImportWorkerProcess()'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.XR.OpenXR.Features.FeatureHelpersInternal:GetAllFeatureInfo (UnityEditor.BuildTargetGroup) (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/FeatureSupport/FeatureHelpers.cs:202)
+UnityEditor.XR.OpenXR.Features.FeatureHelpers:RefreshFeatures (UnityEditor.BuildTargetGroup) (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/FeatureSupport/FeatureHelpers.cs:30)
+UnityEditor.XR.OpenXR.OpenXRProjectValidationRulesSetup:AddOpenXRValidationRules () (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/OpenXRProjectValidationRulesSetup.cs:148)
+UnityEditor.XR.OpenXR.OpenXRProjectValidationRulesSetup:UpdateOpenXRProjectValidation () (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/OpenXRProjectValidationRulesSetup.cs:67)
+UnityEditor.XR.OpenXR.OpenXRProjectValidationRulesSetup:OpenXRProjectValidationCheck () (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/OpenXRProjectValidationRulesSetup.cs:43)
+System.Reflection.RuntimeMethodInfo:Invoke (object,System.Reflection.BindingFlags,System.Reflection.Binder,object[],System.Globalization.CultureInfo)
+System.Reflection.MethodBase:Invoke (object,object[])
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadMethodAttributes ()
+
+[./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/FeatureSupport/FeatureHelpers.cs line 202]
+
+Refresh completed but there are assets queued up for importing. Check for code that modifies assets which gets called after OnPostProcessAllAssets. Additional details in Log file
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.XR.OpenXR.Features.FeatureHelpersInternal:GetAllFeatureInfo (UnityEditor.BuildTargetGroup) (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/FeatureSupport/FeatureHelpers.cs:202)
+UnityEditor.XR.OpenXR.Features.FeatureHelpers:RefreshFeatures (UnityEditor.BuildTargetGroup) (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/FeatureSupport/FeatureHelpers.cs:30)
+UnityEditor.XR.OpenXR.OpenXRProjectValidationRulesSetup:AddOpenXRValidationRules () (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/OpenXRProjectValidationRulesSetup.cs:148)
+UnityEditor.XR.OpenXR.OpenXRProjectValidationRulesSetup:UpdateOpenXRProjectValidation () (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/OpenXRProjectValidationRulesSetup.cs:67)
+UnityEditor.XR.OpenXR.OpenXRProjectValidationRulesSetup:OpenXRProjectValidationCheck () (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/OpenXRProjectValidationRulesSetup.cs:43)
+System.Reflection.RuntimeMethodInfo:Invoke (object,System.Reflection.BindingFlags,System.Reflection.Binder,object[],System.Globalization.CultureInfo)
+System.Reflection.MethodBase:Invoke (object,object[])
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadMethodAttributes ()
+
+[./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/FeatureSupport/FeatureHelpers.cs line 202]
+
+Assets queued for import after Refresh completed:
+	Assets/XR/Settings/OpenXRPackageSettings.asset
+Asset Pipeline Refresh (id=5c44f8f6eac063b4798f6d32bbf08fe8): Total: 0.001 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Assertion failed on expression: 'm_Ptr'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.XR.OpenXR.Features.FeatureHelpersInternal:GetAllFeatureInfo (UnityEditor.BuildTargetGroup) (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/FeatureSupport/FeatureHelpers.cs:202)
+UnityEditor.XR.OpenXR.Features.FeatureHelpers:RefreshFeatures (UnityEditor.BuildTargetGroup) (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/FeatureSupport/FeatureHelpers.cs:30)
+UnityEditor.XR.OpenXR.OpenXRProjectValidationRulesSetup:AddOpenXRValidationRules () (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/OpenXRProjectValidationRulesSetup.cs:148)
+UnityEditor.XR.OpenXR.OpenXRProjectValidationRulesSetup:UpdateOpenXRProjectValidation () (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/OpenXRProjectValidationRulesSetup.cs:67)
+UnityEditor.XR.OpenXR.OpenXRProjectValidationRulesSetup:OpenXRProjectValidationCheck () (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/OpenXRProjectValidationRulesSetup.cs:43)
+System.Reflection.RuntimeMethodInfo:Invoke (object,System.Reflection.BindingFlags,System.Reflection.Binder,object[],System.Globalization.CultureInfo)
+System.Reflection.MethodBase:Invoke (object,object[])
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadMethodAttributes ()
+
+[./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/FeatureSupport/FeatureHelpers.cs line 202]
+
+Assertion failed on expression: '!AssetDatabase::IsAssetImportWorkerProcess()'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.AssetDatabase:SaveAssetIfDirty (UnityEngine.GUID)
+UnityEditor.AssetDatabase:SaveAssetIfDirty (UnityEngine.Object)
+UnityEditor.XR.OpenXR.Features.FeatureHelpersInternal:GetAllFeatureInfo (UnityEditor.BuildTargetGroup) (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/FeatureSupport/FeatureHelpers.cs:323)
+UnityEditor.XR.OpenXR.Features.FeatureHelpers:RefreshFeatures (UnityEditor.BuildTargetGroup) (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/FeatureSupport/FeatureHelpers.cs:30)
+UnityEditor.XR.OpenXR.OpenXRProjectValidationRulesSetup:AddOpenXRValidationRules () (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/OpenXRProjectValidationRulesSetup.cs:148)
+UnityEditor.XR.OpenXR.OpenXRProjectValidationRulesSetup:UpdateOpenXRProjectValidation () (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/OpenXRProjectValidationRulesSetup.cs:67)
+UnityEditor.XR.OpenXR.OpenXRProjectValidationRulesSetup:OpenXRProjectValidationCheck () (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/OpenXRProjectValidationRulesSetup.cs:43)
+System.Reflection.RuntimeMethodInfo:Invoke (object,System.Reflection.BindingFlags,System.Reflection.Binder,object[],System.Globalization.CultureInfo)
+System.Reflection.MethodBase:Invoke (object,object[])
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadMethodAttributes ()
+
+[./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/FeatureSupport/FeatureHelpers.cs line 323]
+
+Refresh completed but there are assets queued up for importing. Check for code that modifies assets which gets called after OnPostProcessAllAssets. Additional details in Log file
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.AssetDatabase:SaveAssetIfDirty (UnityEngine.GUID)
+UnityEditor.AssetDatabase:SaveAssetIfDirty (UnityEngine.Object)
+UnityEditor.XR.OpenXR.Features.FeatureHelpersInternal:GetAllFeatureInfo (UnityEditor.BuildTargetGroup) (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/FeatureSupport/FeatureHelpers.cs:323)
+UnityEditor.XR.OpenXR.Features.FeatureHelpers:RefreshFeatures (UnityEditor.BuildTargetGroup) (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/FeatureSupport/FeatureHelpers.cs:30)
+UnityEditor.XR.OpenXR.OpenXRProjectValidationRulesSetup:AddOpenXRValidationRules () (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/OpenXRProjectValidationRulesSetup.cs:148)
+UnityEditor.XR.OpenXR.OpenXRProjectValidationRulesSetup:UpdateOpenXRProjectValidation () (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/OpenXRProjectValidationRulesSetup.cs:67)
+UnityEditor.XR.OpenXR.OpenXRProjectValidationRulesSetup:OpenXRProjectValidationCheck () (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/OpenXRProjectValidationRulesSetup.cs:43)
+System.Reflection.RuntimeMethodInfo:Invoke (object,System.Reflection.BindingFlags,System.Reflection.Binder,object[],System.Globalization.CultureInfo)
+System.Reflection.MethodBase:Invoke (object,object[])
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadMethodAttributes ()
+
+[./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/FeatureSupport/FeatureHelpers.cs line 323]
+
+Assets queued for import after Refresh completed:
+	Assets/XR/Settings/OpenXRPackageSettings.asset
+Asset Pipeline Refresh (id=365e2c302eb8c61418d5b53bf8de6442): Total: 0.002 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Assertion failed on expression: 'm_Ptr'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.AssetDatabase:SaveAssetIfDirty (UnityEngine.GUID)
+UnityEditor.AssetDatabase:SaveAssetIfDirty (UnityEngine.Object)
+UnityEditor.XR.OpenXR.Features.FeatureHelpersInternal:GetAllFeatureInfo (UnityEditor.BuildTargetGroup) (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/FeatureSupport/FeatureHelpers.cs:323)
+UnityEditor.XR.OpenXR.Features.FeatureHelpers:RefreshFeatures (UnityEditor.BuildTargetGroup) (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/FeatureSupport/FeatureHelpers.cs:30)
+UnityEditor.XR.OpenXR.OpenXRProjectValidationRulesSetup:AddOpenXRValidationRules () (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/OpenXRProjectValidationRulesSetup.cs:148)
+UnityEditor.XR.OpenXR.OpenXRProjectValidationRulesSetup:UpdateOpenXRProjectValidation () (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/OpenXRProjectValidationRulesSetup.cs:67)
+UnityEditor.XR.OpenXR.OpenXRProjectValidationRulesSetup:OpenXRProjectValidationCheck () (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/OpenXRProjectValidationRulesSetup.cs:43)
+System.Reflection.RuntimeMethodInfo:Invoke (object,System.Reflection.BindingFlags,System.Reflection.Binder,object[],System.Globalization.CultureInfo)
+System.Reflection.MethodBase:Invoke (object,object[])
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadMethodAttributes ()
+
+[./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/FeatureSupport/FeatureHelpers.cs line 323]
+
+Assertion failed on expression: '!AssetDatabase::IsAssetImportWorkerProcess()'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.AssetDatabase:SaveAssetIfDirty (UnityEngine.GUID)
+UnityEditor.AssetDatabase:SaveAssetIfDirty (UnityEngine.Object)
+UnityEditor.XR.OpenXR.Features.FeatureHelpersInternal:GetAllFeatureInfo (UnityEditor.BuildTargetGroup) (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/FeatureSupport/FeatureHelpers.cs:323)
+UnityEditor.XR.OpenXR.Features.FeatureHelpers:RefreshFeatures (UnityEditor.BuildTargetGroup) (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/FeatureSupport/FeatureHelpers.cs:30)
+UnityEditor.XR.OpenXR.OpenXRProjectValidationRulesSetup:AddOpenXRValidationRules () (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/OpenXRProjectValidationRulesSetup.cs:148)
+UnityEditor.XR.OpenXR.OpenXRProjectValidationRulesSetup:UpdateOpenXRProjectValidation () (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/OpenXRProjectValidationRulesSetup.cs:67)
+UnityEditor.XR.OpenXR.OpenXRProjectValidationRulesSetup:OpenXRProjectValidationCheck () (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/OpenXRProjectValidationRulesSetup.cs:43)
+System.Reflection.RuntimeMethodInfo:Invoke (object,System.Reflection.BindingFlags,System.Reflection.Binder,object[],System.Globalization.CultureInfo)
+System.Reflection.MethodBase:Invoke (object,object[])
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadMethodAttributes ()
+
+[./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/FeatureSupport/FeatureHelpers.cs line 323]
+
+Refresh completed but there are assets queued up for importing. Check for code that modifies assets which gets called after OnPostProcessAllAssets. Additional details in Log file
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.AssetDatabase:SaveAssetIfDirty (UnityEngine.GUID)
+UnityEditor.AssetDatabase:SaveAssetIfDirty (UnityEngine.Object)
+UnityEditor.XR.OpenXR.Features.FeatureHelpersInternal:GetAllFeatureInfo (UnityEditor.BuildTargetGroup) (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/FeatureSupport/FeatureHelpers.cs:323)
+UnityEditor.XR.OpenXR.Features.FeatureHelpers:RefreshFeatures (UnityEditor.BuildTargetGroup) (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/FeatureSupport/FeatureHelpers.cs:30)
+UnityEditor.XR.OpenXR.OpenXRProjectValidationRulesSetup:AddOpenXRValidationRules () (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/OpenXRProjectValidationRulesSetup.cs:148)
+UnityEditor.XR.OpenXR.OpenXRProjectValidationRulesSetup:UpdateOpenXRProjectValidation () (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/OpenXRProjectValidationRulesSetup.cs:67)
+UnityEditor.XR.OpenXR.OpenXRProjectValidationRulesSetup:OpenXRProjectValidationCheck () (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/OpenXRProjectValidationRulesSetup.cs:43)
+System.Reflection.RuntimeMethodInfo:Invoke (object,System.Reflection.BindingFlags,System.Reflection.Binder,object[],System.Globalization.CultureInfo)
+System.Reflection.MethodBase:Invoke (object,object[])
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadMethodAttributes ()
+
+[./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/FeatureSupport/FeatureHelpers.cs line 323]
+
+Assets queued for import after Refresh completed:
+	Assets/XR/Settings/OpenXRPackageSettings.asset
+Asset Pipeline Refresh (id=572bbda95d4587940b8a115d01776f2b): Total: 0.001 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Assertion failed on expression: 'm_Ptr'
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEditor.AssetDatabase:SaveAssetIfDirty (UnityEngine.GUID)
+UnityEditor.AssetDatabase:SaveAssetIfDirty (UnityEngine.Object)
+UnityEditor.XR.OpenXR.Features.FeatureHelpersInternal:GetAllFeatureInfo (UnityEditor.BuildTargetGroup) (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/FeatureSupport/FeatureHelpers.cs:323)
+UnityEditor.XR.OpenXR.Features.FeatureHelpers:RefreshFeatures (UnityEditor.BuildTargetGroup) (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/FeatureSupport/FeatureHelpers.cs:30)
+UnityEditor.XR.OpenXR.OpenXRProjectValidationRulesSetup:AddOpenXRValidationRules () (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/OpenXRProjectValidationRulesSetup.cs:148)
+UnityEditor.XR.OpenXR.OpenXRProjectValidationRulesSetup:UpdateOpenXRProjectValidation () (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/OpenXRProjectValidationRulesSetup.cs:67)
+UnityEditor.XR.OpenXR.OpenXRProjectValidationRulesSetup:OpenXRProjectValidationCheck () (at ./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/OpenXRProjectValidationRulesSetup.cs:43)
+System.Reflection.RuntimeMethodInfo:Invoke (object,System.Reflection.BindingFlags,System.Reflection.Binder,object[],System.Globalization.CultureInfo)
+System.Reflection.MethodBase:Invoke (object,object[])
+UnityEditor.EditorAssemblies:ProcessInitializeOnLoadMethodAttributes ()
+
+[./Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Editor/FeatureSupport/FeatureHelpers.cs line 323]
+
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Mono: successfully reloaded assembly
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+- Finished resetting the current domain, in  1.978 seconds
+Domain Reload Profiling: 3282ms
+	BeginReloadAssembly (311ms)
+		DisableScriptedObjects (19ms)
+		CreateAndSetChildDomain (46ms)
+	RebuildCommonClasses (12ms)
+	RebuildNativeTypeToScriptingClass (28ms)
+	initialDomainReloadingComplete (77ms)
+	LoadAllAssembliesAndSetupDomain (875ms)
+		LoadAssemblies (450ms)
+		AnalyzeDomain (393ms)
+			TypeCache.Refresh (254ms)
+				TypeCache.ScanAssembly (232ms)
+			BuildScriptInfoCaches (128ms)
+			ResolveRequiredComponents (7ms)
+	FinalizeReload (1979ms)
+		SetupLoadedEditorAssemblies (0ms)
+			InitializePlatformSupportModulesInManaged (3ms)
+			BeforeProcessingInitializeOnLoad (125ms)
+			ProcessInitializeOnLoadAttributes (1078ms)
+			ProcessInitializeOnLoadMethodAttributes (475ms)
+			AfterProcessingInitializeOnLoad (10ms)
+		AwakeInstancesAfterBackupRestoration (6ms)
+Default GameObject Tag: Player already registered
+AcceleratorClientConnectionCallback - disconnected - :0
+WARNING: Shader Unsupported: 'Hidden/Simulation/URP/Synthetic' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Hidden/Simulation/Synthetic Lit' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Simulation/Standard Lit' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Simulation/URP/Room X-Ray' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Simulation/Room X-Ray' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Simulation/URP/Lit' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+Shader Hidden/ChartRasterizerHardware is not supported: GPU does not support conservative rasterization
+Shader Hidden/ChartRasterizerHardware is not supported: GPU does not support conservative rasterization
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.01 seconds
+Refreshing native plugins compatible for Editor in 7.89 ms, found 10 plugins.
+Unloading 29 Unused Serialized files (Serialized files now loaded: 0)
+Curl error 3: URL rejected: Malformed input to a URL function
+Unloading 6289 unused Assets / (10.0 MB). Loaded Objects now: 7235.
+Memory consumption went from 355.5 MB to 345.5 MB.
+Total: 24.171800 ms (FindLiveObjects: 0.859300 ms CreateObjectMapping: 2.478800 ms MarkObjects: 15.726600 ms  DeleteObjects: 5.104300 ms)
+
+========================================================================
+Received Prepare
+Default GameObject Tag: Player already registered
+AcceleratorClientConnectionCallback - disconnected - :0
+WARNING: Shader Unsupported: 'Hidden/Simulation/URP/Synthetic' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Hidden/Simulation/Synthetic Lit' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Simulation/Standard Lit' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Simulation/URP/Room X-Ray' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Simulation/Room X-Ray' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Simulation/URP/Lit' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+Shader Hidden/ChartRasterizerHardware is not supported: GPU does not support conservative rasterization
+Refreshing native plugins compatible for Editor in 9.30 ms, found 10 plugins.
+Unloading 29 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 29 unused Assets / (3.0 MB). Loaded Objects now: 7235.
+Memory consumption went from 349.2 MB to 346.1 MB.
+Total: 19.495500 ms (FindLiveObjects: 0.447300 ms CreateObjectMapping: 1.003600 ms MarkObjects: 17.327500 ms  DeleteObjects: 0.715800 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Prepare
+Default GameObject Tag: Player already registered
+AcceleratorClientConnectionCallback - disconnected - :0
+Begin MonoManager ReloadAssembly
+Refreshing native plugins compatible for Editor in 8.02 ms, found 10 plugins.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Mono: successfully reloaded assembly
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+- Finished resetting the current domain, in  1.883 seconds
+Domain Reload Profiling: 2817ms
+	BeginReloadAssembly (329ms)
+		DisableScriptedObjects (13ms)
+		CreateAndSetChildDomain (74ms)
+	RebuildCommonClasses (13ms)
+	RebuildNativeTypeToScriptingClass (25ms)
+	initialDomainReloadingComplete (77ms)
+	LoadAllAssembliesAndSetupDomain (489ms)
+		LoadAssemblies (414ms)
+		AnalyzeDomain (24ms)
+			TypeCache.Refresh (10ms)
+			ResolveRequiredComponents (8ms)
+	FinalizeReload (1884ms)
+		SetupLoadedEditorAssemblies (0ms)
+			InitializePlatformSupportModulesInManaged (3ms)
+			BeforeProcessingInitializeOnLoad (118ms)
+			ProcessInitializeOnLoadAttributes (960ms)
+			ProcessInitializeOnLoadMethodAttributes (342ms)
+			AfterProcessingInitializeOnLoad (10ms)
+		AwakeInstancesAfterBackupRestoration (22ms)
+WARNING: Shader Unsupported: 'Hidden/Simulation/URP/Synthetic' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Hidden/Simulation/Synthetic Lit' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Simulation/Standard Lit' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Simulation/URP/Room X-Ray' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Simulation/Room X-Ray' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Simulation/URP/Lit' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+Shader Hidden/ChartRasterizerHardware is not supported: GPU does not support conservative rasterization
+Refreshing native plugins compatible for Editor in 8.45 ms, found 10 plugins.
+Unloading 29 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 6392 unused Assets / (6.7 MB). Loaded Objects now: 7278.
+Memory consumption went from 363.0 MB to 356.3 MB.
+Total: 22.141000 ms (FindLiveObjects: 0.866900 ms CreateObjectMapping: 2.685600 ms MarkObjects: 14.875600 ms  DeleteObjects: 3.711400 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Prepare
+Default GameObject Tag: Player already registered
+AcceleratorClientConnectionCallback - disconnected - :0
+WARNING: Shader Unsupported: 'Hidden/Simulation/URP/Synthetic' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Hidden/Simulation/Synthetic Lit' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Simulation/Standard Lit' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Simulation/URP/Room X-Ray' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Simulation/Room X-Ray' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Simulation/URP/Lit' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+Shader Hidden/ChartRasterizerHardware is not supported: GPU does not support conservative rasterization
+Refreshing native plugins compatible for Editor in 11.36 ms, found 10 plugins.
+Unloading 29 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 29 unused Assets / (3.0 MB). Loaded Objects now: 7278.
+Memory consumption went from 361.3 MB to 358.3 MB.
+Total: 18.758700 ms (FindLiveObjects: 0.435700 ms CreateObjectMapping: 1.044500 ms MarkObjects: 16.492700 ms  DeleteObjects: 0.784700 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T15:59:58.3614179Z
+  Time since last request: 5168.39841259999957 seconds.
+  importAddress: GUID: bffa2d017fe523c9d7b62ecfb6ad0a76 - Path: Assets/AvionesPapelVR/Textures/ChalkGreen.png - Importer: PreviewImporter
+Importing 'GUID: bffa2d017fe523c9d7b62ecfb6ad0a76 - Path: Assets/AvionesPapelVR/Textures/ChalkGreen.png - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: bffa2d017fe523c9d7b62ecfb6ad0a76' -> (Import Result ID: '64d3099f723d87203f8431de8709b077') in 0.079 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=e9e46176f1694f556051f68282398f5c DependenciesID=4e3c46c4bf1f965728f78e7f12e49185 StaticDependenciesID=c88303aef03f8f40e8a567f33d1c42cf 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T15:59:58.4603826Z
+  Time since last request: 0.000149 seconds.
+  importAddress: GUID: cb6d6d5da4e58fc7706c8f07e3aabe43 - Path: Assets/AvionesPapelVR/Textures/StarrySky.png - Importer: PreviewImporter
+Importing 'GUID: cb6d6d5da4e58fc7706c8f07e3aabe43 - Path: Assets/AvionesPapelVR/Textures/StarrySky.png - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: cb6d6d5da4e58fc7706c8f07e3aabe43' -> (Import Result ID: '8f98066e6439d1d23f0441b94ee0e101') in 0.012 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=cf5467c43673abc4f0c845d0826b1c4b DependenciesID=2461ba78cb467a6642096c65007e9d78 StaticDependenciesID=c74214009e332662072ca018a0f8cc11 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T15:59:58.4894317Z
+  Time since last request: 0.0004577 seconds.
+  importAddress: GUID: 281ff72d1ffb7567b13858810a2efb8c - Path: Assets/AvionesPapelVR/Textures/TurboOrange.png - Importer: PreviewImporter
+Importing 'GUID: 281ff72d1ffb7567b13858810a2efb8c - Path: Assets/AvionesPapelVR/Textures/TurboOrange.png - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 281ff72d1ffb7567b13858810a2efb8c' -> (Import Result ID: '25c882ed9b8e8f440e6f02cf59c8438c') in 0.008 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=f3d69984cb7328a56d67807b990dfbdb DependenciesID=a31f028004ae5dcc0220ee8fbe17f926 StaticDependenciesID=31922484f3f2e051dd556dbd9485970b 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T15:59:58.5203183Z
+  Time since last request: 0.0007264 seconds.
+  importAddress: GUID: 3561d1864bdbe9d8131a70564a0fd67f - Path: Assets/AvionesPapelVR/Textures/PaperCyan.png - Importer: PreviewImporter
+Importing 'GUID: 3561d1864bdbe9d8131a70564a0fd67f - Path: Assets/AvionesPapelVR/Textures/PaperCyan.png - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 3561d1864bdbe9d8131a70564a0fd67f' -> (Import Result ID: 'a402062c62a1cb1edca3d6e0e8a16eb2') in 0.009 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=878634363260619fcc15f556e3ea47cd DependenciesID=edb15bbb1cd0abe9dbd2ac4ae8cea152 StaticDependenciesID=053ea526ccf695482c3ad2fffa15d482 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T15:59:58.5504612Z
+  Time since last request: 0.0005116 seconds.
+  importAddress: GUID: 4b142c49d545a81fcfc17f8e02d832fc - Path: Assets/AvionesPapelVR/Textures/PaperOrange.png - Importer: PreviewImporter
+Importing 'GUID: 4b142c49d545a81fcfc17f8e02d832fc - Path: Assets/AvionesPapelVR/Textures/PaperOrange.png - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 4b142c49d545a81fcfc17f8e02d832fc' -> (Import Result ID: 'fb6ed3b43120b4c8f9aec0e4c1530108') in 0.011 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=0f2b4ccfb206ebaeeedf0f4dd8a70319 DependenciesID=f0691b7290f7fd1d2fd724a4bb7a6185 StaticDependenciesID=5087e7d6907a24e1eee4b2c210a567aa 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T15:59:58.5828518Z
+  Time since last request: 0.0004196 seconds.
+  importAddress: GUID: 7413850fa826786bb3888a4da21e0675 - Path: Assets/AvionesPapelVR/Textures/FuturOffice.png - Importer: PreviewImporter
+Importing 'GUID: 7413850fa826786bb3888a4da21e0675 - Path: Assets/AvionesPapelVR/Textures/FuturOffice.png - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 7413850fa826786bb3888a4da21e0675' -> (Import Result ID: '7860b1b17d4fedf5fab1d393eccbd3ca') in 0.011 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=bfa535ef230c9f034a1695c67df5f57c DependenciesID=9053631db7720ead416ed7bd0d68d3aa StaticDependenciesID=7c13eaa40de87837eadbaed56e17133b 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T15:59:58.6127259Z
+  Time since last request: 0.0004276 seconds.
+  importAddress: GUID: e9d7547d5864173cf965f7f472a14b11 - Path: Assets/AvionesPapelVR/Textures/MetalDrone.png - Importer: PreviewImporter
+Importing 'GUID: e9d7547d5864173cf965f7f472a14b11 - Path: Assets/AvionesPapelVR/Textures/MetalDrone.png - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: e9d7547d5864173cf965f7f472a14b11' -> (Import Result ID: '507f3400957d5a483d7ebb014f30b0da') in 0.009 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=6e5ba57a795fbb5ea62250886f308e0a DependenciesID=717c3bd4379b2ca78d9f32db99cd4fcc StaticDependenciesID=e76e995941b20850ac77207b1265412a 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T15:59:58.6390519Z
+  Time since last request: 0.0000189 seconds.
+  importAddress: GUID: eec52fce9768f735f4cf749f21817c96 - Path: Assets/AvionesPapelVR/Textures/PaperRed.png - Importer: PreviewImporter
+Importing 'GUID: eec52fce9768f735f4cf749f21817c96 - Path: Assets/AvionesPapelVR/Textures/PaperRed.png - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: eec52fce9768f735f4cf749f21817c96' -> (Import Result ID: 'c4f0317a4a5c165d61499a6c96cde886') in 0.008 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=66f3cd9435d4a855778a11e587dbf176 DependenciesID=dcf14381fa4138a3f80c211d7d90d5da StaticDependenciesID=98136fd1bd8a7c9dfcbb21d2019904a5 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T15:59:58.6636521Z
+  Time since last request: 0.0004481 seconds.
+  importAddress: GUID: eab597d1126281df6a5117f4ae083ee8 - Path: Assets/AvionesPapelVR/Textures/PaperBlue.png - Importer: PreviewImporter
+Importing 'GUID: eab597d1126281df6a5117f4ae083ee8 - Path: Assets/AvionesPapelVR/Textures/PaperBlue.png - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: eab597d1126281df6a5117f4ae083ee8' -> (Import Result ID: 'f9c0521e7245c9d7c9d668bab3f41507') in 0.008 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=d0f28acb5d0756dff395bfdcea10090f DependenciesID=baf04e49dd0a8f3f6c805203fc45cf3e StaticDependenciesID=8926d5103b1fec4ec5ccd5147d4bfcac 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T15:59:58.6898497Z
+  Time since last request: 0.0000218 seconds.
+  importAddress: GUID: a39177a24525b15fb79f4f6259445499 - Path: Assets/AvionesPapelVR/Textures/PaperPurple.png - Importer: PreviewImporter
+Importing 'GUID: a39177a24525b15fb79f4f6259445499 - Path: Assets/AvionesPapelVR/Textures/PaperPurple.png - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: a39177a24525b15fb79f4f6259445499' -> (Import Result ID: '01444f2963f5364c883a57bef8c4b638') in 0.007 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=c2dda5d4649e3d436b4038aa1076a370 DependenciesID=834cb782fc5f69cf6e6b177834fb549d StaticDependenciesID=8194e851dd9b00734b1c83ca7c5fe21b 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T15:59:58.7133923Z
+  Time since last request: 0.0004882 seconds.
+  importAddress: GUID: 863e7070f72f1ed67f1d0ebb6fdd0649 - Path: Assets/AvionesPapelVR/Textures/PaperYellow.png - Importer: PreviewImporter
+Importing 'GUID: 863e7070f72f1ed67f1d0ebb6fdd0649 - Path: Assets/AvionesPapelVR/Textures/PaperYellow.png - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 863e7070f72f1ed67f1d0ebb6fdd0649' -> (Import Result ID: '864dd8ab13833719af201a26e0a1ccb6') in 0.008 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=47bccd05d7a5fd3fe97acb1d64556fb7 DependenciesID=33566ef76fd23b4f1f7749e206af9663 StaticDependenciesID=944c98ac760d058f08d5231488e8588e 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T15:59:58.7384706Z
+  Time since last request: 0.0000201 seconds.
+  importAddress: GUID: a5fa160b1b6433a36bc4e8c4634a6c2b - Path: Assets/AvionesPapelVR/Textures/StarYellow.png - Importer: PreviewImporter
+Importing 'GUID: a5fa160b1b6433a36bc4e8c4634a6c2b - Path: Assets/AvionesPapelVR/Textures/StarYellow.png - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: a5fa160b1b6433a36bc4e8c4634a6c2b' -> (Import Result ID: '7dbfe287ea17d95d9b197c86cbf65e0b') in 0.006 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=2dabece848cd4bb0545c0432a8308386 DependenciesID=0c45e9b22a6adc0ca15ab95ebd33ddee StaticDependenciesID=f4209ca823fa0c30e438f0ac9aa59ec6 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T15:59:58.7619279Z
+  Time since last request: 0.0003441 seconds.
+  importAddress: GUID: 1a2f7f83ee260233493ef8242eb10881 - Path: Assets/AvionesPapelVR/Textures/InkBlack.png - Importer: PreviewImporter
+Importing 'GUID: 1a2f7f83ee260233493ef8242eb10881 - Path: Assets/AvionesPapelVR/Textures/InkBlack.png - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 1a2f7f83ee260233493ef8242eb10881' -> (Import Result ID: '1834329ee0dfd7411226c88abf21e7f9') in 0.009 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=1fc44a7e75c66234d2683848f39dde5e DependenciesID=c74596d5b08e94a8eb4c83e489bbfd41 StaticDependenciesID=03277e0c19708ac79bc5082f0942d74e 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T15:59:58.7879238Z
+  Time since last request: 0.0000194 seconds.
+  importAddress: GUID: fdfa271e03ec4819ea920307258249e6 - Path: Assets/AvionesPapelVR/Textures/PaperBlack.png - Importer: PreviewImporter
+Importing 'GUID: fdfa271e03ec4819ea920307258249e6 - Path: Assets/AvionesPapelVR/Textures/PaperBlack.png - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: fdfa271e03ec4819ea920307258249e6' -> (Import Result ID: '70958664221057c502b569659a539c50') in 0.008 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=fe930a5bfd39704457a0b4f16411f986 DependenciesID=fa93cc4d45040bfa198a64a9de1bfa8e StaticDependenciesID=f3ab510d25b798c202cccf892024c067 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T15:59:58.8119415Z
+  Time since last request: 0.000018 seconds.
+  importAddress: GUID: 508e677730746e45f5ef49bf1f74bd28 - Path: Assets/AvionesPapelVR/Textures/ShieldCyan.png - Importer: PreviewImporter
+Importing 'GUID: 508e677730746e45f5ef49bf1f74bd28 - Path: Assets/AvionesPapelVR/Textures/ShieldCyan.png - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 508e677730746e45f5ef49bf1f74bd28' -> (Import Result ID: '53a476cb374be65e1ce3fc7280269d88') in 0.007 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=bd01cec8a71fe7696caa7121557d6917 DependenciesID=e09d73d5ebe9c1c2edeff7f251a7dc53 StaticDependenciesID=b345fdd24a9a218a18883cb414bce40b 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T15:59:58.8370815Z
+  Time since last request: 0.0003671 seconds.
+  importAddress: GUID: becca0d8f8b26770a5703e7332874e30 - Path: Assets/AvionesPapelVR/Textures/Grass.png - Importer: PreviewImporter
+Importing 'GUID: becca0d8f8b26770a5703e7332874e30 - Path: Assets/AvionesPapelVR/Textures/Grass.png - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: becca0d8f8b26770a5703e7332874e30' -> (Import Result ID: '0b54c0e6ffe2e7ee4733d39e73cc933e') in 0.009 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=a37c415d76cc4d0f720c9ec80c8bbe82 DependenciesID=1d6afe003e460a9f6b497a09f034ca09 StaticDependenciesID=636534e6c531be3769a5be7948c88237 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T15:59:58.8626646Z
+  Time since last request: 0.0003242 seconds.
+  importAddress: GUID: c947f9c9f795f5cbefe7bd7652ea4156 - Path: Assets/AvionesPapelVR/Textures/PaperGold.png - Importer: PreviewImporter
+Importing 'GUID: c947f9c9f795f5cbefe7bd7652ea4156 - Path: Assets/AvionesPapelVR/Textures/PaperGold.png - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: c947f9c9f795f5cbefe7bd7652ea4156' -> (Import Result ID: 'b02171e7fb5443e194c5e6a5d983618d') in 0.007 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=9452b02af207b4e188236d944a98e5c5 DependenciesID=59d31d30107477ae96b4849118555767 StaticDependenciesID=66b31b944b5f54878edb6e12c3739163 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T15:59:58.8860442Z
+  Time since last request: 0.0000193 seconds.
+  importAddress: GUID: f3ef622ec58bbee19280c9c20c2c7d17 - Path: Assets/AvionesPapelVR/Textures/PaperPink.png - Importer: PreviewImporter
+Importing 'GUID: f3ef622ec58bbee19280c9c20c2c7d17 - Path: Assets/AvionesPapelVR/Textures/PaperPink.png - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: f3ef622ec58bbee19280c9c20c2c7d17' -> (Import Result ID: 'b9d712e1cdba4c968fa97d56a10bc4a7') in 0.008 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=b5b44f3b1bb6287da609a42e3b677f31 DependenciesID=22abc30ed71c2f0fa45f4eda7efe54a3 StaticDependenciesID=109ab9a0c71055000fdd0ceba6c49469 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T15:59:58.9116805Z
+  Time since last request: 0.0000822 seconds.
+  importAddress: GUID: 01eb4e4a06a1512d782de3ebf1bb91b0 - Path: Assets/AvionesPapelVR/Textures/MagicPurple.png - Importer: PreviewImporter
+Importing 'GUID: 01eb4e4a06a1512d782de3ebf1bb91b0 - Path: Assets/AvionesPapelVR/Textures/MagicPurple.png - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 01eb4e4a06a1512d782de3ebf1bb91b0' -> (Import Result ID: 'ff1455b70983fd36becf252a581c73c6') in 0.007 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=747c8e3c8148093e168e02a9748ef293 DependenciesID=3a137c3953dff15d0ef644087d3c193d StaticDependenciesID=2d924f5c5f2433b72086bda98bea72a1 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T15:59:58.9350152Z
+  Time since last request: 0.0004904 seconds.
+  importAddress: GUID: 38989e7d84e2af86285ddfd362df62b3 - Path: Assets/AvionesPapelVR/Textures/PaperWhite.png - Importer: PreviewImporter
+Importing 'GUID: 38989e7d84e2af86285ddfd362df62b3 - Path: Assets/AvionesPapelVR/Textures/PaperWhite.png - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 38989e7d84e2af86285ddfd362df62b3' -> (Import Result ID: '401e380dc1c5403898f998583ec9559b') in 0.008 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=d4c4f2bc5463073b4f784de8c72f1ec9 DependenciesID=f96c176be88a38f7fc6af97282211bb1 StaticDependenciesID=515d6de3ec2daeb18460b508641daf17 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T15:59:58.9603468Z
+  Time since last request: 0.0005287 seconds.
+  importAddress: GUID: 964f17fc1b2e113a114f3a5ab18ec698 - Path: Assets/AvionesPapelVR/Textures/CoinGold.png - Importer: PreviewImporter
+Importing 'GUID: 964f17fc1b2e113a114f3a5ab18ec698 - Path: Assets/AvionesPapelVR/Textures/CoinGold.png - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 964f17fc1b2e113a114f3a5ab18ec698' -> (Import Result ID: '651e1864803527ac522cba3664ed6039') in 0.007 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=02b2e8cc6b84c6cbb55d45de46ba643f DependenciesID=ed87860b83dbd6a5940b3750a96c9936 StaticDependenciesID=28ea60b72d6e671c68caa86ca9825a33 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T15:59:58.9844522Z
+  Time since last request: 0.0004457 seconds.
+  importAddress: GUID: 8cb89165cd0a1fb9ef1bcaff3d9eeac0 - Path: Assets/AvionesPapelVR/Textures/PaperGreen.png - Importer: PreviewImporter
+Importing 'GUID: 8cb89165cd0a1fb9ef1bcaff3d9eeac0 - Path: Assets/AvionesPapelVR/Textures/PaperGreen.png - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 8cb89165cd0a1fb9ef1bcaff3d9eeac0' -> (Import Result ID: '3e5004e3dca5e7c9b23c3a32627c9499') in 0.008 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=33cb147895e2091d04936443bbd92ae8 DependenciesID=7c5cefffaca30ada6a1feb5b3ce542bf StaticDependenciesID=1c252fb6cf12a9fa7cc928603f0ee9c0 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T15:59:59.0094989Z
+  Time since last request: 0.0007379 seconds.
+  importAddress: GUID: dfb4315f4f263342835fbf1522abd58c - Path: Assets/AvionesPapelVR/Textures/WoodTable.png - Importer: PreviewImporter
+Importing 'GUID: dfb4315f4f263342835fbf1522abd58c - Path: Assets/AvionesPapelVR/Textures/WoodTable.png - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: dfb4315f4f263342835fbf1522abd58c' -> (Import Result ID: '09a94a1b3b3d4dbd7ba66e2dcb03aca5') in 0.007 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=af6a76f5251d80478daffa4fb6e1deb5 DependenciesID=61ef63c032c17f9c1b6560a07fc34a6c StaticDependenciesID=8847adb0626e74ce716f270b0d28a92e 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T15:59:59.0339972Z
+  Time since last request: 0.0007251 seconds.
+  importAddress: GUID: b800ab279ca269da277719245cc57389 - Path: Assets/AvionesPapelVR/Textures/TripleMagenta.png - Importer: PreviewImporter
+Importing 'GUID: b800ab279ca269da277719245cc57389 - Path: Assets/AvionesPapelVR/Textures/TripleMagenta.png - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: b800ab279ca269da277719245cc57389' -> (Import Result ID: 'c1804ded2f16f786ad4574d88de32c6d') in 0.008 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=9ec297e14784a4099a531bfbe544c1f5 DependenciesID=4b09ef716a31cc6e67af3b752fad5780 StaticDependenciesID=8bd1dfe2a7afdddbce868cfe2fc733c7 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:00:20.1776517Z
+  Time since last request: 21.1198786 seconds.
+  importAddress: GUID: be0105df050e95a498a66c39f0bf127f - Path: Assets/AvionesPapelVR/Scenes/Game_VR_Oculus.unity - Importer: PreviewImporter
+Importing 'GUID: be0105df050e95a498a66c39f0bf127f - Path: Assets/AvionesPapelVR/Scenes/Game_VR_Oculus.unity - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: be0105df050e95a498a66c39f0bf127f' -> (Import Result ID: '9476ac248985d55bcadcec5d8aa0ff00') in 0.001 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=58d7d3b72ea9f4f59f6dd196ffd38d18 DependenciesID=fd977e97c2cae094669b76f25e50c7ba StaticDependenciesID=e804048c2d2f97b3add406141df1fb6a 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Prepare
+Default GameObject Tag: Player already registered
+AcceleratorClientConnectionCallback - disconnected - :0
+[Licensing::Client] Successfully resolved entitlement details
+Begin MonoManager ReloadAssembly
+Refreshing native plugins compatible for Editor in 8.22 ms, found 10 plugins.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Mono: successfully reloaded assembly
+[Package Manager] Failed to launch server process. Reason: Unity was launched with the -noUpm command-line argument
+[Package Manager] Unable to send message (not connected to server process).
+[Package Manager] Cannot connect to Unity Package Manager local server
+- Finished resetting the current domain, in  1.852 seconds
+Domain Reload Profiling: 2798ms
+	BeginReloadAssembly (348ms)
+		DisableScriptedObjects (16ms)
+		CreateAndSetChildDomain (83ms)
+	RebuildCommonClasses (12ms)
+	RebuildNativeTypeToScriptingClass (23ms)
+	initialDomainReloadingComplete (79ms)
+	LoadAllAssembliesAndSetupDomain (483ms)
+		LoadAssemblies (411ms)
+		AnalyzeDomain (23ms)
+			TypeCache.Refresh (8ms)
+			ResolveRequiredComponents (8ms)
+	FinalizeReload (1853ms)
+		SetupLoadedEditorAssemblies (0ms)
+			InitializePlatformSupportModulesInManaged (3ms)
+			BeforeProcessingInitializeOnLoad (124ms)
+			ProcessInitializeOnLoadAttributes (1058ms)
+			ProcessInitializeOnLoadMethodAttributes (294ms)
+			AfterProcessingInitializeOnLoad (10ms)
+		AwakeInstancesAfterBackupRestoration (27ms)
+WARNING: Shader Unsupported: 'Hidden/Simulation/URP/Synthetic' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Hidden/Simulation/Synthetic Lit' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Simulation/Standard Lit' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Simulation/URP/Room X-Ray' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Simulation/Room X-Ray' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Simulation/URP/Lit' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+Shader Hidden/ChartRasterizerHardware is not supported: GPU does not support conservative rasterization
+Refreshing native plugins compatible for Editor in 8.24 ms, found 10 plugins.
+Unloading 29 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 6392 unused Assets / (6.3 MB). Loaded Objects now: 7285.
+Memory consumption went from 362.6 MB to 356.2 MB.
+Total: 22.213800 ms (FindLiveObjects: 0.867800 ms CreateObjectMapping: 2.417300 ms MarkObjects: 15.315600 ms  DeleteObjects: 3.612100 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Prepare
+Default GameObject Tag: Player already registered
+AcceleratorClientConnectionCallback - disconnected - :0
+WARNING: Shader Unsupported: 'Hidden/Simulation/URP/Synthetic' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Hidden/Simulation/Synthetic Lit' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Simulation/Standard Lit' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Simulation/URP/Room X-Ray' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Simulation/Room X-Ray' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+WARNING: Shader Unsupported: 'Simulation/URP/Lit' - All subshaders removed
+WARNING: Shader Did you use #pragma only_renderers and omit this platform?
+WARNING: Shader If subshaders removal was intentional, you may have forgotten turning Fallback off?
+Shader Hidden/ChartRasterizerHardware is not supported: GPU does not support conservative rasterization
+Refreshing native plugins compatible for Editor in 9.49 ms, found 10 plugins.
+Unloading 29 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 29 unused Assets / (3.0 MB). Loaded Objects now: 7285.
+Memory consumption went from 360.8 MB to 357.8 MB.
+Total: 22.316200 ms (FindLiveObjects: 0.478200 ms CreateObjectMapping: 1.292200 ms MarkObjects: 19.790500 ms  DeleteObjects: 0.753500 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:04:20.4013798Z
+  Time since last request: 240.2157794 seconds.
+  importAddress: GUID: d6a2e6e4803de7b43baacdc355fc144d - Path: Packages/com.unity.test-framework/package.json - Importer: PreviewImporter
+Importing 'GUID: d6a2e6e4803de7b43baacdc355fc144d - Path: Packages/com.unity.test-framework/package.json - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: d6a2e6e4803de7b43baacdc355fc144d' -> (Import Result ID: '4f22f92168492132a71fb47ce0bb0b50') in 0.026 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=fb293bdd71d8219358591a22ff3a455d DependenciesID=67a1c4e58036586b364c54f83741f406 StaticDependenciesID=2338ff60b30aed38cc0ff645c038c4c6 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:04:21.4996034Z
+  Time since last request: 1.0528556 seconds.
+  importAddress: GUID: 3c600c0c4e2a9a3418ce1c4dc084290f - Path: Packages/com.unity.learn.iet-framework/package.json - Importer: PreviewImporter
+Importing 'GUID: 3c600c0c4e2a9a3418ce1c4dc084290f - Path: Packages/com.unity.learn.iet-framework/package.json - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 3c600c0c4e2a9a3418ce1c4dc084290f' -> (Import Result ID: 'db6619a4a4ba5087267fbd9bed5ab1de') in 0.001 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=4468e57de729ce65dadc6fca4d19e231 DependenciesID=361f12396533f59a1ac952eeffc93111 StaticDependenciesID=0e3a74fc5912dbe8dcb8b1665046a135 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 1
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:04:35.6964306Z
+  Time since last request: 14.1801042 seconds.
+  importAddress: GUID: bbfc27580d4d42af61c6de6f938e7890 - Path: Assets/AvionesPapelVR/Prefabs/Planes - Importer: PreviewImporter
+Importing 'GUID: bbfc27580d4d42af61c6de6f938e7890 - Path: Assets/AvionesPapelVR/Prefabs/Planes - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: bbfc27580d4d42af61c6de6f938e7890' -> (Import Result ID: 'd468f730832924e7cf4f9c11463b177f') in 0.001 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=1d8000b861ade5b866623945b2766f57 DependenciesID=de621c36b80b84d6c568db016cf79d83 StaticDependenciesID=776f342f5f79020e2295cafff8ce8618 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 0
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:04:35.756764Z
+  Time since last request: 0.044277 seconds.
+  importAddress: GUID: a2b6eee5a524d1e469880971e7f8bdbe - Path: Assets/AvionesPapelVR/Prefabs/Planes/ArrowSwift.prefab - Importer: PreviewImporter
+Importing 'GUID: a2b6eee5a524d1e469880971e7f8bdbe - Path: Assets/AvionesPapelVR/Prefabs/Planes/ArrowSwift.prefab - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: a2b6eee5a524d1e469880971e7f8bdbe' -> (Import Result ID: '7877ec25433842bdf8dac907671c0ed5') in 0.474 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=89e37d6e3c479960852df4dd6a7371ea DependenciesID=a9dfce70e4e3dcc14f50f506651cee4e StaticDependenciesID=0da729f87a6735177fa33150eb128984 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 17
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:04:36.2488313Z
+  Time since last request: 0.0000358 seconds.
+  importAddress: GUID: 7ca7c55c169d9e542ae10aa22ee5bae3 - Path: Assets/AvionesPapelVR/Prefabs/Planes/NightHawk.prefab - Importer: PreviewImporter
+Importing 'GUID: 7ca7c55c169d9e542ae10aa22ee5bae3 - Path: Assets/AvionesPapelVR/Prefabs/Planes/NightHawk.prefab - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 7ca7c55c169d9e542ae10aa22ee5bae3' -> (Import Result ID: 'e84be34f10dcc0a78e8d786c8cdf2e18') in 0.013 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=096ce94def0765b06594d8ed508de241 DependenciesID=5fbecd581be9c94d2e6c9bf410225871 StaticDependenciesID=3d295e441b9b5de44434fff6891d71f1 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 16
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:04:36.2772097Z
+  Time since last request: 0.0003203 seconds.
+  importAddress: GUID: 7ed86a0c1e198b74b963ed67a658456b - Path: Assets/AvionesPapelVR/Prefabs/Planes/PaperFalcon.prefab - Importer: PreviewImporter
+Importing 'GUID: 7ed86a0c1e198b74b963ed67a658456b - Path: Assets/AvionesPapelVR/Prefabs/Planes/PaperFalcon.prefab - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 7ed86a0c1e198b74b963ed67a658456b' -> (Import Result ID: '53e5338589c07adbbad195d2de11474c') in 0.012 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=aa2e9be518fc7c4f098fc53b4a8bdf11 DependenciesID=7ef7fd2ea0acb1fb857ab4e5361d2cd0 StaticDependenciesID=8224e254c85667ac98920b2a0133cc0c 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 16
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:04:36.3088304Z
+  Time since last request: 0.000027 seconds.
+  importAddress: GUID: 6a444592ddf579b439137b42bf5f6411 - Path: Assets/AvionesPapelVR/Prefabs/Planes/CloudSkimmer.prefab - Importer: PreviewImporter
+Importing 'GUID: 6a444592ddf579b439137b42bf5f6411 - Path: Assets/AvionesPapelVR/Prefabs/Planes/CloudSkimmer.prefab - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 6a444592ddf579b439137b42bf5f6411' -> (Import Result ID: 'bf318a42f76de928245796cbceef5c3d') in 0.012 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=6f8164865d51a77a8f0654d592829308 DependenciesID=549172bea5c6f776e4e44233636c15bd StaticDependenciesID=49bfe0d6488cac7765195acc91901cea 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 16
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:04:36.335636Z
+  Time since last request: 0.0004805 seconds.
+  importAddress: GUID: 5eef176bbb7af9d47a608f1f4942625e - Path: Assets/AvionesPapelVR/Prefabs/Planes/CanardAce.prefab - Importer: PreviewImporter
+Importing 'GUID: 5eef176bbb7af9d47a608f1f4942625e - Path: Assets/AvionesPapelVR/Prefabs/Planes/CanardAce.prefab - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 5eef176bbb7af9d47a608f1f4942625e' -> (Import Result ID: 'a4dff640a4bf4c1c8df4f0b3aaaec96a') in 0.013 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=c79f02c84a3d19ac8178d3c61b75b123 DependenciesID=58df8b211989735ef5784b2f2dec3655 StaticDependenciesID=9866569c2a40713a986c8221d2950bcf 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 16
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:04:36.3646583Z
+  Time since last request: 0.0001788 seconds.
+  importAddress: GUID: bb8c3bf7e706187468f0a31a16bc478f - Path: Assets/AvionesPapelVR/Prefabs/Planes/OrigamiPhoenix.prefab - Importer: PreviewImporter
+Importing 'GUID: bb8c3bf7e706187468f0a31a16bc478f - Path: Assets/AvionesPapelVR/Prefabs/Planes/OrigamiPhoenix.prefab - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: bb8c3bf7e706187468f0a31a16bc478f' -> (Import Result ID: '0f427d0b8a7abb77b92167816384446b') in 0.012 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=3ce14c9198c471dc5ac43d7100c6d995 DependenciesID=d3c080c3a6db176d3bc81f8598da3474 StaticDependenciesID=d9fa5691878b66dfa0d6fdd7b1a43579 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 16
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:04:36.3919972Z
+  Time since last request: 0.0001144 seconds.
+  importAddress: GUID: f2257946a578d7d4381776161aa54092 - Path: Assets/AvionesPapelVR/Prefabs/Planes/DeltaRacer.prefab - Importer: PreviewImporter
+Importing 'GUID: f2257946a578d7d4381776161aa54092 - Path: Assets/AvionesPapelVR/Prefabs/Planes/DeltaRacer.prefab - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: f2257946a578d7d4381776161aa54092' -> (Import Result ID: '2258a8b64d19a6ff8440b33932ef1ce0') in 0.012 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=192a16aebe4696e889da7dbd70455493 DependenciesID=3da92eada3047783a10bc3881369fb93 StaticDependenciesID=891ed6b087a85b4bb9229bd392b84d91 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 16
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:04:36.4199886Z
+  Time since last request: 0.0000308 seconds.
+  importAddress: GUID: 5ce62c00254854c45b040beba983b51c - Path: Assets/AvionesPapelVR/Prefabs/Planes/ZigZag.prefab - Importer: PreviewImporter
+Importing 'GUID: 5ce62c00254854c45b040beba983b51c - Path: Assets/AvionesPapelVR/Prefabs/Planes/ZigZag.prefab - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 5ce62c00254854c45b040beba983b51c' -> (Import Result ID: '268a0d3b13a670c6b0ef08f007a6b373') in 0.011 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=c47176d25557450612d7a38e68485b3b DependenciesID=b2276d8a2a6325a552932700dd812c9a StaticDependenciesID=e4a1e0352a48f2aa0b0cad7f2c70a019 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 16
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:04:36.4469703Z
+  Time since last request: 0.0003959 seconds.
+  importAddress: GUID: bde00669a3befea4a8b12972f777b2f3 - Path: Assets/AvionesPapelVR/Prefabs/Planes/DartClassic.prefab - Importer: PreviewImporter
+Importing 'GUID: bde00669a3befea4a8b12972f777b2f3 - Path: Assets/AvionesPapelVR/Prefabs/Planes/DartClassic.prefab - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: bde00669a3befea4a8b12972f777b2f3' -> (Import Result ID: 'c56dda800414fa9d459babdccc9279d9') in 0.012 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=9b9d2850559af2915d1adaf708606886 DependenciesID=30eab889c09c36d7cc011858468fe6d7 StaticDependenciesID=fbc4f668f965f3f90bc186c5e15e83e2 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 16
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:04:36.4742054Z
+  Time since last request: 0.0001318 seconds.
+  importAddress: GUID: 28a6da472f2d61c41aa18f741ff23501 - Path: Assets/AvionesPapelVR/Prefabs/Planes/GliderLong.prefab - Importer: PreviewImporter
+Importing 'GUID: 28a6da472f2d61c41aa18f741ff23501 - Path: Assets/AvionesPapelVR/Prefabs/Planes/GliderLong.prefab - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 28a6da472f2d61c41aa18f741ff23501' -> (Import Result ID: '795b45d9941f2ec076bf116de47ed06e') in 0.012 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=ad82d765bf4c9513ef94ae4ebaca787e DependenciesID=adf72e693a57fda2bb9a0b022b512107 StaticDependenciesID=3dbc76074e57bc4ba6cddc7ef9d0af08 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 16
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:04:36.5017612Z
+  Time since last request: 0.0000437 seconds.
+  importAddress: GUID: 8151e738110cf75478a2152765c3989a - Path: Assets/AvionesPapelVR/Prefabs/Planes/HeavyBomber.prefab - Importer: PreviewImporter
+Importing 'GUID: 8151e738110cf75478a2152765c3989a - Path: Assets/AvionesPapelVR/Prefabs/Planes/HeavyBomber.prefab - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 8151e738110cf75478a2152765c3989a' -> (Import Result ID: '5c105742a56e30d4f3ff06ade476192a') in 0.012 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=7192ab1aea648d54b999fe80d4896780 DependenciesID=84b36cdb5afdde3ec5f69854f4a4278c StaticDependenciesID=1fecb86f7b1757eca4f309243530288a 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 16
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:04:36.5293202Z
+  Time since last request: 0.0002835 seconds.
+  importAddress: GUID: e6194e2a839910b40a45a338c0922021 - Path: Assets/AvionesPapelVR/Prefabs/Planes/StormCutter.prefab - Importer: PreviewImporter
+Importing 'GUID: e6194e2a839910b40a45a338c0922021 - Path: Assets/AvionesPapelVR/Prefabs/Planes/StormCutter.prefab - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: e6194e2a839910b40a45a338c0922021' -> (Import Result ID: '9d029f6e03c1565bc552f4cf50e81b41') in 0.011 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=ba3224dcb0367f5501b1dcb30fff3ee7 DependenciesID=ac292fe788b2c0e9a3f403055c4012ed StaticDependenciesID=86373d4edfc6f62035a01cd51f237b35 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 16
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:04:49.2717123Z
+  Time since last request: 12.7175301 seconds.
+  importAddress: GUID: 3127dfdaeea914a4eb85168d41269eb3 - Path: Assets/AvionesPapelVR/Prefabs/Props/Chalkboard.prefab - Importer: PreviewImporter
+Importing 'GUID: 3127dfdaeea914a4eb85168d41269eb3 - Path: Assets/AvionesPapelVR/Prefabs/Props/Chalkboard.prefab - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 3127dfdaeea914a4eb85168d41269eb3' -> (Import Result ID: '59c6723b1444c7686f906dab5a5f85f4') in 0.014 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=2b7271685406e3c459ddfe53eade0179 DependenciesID=16aa858464a7fa5cb95081d403d72310 StaticDependenciesID=62f9813ad4c01a316440b9ac8a4a95c6 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 14
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:04:49.3019072Z
+  Time since last request: 0.0000299 seconds.
+  importAddress: GUID: 3f6127c706b171145be3f65fbfe66065 - Path: Assets/AvionesPapelVR/Prefabs/Props/StaticObstacle.prefab - Importer: PreviewImporter
+Importing 'GUID: 3f6127c706b171145be3f65fbfe66065 - Path: Assets/AvionesPapelVR/Prefabs/Props/StaticObstacle.prefab - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 3f6127c706b171145be3f65fbfe66065' -> (Import Result ID: '9cd86854d743e5c4dcf192d1f642aa8e') in 0.011 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=520b445a4b74b3ddecba26a93f387d73 DependenciesID=c9cd2be6a4b436aae74f7509e5f8c289 StaticDependenciesID=3a0408875150473e237167acc5804a69 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 13
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:04:49.3322586Z
+  Time since last request: 0.0005104 seconds.
+  importAddress: GUID: 69192d47b670ab444b9ebdc86ecaa881 - Path: Assets/AvionesPapelVR/Prefabs/Props/ParkBench.prefab - Importer: PreviewImporter
+Importing 'GUID: 69192d47b670ab444b9ebdc86ecaa881 - Path: Assets/AvionesPapelVR/Prefabs/Props/ParkBench.prefab - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 69192d47b670ab444b9ebdc86ecaa881' -> (Import Result ID: '8d9976a4af2169aa649370815604119f') in 0.011 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=c9f1d841cdb95805d403e19c083f74d7 DependenciesID=4bc00eb0f73c4799ae6797195c261eb1 StaticDependenciesID=a7b2cebce032c7b4291fdf1bb3c0f306 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 14
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:04:49.3601186Z
+  Time since last request: 0.0004221 seconds.
+  importAddress: GUID: 54f86ef7c787da94d93d51ea3e821457 - Path: Assets/AvionesPapelVR/Prefabs/Props/WoodTable.prefab - Importer: PreviewImporter
+Importing 'GUID: 54f86ef7c787da94d93d51ea3e821457 - Path: Assets/AvionesPapelVR/Prefabs/Props/WoodTable.prefab - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 54f86ef7c787da94d93d51ea3e821457' -> (Import Result ID: 'aed8cc7a67451d325c37bd833a8a1178') in 0.012 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=d5b0715c1ccc95c82cf1809adf0ebdba DependenciesID=71de7b611de4031b1d4c41c6f3402fe0 StaticDependenciesID=846a475593482fc9d0d56dad664e5aa7 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 14
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:04:49.3872905Z
+  Time since last request: 0.0001533 seconds.
+  importAddress: GUID: e57da94e2b28eac49a4214961d915603 - Path: Assets/AvionesPapelVR/Prefabs/Props/MovingObstacle.prefab - Importer: PreviewImporter
+Importing 'GUID: e57da94e2b28eac49a4214961d915603 - Path: Assets/AvionesPapelVR/Prefabs/Props/MovingObstacle.prefab - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: e57da94e2b28eac49a4214961d915603' -> (Import Result ID: '294dc91805bbd6ef25799bedaac957f8') in 0.011 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=9ea29c8cead660833771ff629e582640 DependenciesID=877dec3ef6b97a738cb0cd6adbd69d3b StaticDependenciesID=4afe6cf04e94df4d63749b1f56fd672a 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 15
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:04:49.4141076Z
+  Time since last request: 0.0005518 seconds.
+  importAddress: GUID: cfb263d15cc172b409cdaf187aa322c9 - Path: Assets/AvionesPapelVR/Prefabs/Props/MiniBuilding.prefab - Importer: PreviewImporter
+Importing 'GUID: cfb263d15cc172b409cdaf187aa322c9 - Path: Assets/AvionesPapelVR/Prefabs/Props/MiniBuilding.prefab - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: cfb263d15cc172b409cdaf187aa322c9' -> (Import Result ID: '4666340a230aef8cfb1e71236758bf39') in 0.011 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=57931e3be76fa9ebc1658f45f6bd2658 DependenciesID=4bc3f14e3ace1157b9e6bf8c05618922 StaticDependenciesID=f3ed9045f6ef8909329012c57c3c85e6 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 13
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:04:49.4411818Z
+  Time since last request: 0.0001905 seconds.
+  importAddress: GUID: 447a4068b7078e74f9312d8f9dfbed62 - Path: Assets/AvionesPapelVR/Prefabs/Props/SchoolDesk.prefab - Importer: PreviewImporter
+Importing 'GUID: 447a4068b7078e74f9312d8f9dfbed62 - Path: Assets/AvionesPapelVR/Prefabs/Props/SchoolDesk.prefab - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 447a4068b7078e74f9312d8f9dfbed62' -> (Import Result ID: 'edcb5ccb8ff29fd587e186cc309b854f') in 0.011 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=09d25f03295ee5cc96c03ea8a554331c DependenciesID=b841e058d39ba66c7809b6985305041b StaticDependenciesID=7cedf5dd503fe3e174e937b77e95d7c5 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 14
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:04:49.4678169Z
+  Time since last request: 0.0000264 seconds.
+  importAddress: GUID: 8ab0c2c80b77a764da8fda470303341a - Path: Assets/AvionesPapelVR/Prefabs/Props/ParkTree.prefab - Importer: PreviewImporter
+Importing 'GUID: 8ab0c2c80b77a764da8fda470303341a - Path: Assets/AvionesPapelVR/Prefabs/Props/ParkTree.prefab - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 8ab0c2c80b77a764da8fda470303341a' -> (Import Result ID: 'f91a658f5551ced718c33ea33a27cc22') in 0.011 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=faadafde66906753992ebb4f9217d859 DependenciesID=42be4595342de4cf98a21cb30764293a StaticDependenciesID=726e055915ce9674ccf20e866a8bb3e8 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 14
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:04:49.4946299Z
+  Time since last request: 0.0000259 seconds.
+  importAddress: GUID: b6546ddf132faae469f7509cc19fe3ce - Path: Assets/AvionesPapelVR/Prefabs/Props/MagicCrystal.prefab - Importer: PreviewImporter
+Importing 'GUID: b6546ddf132faae469f7509cc19fe3ce - Path: Assets/AvionesPapelVR/Prefabs/Props/MagicCrystal.prefab - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: b6546ddf132faae469f7509cc19fe3ce' -> (Import Result ID: 'fb7715fdc0a168a3a9b9a37824de8794') in 0.015 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=40bbeffe544de7cdb810ad9aae082b2f DependenciesID=cadd8b0c4f93c83bb862b7b7020d54d6 StaticDependenciesID=0682cb2f808bcb849a1755830c1819a8 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 15
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:04:49.5250145Z
+  Time since last request: 0.000598 seconds.
+  importAddress: GUID: 91599ca5fe2564d40833fca5bf6b663c - Path: Assets/AvionesPapelVR/Prefabs/Props/Fountain.prefab - Importer: PreviewImporter
+Importing 'GUID: 91599ca5fe2564d40833fca5bf6b663c - Path: Assets/AvionesPapelVR/Prefabs/Props/Fountain.prefab - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 91599ca5fe2564d40833fca5bf6b663c' -> (Import Result ID: '336f7755510d47062788442f03aab7d7') in 0.011 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=5763b4da120e55e1bf874c4bb5da9253 DependenciesID=8f3ccfb3788809bd5c3ea1a7f61da672 StaticDependenciesID=46afdfd9cddb0baab4e79333ca30b213 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 14
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:04:55.8047326Z
+  Time since last request: 6.253888 seconds.
+  importAddress: GUID: f3ef87d9bc114424995629d8fbd0ec3e - Path: Assets/AvionesPapelVR/Prefabs/Weapons/FoldMissile.prefab - Importer: PreviewImporter
+Importing 'GUID: f3ef87d9bc114424995629d8fbd0ec3e - Path: Assets/AvionesPapelVR/Prefabs/Weapons/FoldMissile.prefab - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: f3ef87d9bc114424995629d8fbd0ec3e' -> (Import Result ID: '09c43a7e4d06da138366fe52054e9bb6') in 0.013 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=61c26da08f347af265e083c5b36c3ae4 DependenciesID=5237b431b04d249506aa48f4a49b8fab StaticDependenciesID=c54b70b5f335714f775ad302a2a38904 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 14
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:04:55.8333829Z
+  Time since last request: 0.0000363 seconds.
+  importAddress: GUID: 05a40f8fa8155174eb9be1ab1ab6a026 - Path: Assets/AvionesPapelVR/Prefabs/Weapons/PaperBullet.prefab - Importer: PreviewImporter
+Importing 'GUID: 05a40f8fa8155174eb9be1ab1ab6a026 - Path: Assets/AvionesPapelVR/Prefabs/Weapons/PaperBullet.prefab - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 05a40f8fa8155174eb9be1ab1ab6a026' -> (Import Result ID: '0d44cc0f0b1c8c89b89195fcc120ff74') in 0.011 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=47dcc740837e82725b200e9ca4c82470 DependenciesID=8e0e94650393875b1843d39cab915d58 StaticDependenciesID=37368864919eae6210171d10fae9f1d0 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 15
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:04:55.8608634Z
+  Time since last request: 0.0005143 seconds.
+  importAddress: GUID: 6fd6118ba7ec0164ab10d631b5df4634 - Path: Assets/AvionesPapelVR/Prefabs/Weapons/OrigamiShield.prefab - Importer: PreviewImporter
+Importing 'GUID: 6fd6118ba7ec0164ab10d631b5df4634 - Path: Assets/AvionesPapelVR/Prefabs/Weapons/OrigamiShield.prefab - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 6fd6118ba7ec0164ab10d631b5df4634' -> (Import Result ID: '932991ce6f73bfbbe5e5fc2cc5228c78') in 0.013 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=21456c573bec968b962fca488e85bace DependenciesID=004b8976da192d7633ef9c36a07ade3c StaticDependenciesID=515cdacc2e304508d600869ef2fd1d3e 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 15
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:04:55.8891255Z
+  Time since last request: 0.0000324 seconds.
+  importAddress: GUID: 88f3d78107ab517428a118e673d592c4 - Path: Assets/AvionesPapelVR/Prefabs/Weapons/InkBomb.prefab - Importer: PreviewImporter
+Importing 'GUID: 88f3d78107ab517428a118e673d592c4 - Path: Assets/AvionesPapelVR/Prefabs/Weapons/InkBomb.prefab - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 88f3d78107ab517428a118e673d592c4' -> (Import Result ID: '3479bd97ab685f995bf4abe7e4f1a086') in 0.012 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=080089d221da4d56d8774a3645dbb2b9 DependenciesID=185d999c6a85c2f2105a4c9b24cb10ca StaticDependenciesID=c36be32a70227396ab20929bb10dc2ef 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 14
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:05:07.6326131Z
+  Time since last request: 11.716734 seconds.
+  importAddress: GUID: b30e05787308f6d43b5a99edd14ce594 - Path: Assets/AvionesPapelVR/Prefabs/Environments/FloorTile.prefab - Importer: PreviewImporter
+Importing 'GUID: b30e05787308f6d43b5a99edd14ce594 - Path: Assets/AvionesPapelVR/Prefabs/Environments/FloorTile.prefab - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: b30e05787308f6d43b5a99edd14ce594' -> (Import Result ID: '7a4c9ce5ff7fac59daa5b094a0b5a386') in 0.010 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=5c31bfcb79f6e708cbe3b7b01cc4f86a DependenciesID=edcd8828ef42d8738dc0528f10a54680 StaticDependenciesID=9c040738bf0e905e886c0ea375b02309 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 13
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:05:07.6590607Z
+  Time since last request: 0.0004872 seconds.
+  importAddress: GUID: cc8adacc13a05fa4aa511c9139ea3a6a - Path: Assets/AvionesPapelVR/Prefabs/Environments/WallTile.prefab - Importer: PreviewImporter
+Importing 'GUID: cc8adacc13a05fa4aa511c9139ea3a6a - Path: Assets/AvionesPapelVR/Prefabs/Environments/WallTile.prefab - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: cc8adacc13a05fa4aa511c9139ea3a6a' -> (Import Result ID: '1d6f4097799ea8a0c9093877a9c06128') in 0.009 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=74f626ef3d134204ff23b51299415032 DependenciesID=2837675e228028befc6ce9027abac2ca StaticDependenciesID=0c3eedecac81fd606fb480dbcb5a1977 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 13
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:05:10.18418Z
+  Time since last request: 2.5007282 seconds.
+  importAddress: GUID: 80fc8669ba06740448e5856f73d961ab - Path: Assets/AvionesPapelVR/Prefabs/Enemies/HostileDrone.prefab - Importer: PreviewImporter
+Importing 'GUID: 80fc8669ba06740448e5856f73d961ab - Path: Assets/AvionesPapelVR/Prefabs/Enemies/HostileDrone.prefab - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 80fc8669ba06740448e5856f73d961ab' -> (Import Result ID: '148d5b208a74cce16f1e4d0604416af2') in 0.013 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=2c07c9513ae06411cffaf9c6d02b369e DependenciesID=981a78d556aa1a046c55a71aeec1483d StaticDependenciesID=6441d8a446ec0593dee5149d23e121a9 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 15
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:05:10.2135372Z
+  Time since last request: 0.0002966 seconds.
+  importAddress: GUID: acd461f3e82dfd645bd76888250bb1d5 - Path: Assets/AvionesPapelVR/Prefabs/Enemies/WindFan.prefab - Importer: PreviewImporter
+Importing 'GUID: acd461f3e82dfd645bd76888250bb1d5 - Path: Assets/AvionesPapelVR/Prefabs/Enemies/WindFan.prefab - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: acd461f3e82dfd645bd76888250bb1d5' -> (Import Result ID: 'fe014aec81d124f6516f128657688e15') in 0.013 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=95831855ca83f40cc7f55b765ff1ba96 DependenciesID=91bd776d143d83bab2244596237d0662 StaticDependenciesID=3bccbdf7d1d5dee35b9ad9cc59cf9121 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 16
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:05:10.2435349Z
+  Time since last request: 0.0000291 seconds.
+  importAddress: GUID: 2f293cb292bb05241a93418b16093e43 - Path: Assets/AvionesPapelVR/Prefabs/Enemies/MechBird.prefab - Importer: PreviewImporter
+Importing 'GUID: 2f293cb292bb05241a93418b16093e43 - Path: Assets/AvionesPapelVR/Prefabs/Enemies/MechBird.prefab - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 2f293cb292bb05241a93418b16093e43' -> (Import Result ID: '9346b127fc8fd24b755b7f8c3b29eb86') in 0.013 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=f3169afc3c1382fcae50a9398c997667 DependenciesID=200d93d0771f247ce4df973b5ea2dcb8 StaticDependenciesID=b951688db69d18b939bb714612a01bc2 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 14
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:05:18.5201726Z
+  Time since last request: 8.2491579 seconds.
+  importAddress: GUID: 5b7098b9febb87e4e92ca730e8b87119 - Path: Assets/AvionesPapelVR/Prefabs/Collectibles/PaperCoin.prefab - Importer: PreviewImporter
+Importing 'GUID: 5b7098b9febb87e4e92ca730e8b87119 - Path: Assets/AvionesPapelVR/Prefabs/Collectibles/PaperCoin.prefab - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 5b7098b9febb87e4e92ca730e8b87119' -> (Import Result ID: '74a44a22ff16207619e1e9a44c71d411') in 0.012 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=440d620a86ffc7e67bab15f86bf7c7aa DependenciesID=c94179926e2007a6000af3fd91ed48f2 StaticDependenciesID=8a5bea8e380b007a687f01641eb3377e 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 15
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:05:18.5502207Z
+  Time since last request: 0.0001298 seconds.
+  importAddress: GUID: 95f96d9390372b04e8421b8e0ebab2ea - Path: Assets/AvionesPapelVR/Prefabs/Collectibles/ShieldOrb.prefab - Importer: PreviewImporter
+Importing 'GUID: 95f96d9390372b04e8421b8e0ebab2ea - Path: Assets/AvionesPapelVR/Prefabs/Collectibles/ShieldOrb.prefab - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 95f96d9390372b04e8421b8e0ebab2ea' -> (Import Result ID: 'cde7157b6f6d54b9561632e6171367b8') in 0.012 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=a0f770a9ce99819a6709f2eed1053ece DependenciesID=c223e2ff930afb94ad764cbd9d74761b StaticDependenciesID=cddb62ca7afdf50362674851b17c218b 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 15
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:05:18.5780114Z
+  Time since last request: 0.0000285 seconds.
+  importAddress: GUID: 41d587ef41c46d9418c45375106bab92 - Path: Assets/AvionesPapelVR/Prefabs/Collectibles/TripleShotOrb.prefab - Importer: PreviewImporter
+Importing 'GUID: 41d587ef41c46d9418c45375106bab92 - Path: Assets/AvionesPapelVR/Prefabs/Collectibles/TripleShotOrb.prefab - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 41d587ef41c46d9418c45375106bab92' -> (Import Result ID: '68f06eb126ebfc464b22f4161469a936') in 0.013 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=a55dd07e1d15b3ff2f5f58260a217414 DependenciesID=7aa04afd5996aee328d02813784eb354 StaticDependenciesID=60a7fdbec31ae16baf9bf10f6ebdd145 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 15
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:05:18.6057717Z
+  Time since last request: 0.0004984 seconds.
+  importAddress: GUID: 7b39b9f6706f8404caed6b1a6a456568 - Path: Assets/AvionesPapelVR/Prefabs/Collectibles/StarCollectible.prefab - Importer: PreviewImporter
+Importing 'GUID: 7b39b9f6706f8404caed6b1a6a456568 - Path: Assets/AvionesPapelVR/Prefabs/Collectibles/StarCollectible.prefab - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 7b39b9f6706f8404caed6b1a6a456568' -> (Import Result ID: 'f8271affaab749464d9ad8a7de75a83c') in 0.011 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=35cacc9408e40addc3bcc54a13839ae8 DependenciesID=19e4658df9c013c8be88db539183fde2 StaticDependenciesID=9b578ce6515d8ae2b5466b5aa2c9ac32 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 15
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:05:18.6324908Z
+  Time since last request: 0.0000282 seconds.
+  importAddress: GUID: 71cee88493046574aaeee5bf7ce77a39 - Path: Assets/AvionesPapelVR/Prefabs/Collectibles/PlanePart.prefab - Importer: PreviewImporter
+Importing 'GUID: 71cee88493046574aaeee5bf7ce77a39 - Path: Assets/AvionesPapelVR/Prefabs/Collectibles/PlanePart.prefab - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 71cee88493046574aaeee5bf7ce77a39' -> (Import Result ID: '655f0f14c50c5bc978839bd4b9ae97c3') in 0.010 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=06d7248658d992b147886aa3daaf4811 DependenciesID=f2de2eed572212ce8941d6067a5b8d3a StaticDependenciesID=1252151bcdd8bc374c1725ec4ebccf83 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 15
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:05:18.6590874Z
+  Time since last request: 0.0000281 seconds.
+  importAddress: GUID: 235a8fa61ef2b784b890005d756844ad - Path: Assets/AvionesPapelVR/Prefabs/Collectibles/TurboOrb.prefab - Importer: PreviewImporter
+Importing 'GUID: 235a8fa61ef2b784b890005d756844ad - Path: Assets/AvionesPapelVR/Prefabs/Collectibles/TurboOrb.prefab - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 235a8fa61ef2b784b890005d756844ad' -> (Import Result ID: '63cc6cdd0f1b26c66420a03070642fa3') in 0.012 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=b3ebd6c29da6d1a9127e8c0bddf14884 DependenciesID=f031851f105edc093348703e298df772 StaticDependenciesID=ecfb2e6937553a964614503c6929efd3 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 15
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:05:33.4464626Z
+  Time since last request: 14.7602808 seconds.
+  importAddress: GUID: 7bb16ce3c6709d11f32fa37945cfa75c - Path: Assets/AvionesPapelVR/Models/Environments/FloorTile.obj - Importer: PreviewImporter
+Importing 'GUID: 7bb16ce3c6709d11f32fa37945cfa75c - Path: Assets/AvionesPapelVR/Models/Environments/FloorTile.obj - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 7bb16ce3c6709d11f32fa37945cfa75c' -> (Import Result ID: '8b872aaf17c4bdc1c05d5f436e5161e8') in 0.054 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=7bae49e251e9f72a3adea18a522033d8 DependenciesID=208df1f91a1c571a5620c3eb08e50657 StaticDependenciesID=00add427badf014600eb1dd0fd8047a5 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 10
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:05:33.5179901Z
+  Time since last request: 0.0000304 seconds.
+  importAddress: GUID: 0af2a57d358beee8d04eaddfd60a8c4e - Path: Assets/AvionesPapelVR/Models/Environments/WallTile.obj - Importer: PreviewImporter
+Importing 'GUID: 0af2a57d358beee8d04eaddfd60a8c4e - Path: Assets/AvionesPapelVR/Models/Environments/WallTile.obj - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 0af2a57d358beee8d04eaddfd60a8c4e' -> (Import Result ID: 'e5cce655cb1f5c89f4f772597fc55a99') in 0.022 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=69cac5c2c511b12f482be1effd30ea02 DependenciesID=43d9278c85abef6405fbacbdfcda0f89 StaticDependenciesID=30fe7528f397025caccaddf5a0e80397 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 9
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:05:34.725524Z
+  Time since last request: 1.1703878 seconds.
+  importAddress: GUID: a5a192251ff9cd187b42bc8399aa994c - Path: Assets/AvionesPapelVR/Models/Enemies/HostileDrone.obj - Importer: PreviewImporter
+Importing 'GUID: a5a192251ff9cd187b42bc8399aa994c - Path: Assets/AvionesPapelVR/Models/Enemies/HostileDrone.obj - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: a5a192251ff9cd187b42bc8399aa994c' -> (Import Result ID: '26bebdd5065f8dc7739c4a329d1e4906') in 0.022 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=9c22531a2b258c3d65e05b22521aae6c DependenciesID=170619c20084172045199a844073ed91 StaticDependenciesID=11aaffe004817cdd11e54c7db57368b3 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 9
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:05:34.764791Z
+  Time since last request: 0.0002246 seconds.
+  importAddress: GUID: 7ff5917ed5d41e8b4bd5035d3a8825d0 - Path: Assets/AvionesPapelVR/Models/Enemies/MechBird.obj - Importer: PreviewImporter
+Importing 'GUID: 7ff5917ed5d41e8b4bd5035d3a8825d0 - Path: Assets/AvionesPapelVR/Models/Enemies/MechBird.obj - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 7ff5917ed5d41e8b4bd5035d3a8825d0' -> (Import Result ID: '5e6e277714c9e4cf79fc3a9b1e2d6bc6') in 0.018 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=5784dbd120c85d2ac8da3aa2f989ff23 DependenciesID=291a28dc2ac35ccd3d3c3df769331cd9 StaticDependenciesID=d6dd0152662c8cd9e2b9d1efc41c10fe 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 9
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:05:34.7993552Z
+  Time since last request: 0.0005317 seconds.
+  importAddress: GUID: 14f9cced26ddb05feec8b76a0859dca4 - Path: Assets/AvionesPapelVR/Models/Enemies/WindFan.obj - Importer: PreviewImporter
+Importing 'GUID: 14f9cced26ddb05feec8b76a0859dca4 - Path: Assets/AvionesPapelVR/Models/Enemies/WindFan.obj - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 14f9cced26ddb05feec8b76a0859dca4' -> (Import Result ID: 'ea85767ee65fb32e9802591a5c3a4d5a') in 0.019 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=4ed93dcda438aecf1421ae373a68e806 DependenciesID=55f8cfbe3accafd9f8b6059e6dc491b2 StaticDependenciesID=727f4206724a130ba17458ad6017dc0b 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 9
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:05:36.543176Z
+  Time since last request: 1.7088714 seconds.
+  importAddress: GUID: d29a5b13b471440f732ddad09b1af84a - Path: Assets/AvionesPapelVR/Models/Collectibles/PaperCoin.obj - Importer: PreviewImporter
+Importing 'GUID: d29a5b13b471440f732ddad09b1af84a - Path: Assets/AvionesPapelVR/Models/Collectibles/PaperCoin.obj - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: d29a5b13b471440f732ddad09b1af84a' -> (Import Result ID: '5446c6195c615d066a9937f70b4f8d32') in 0.021 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=c360c13164a19e92e998251c17a55ffc DependenciesID=053ee8ae1709cd66078aa7d8be9fc074 StaticDependenciesID=65b4eb522bcbbacb3f54fb3f931bdd6e 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 9
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:05:36.5841617Z
+  Time since last request: 0.0002742 seconds.
+  importAddress: GUID: d88e90c06f9e3aa4b4e94a40d97f2f32 - Path: Assets/AvionesPapelVR/Models/Collectibles/ShieldOrb.obj - Importer: PreviewImporter
+Importing 'GUID: d88e90c06f9e3aa4b4e94a40d97f2f32 - Path: Assets/AvionesPapelVR/Models/Collectibles/ShieldOrb.obj - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: d88e90c06f9e3aa4b4e94a40d97f2f32' -> (Import Result ID: '0d1fb84cea7b4f6f7d631c5fb1fbf016') in 0.022 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=6c5117f7edc2f67f73e3d7d51dd9e4d6 DependenciesID=1a93fc0b98c8c26271718752da0aeb9e StaticDependenciesID=107c6e21dc04ba1c85d34a18c4b21850 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 9
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:05:36.6229947Z
+  Time since last request: 0.0002533 seconds.
+  importAddress: GUID: b62d41d12bcf88d5e48e4b5739d9357c - Path: Assets/AvionesPapelVR/Models/Collectibles/PlanePart.obj - Importer: PreviewImporter
+Importing 'GUID: b62d41d12bcf88d5e48e4b5739d9357c - Path: Assets/AvionesPapelVR/Models/Collectibles/PlanePart.obj - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: b62d41d12bcf88d5e48e4b5739d9357c' -> (Import Result ID: 'e8c95a7a5a9ce8f34863a2e2e13f07db') in 0.020 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=605cebff04854c15a747e45f433f7ffc DependenciesID=67e14efeae6c2f939a163204938bd098 StaticDependenciesID=c1d4a13979c24cb716735732d15c25fa 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 9
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:05:36.6583559Z
+  Time since last request: 0.0002247 seconds.
+  importAddress: GUID: bf277a13e50eea908848f9c68be9c5ab - Path: Assets/AvionesPapelVR/Models/Collectibles/StarCollectible.obj - Importer: PreviewImporter
+Importing 'GUID: bf277a13e50eea908848f9c68be9c5ab - Path: Assets/AvionesPapelVR/Models/Collectibles/StarCollectible.obj - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: bf277a13e50eea908848f9c68be9c5ab' -> (Import Result ID: '24ae61ac3d26fdfae26b3b4ba2fdd705') in 0.017 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=1a7001a15dbaf1e5024f090ea4d6ac92 DependenciesID=a7406519069aa58f5ab31badd7a2d08d StaticDependenciesID=42ae19d04a425e5343796cec7a24bc12 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 9
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:05:36.6907903Z
+  Time since last request: 0.0000277 seconds.
+  importAddress: GUID: 121c16b78eeda692efecd896905b0429 - Path: Assets/AvionesPapelVR/Models/Collectibles/TurboOrb.obj - Importer: PreviewImporter
+Importing 'GUID: 121c16b78eeda692efecd896905b0429 - Path: Assets/AvionesPapelVR/Models/Collectibles/TurboOrb.obj - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 121c16b78eeda692efecd896905b0429' -> (Import Result ID: 'd13e18a734c12057c93263e8c94f3020') in 0.018 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=b9139ff113824addcb729bd4d7010744 DependenciesID=ec31483627e4f85274ba67393ec1e4bf StaticDependenciesID=45554c5e30a0301d511ba77c6480e754 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 9
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:05:36.7244582Z
+  Time since last request: 0.0003383 seconds.
+  importAddress: GUID: f7aaa561e2819ce0ec962d8f14913fc6 - Path: Assets/AvionesPapelVR/Models/Collectibles/TripleShotOrb.obj - Importer: PreviewImporter
+Importing 'GUID: f7aaa561e2819ce0ec962d8f14913fc6 - Path: Assets/AvionesPapelVR/Models/Collectibles/TripleShotOrb.obj - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: f7aaa561e2819ce0ec962d8f14913fc6' -> (Import Result ID: 'dcb7fd842e6d930adc3e1bf645aa95c4') in 0.018 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=5d972b80faa8d1befcdab775dcedf542 DependenciesID=a11fa9bac0a306cd265c0312d1a2c71e StaticDependenciesID=0dd2ef1a8be17863ea19f614ff543aff 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 9
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:05:40.2707516Z
+  Time since last request: 3.5136492 seconds.
+  importAddress: GUID: 4201f3d19a28b1d74d769dbf2563f5a8 - Path: Assets/AvionesPapelVR/Models/Weapons/FoldMissile.obj - Importer: PreviewImporter
+Importing 'GUID: 4201f3d19a28b1d74d769dbf2563f5a8 - Path: Assets/AvionesPapelVR/Models/Weapons/FoldMissile.obj - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 4201f3d19a28b1d74d769dbf2563f5a8' -> (Import Result ID: 'ac6f9b2de4c02194ff75d41f5ae4eb22') in 0.019 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=1794230218a6a7822215e8e695890d5a DependenciesID=ad7152d93fd2ff0f7ebe7b8268ce3f95 StaticDependenciesID=cf14f14cec578f7717e6b6c3b05b67a5 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 9
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:05:40.3045177Z
+  Time since last request: 0.0000283 seconds.
+  importAddress: GUID: c66fd90627a39c5754565278468869bc - Path: Assets/AvionesPapelVR/Models/Weapons/InkBomb.obj - Importer: PreviewImporter
+Importing 'GUID: c66fd90627a39c5754565278468869bc - Path: Assets/AvionesPapelVR/Models/Weapons/InkBomb.obj - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: c66fd90627a39c5754565278468869bc' -> (Import Result ID: 'eff336a79d72478e83ee09653c3d04ed') in 0.019 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=ca99cecf548310e7226f11fed2551b52 DependenciesID=9db378137054f559bf1b794a367b1bf7 StaticDependenciesID=639c26ba236f4c400b8caa8325a7bd91 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 9
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:05:40.3396235Z
+  Time since last request: 0.0005952 seconds.
+  importAddress: GUID: e138146811f482d1d3a97e04053d3efa - Path: Assets/AvionesPapelVR/Models/Weapons/OrigamiShield.obj - Importer: PreviewImporter
+Importing 'GUID: e138146811f482d1d3a97e04053d3efa - Path: Assets/AvionesPapelVR/Models/Weapons/OrigamiShield.obj - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: e138146811f482d1d3a97e04053d3efa' -> (Import Result ID: '8bceef688e6fc76cea59c14443556489') in 0.022 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=08797a59907fe1387bb99e39271515fb DependenciesID=0c58069c256240c171fdc8fcab5f71c8 StaticDependenciesID=822b23bc588ff46940c142fea2291591 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 9
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:05:40.3772789Z
+  Time since last request: 0.0005243 seconds.
+  importAddress: GUID: 2bd0c5eb769614fcee58a45f09036221 - Path: Assets/AvionesPapelVR/Models/Weapons/PaperBullet.obj - Importer: PreviewImporter
+Importing 'GUID: 2bd0c5eb769614fcee58a45f09036221 - Path: Assets/AvionesPapelVR/Models/Weapons/PaperBullet.obj - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 2bd0c5eb769614fcee58a45f09036221' -> (Import Result ID: '066e3d185c6c23d2156d50d4ebf212c6') in 0.018 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=0a9c8188a6f72daea3abe899c85b4dfd DependenciesID=f90608a5ea879641a8eed723116052c6 StaticDependenciesID=3fb4092f88e18e7925f15a01acd5a8e0 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 9
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:05:44.280171Z
+  Time since last request: 3.8693155 seconds.
+  importAddress: GUID: db87d728fee0acc4ebb618ba1cb0ff8b - Path: Assets/AvionesPapelVR/Data/Plane_ArrowSwift.asset - Importer: PreviewImporter
+Importing 'GUID: db87d728fee0acc4ebb618ba1cb0ff8b - Path: Assets/AvionesPapelVR/Data/Plane_ArrowSwift.asset - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: db87d728fee0acc4ebb618ba1cb0ff8b' -> (Import Result ID: 'f7934f9e1419c540f424959724ddae5d') in 0.002 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=98c7de0e597dbf20fe011f4583f731ab DependenciesID=db28559c1ee6adaf45d23fa971cea2f9 StaticDependenciesID=d58fef767d302d0c9eebc4a22c5caa68 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 13
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:05:44.2991733Z
+  Time since last request: 0.0003073 seconds.
+  importAddress: GUID: 02647859c614f254dba12921e4e89d16 - Path: Assets/AvionesPapelVR/Data/PowerUp_Shield.asset - Importer: PreviewImporter
+Importing 'GUID: 02647859c614f254dba12921e4e89d16 - Path: Assets/AvionesPapelVR/Data/PowerUp_Shield.asset - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 02647859c614f254dba12921e4e89d16' -> (Import Result ID: '4d9099e8590d0a8b9243a1f48d1b5056') in 0.002 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=677e01014b5e9707be784d5e21831489 DependenciesID=564ecff31e2b567bfe2eb012a1be1999 StaticDependenciesID=a1562af666ebb328c3ecf92370f03152 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:05:44.3169275Z
+  Time since last request: 0.0003126 seconds.
+  importAddress: GUID: cdd53080932b9b449af46801434cc5dc - Path: Assets/AvionesPapelVR/Data/Weapon_PaperBullet.asset - Importer: PreviewImporter
+Importing 'GUID: cdd53080932b9b449af46801434cc5dc - Path: Assets/AvionesPapelVR/Data/Weapon_PaperBullet.asset - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: cdd53080932b9b449af46801434cc5dc' -> (Import Result ID: '489913527f89ef4decb7ea71626b2e9f') in 0.002 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=827b4873c42855e0b3926ae542253d4a DependenciesID=b9bfbfd4f2b4ec69e9e7dadaa8c4b620 StaticDependenciesID=a41821de0ada59e3bb839af462d08218 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:05:44.3348269Z
+  Time since last request: 0.000324 seconds.
+  importAddress: GUID: e3711f66daadd1b44b06d26b3a75f746 - Path: Assets/AvionesPapelVR/Data/Plane_PaperFalcon.asset - Importer: PreviewImporter
+Importing 'GUID: e3711f66daadd1b44b06d26b3a75f746 - Path: Assets/AvionesPapelVR/Data/Plane_PaperFalcon.asset - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: e3711f66daadd1b44b06d26b3a75f746' -> (Import Result ID: 'da005c59390f11fa2dd77a1d7f7d494c') in 0.002 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=27a2ff06ad7633a93af100b4c98a88f2 DependenciesID=970ca36dc9b1fa967aea9286cde3f5b1 StaticDependenciesID=f1dfaf08f963084c6e7553a2f30a3318 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 13
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:05:44.3520245Z
+  Time since last request: 0.0003224 seconds.
+  importAddress: GUID: bd0103cc41e55d74781a10998c3db23c - Path: Assets/AvionesPapelVR/Data/PowerUp_TripleShot.asset - Importer: PreviewImporter
+Importing 'GUID: bd0103cc41e55d74781a10998c3db23c - Path: Assets/AvionesPapelVR/Data/PowerUp_TripleShot.asset - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: bd0103cc41e55d74781a10998c3db23c' -> (Import Result ID: 'f1b343193172659aaa3d1f5bb4e562c3') in 0.002 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=0a848de70ba431dc0d5dc6980cf187de DependenciesID=4de06c0a4f8f5ecea7f819569be78995 StaticDependenciesID=10a24fcded9cc52a63bfcf06215d21d1 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:05:44.3683123Z
+  Time since last request: 0.0003256 seconds.
+  importAddress: GUID: daef8a4ad6a32274fa265b381618bf40 - Path: Assets/AvionesPapelVR/Data/Weapon_OrigamiShield.asset - Importer: PreviewImporter
+Importing 'GUID: daef8a4ad6a32274fa265b381618bf40 - Path: Assets/AvionesPapelVR/Data/Weapon_OrigamiShield.asset - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: daef8a4ad6a32274fa265b381618bf40' -> (Import Result ID: 'f18c68ddb148422d2c16a40e9f7f5479') in 0.002 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=9703f269ea478feddd9be38b9994da08 DependenciesID=2630ffc08d14e32fcd13a031b0f826d5 StaticDependenciesID=500858d2534ac8f1be3e07052e9f8d4c 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:05:44.3845148Z
+  Time since last request: 0.0001445 seconds.
+  importAddress: GUID: f6a068e14440f1a4f9c3ef6b7d43674d - Path: Assets/AvionesPapelVR/Data/Weapon_InkBomb.asset - Importer: PreviewImporter
+Importing 'GUID: f6a068e14440f1a4f9c3ef6b7d43674d - Path: Assets/AvionesPapelVR/Data/Weapon_InkBomb.asset - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: f6a068e14440f1a4f9c3ef6b7d43674d' -> (Import Result ID: '3e34ee579f1c83abf6ef773046cc68ab') in 0.002 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=196718d15e62642473558343b2516723 DependenciesID=4c35979814f085e853458dce07a7c7bc StaticDependenciesID=9a9f0d83cc3d88ee662c38e881e0e7f0 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:05:44.4012699Z
+  Time since last request: 0.0002728 seconds.
+  importAddress: GUID: a2c6fd7791b8b45419bc7454d33c1071 - Path: Assets/AvionesPapelVR/Data/Plane_NightHawk.asset - Importer: PreviewImporter
+Importing 'GUID: a2c6fd7791b8b45419bc7454d33c1071 - Path: Assets/AvionesPapelVR/Data/Plane_NightHawk.asset - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: a2c6fd7791b8b45419bc7454d33c1071' -> (Import Result ID: '98078a591df93e4bf274a880b50d07b4') in 0.002 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=20aed5d5bb9d6b4daa36aa3a7ca3692c DependenciesID=80a0c453a8c4b39d68cc7d8271a841dc StaticDependenciesID=a75b8bf2d626b21f7e7c4cb99312f3fd 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 13
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:05:44.4174024Z
+  Time since last request: 0.0003355 seconds.
+  importAddress: GUID: 2e0d5c0113974f141a10509956696449 - Path: Assets/AvionesPapelVR/Data/Plane_StormCutter.asset - Importer: PreviewImporter
+Importing 'GUID: 2e0d5c0113974f141a10509956696449 - Path: Assets/AvionesPapelVR/Data/Plane_StormCutter.asset - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 2e0d5c0113974f141a10509956696449' -> (Import Result ID: 'abfac514c3157098adff65d264bda454') in 0.002 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=439d697ac8328acf3f5576a4efa3fe24 DependenciesID=dd649910c43244fca93ba31678e52a27 StaticDependenciesID=4a247b8c0d8a7381cf2e9ed74788d3bd 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 13
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:05:44.433612Z
+  Time since last request: 0.0002623 seconds.
+  importAddress: GUID: 06285df9f54be3644b1b15b55001bdef - Path: Assets/AvionesPapelVR/Data/Weapon_FoldMissile.asset - Importer: PreviewImporter
+Importing 'GUID: 06285df9f54be3644b1b15b55001bdef - Path: Assets/AvionesPapelVR/Data/Weapon_FoldMissile.asset - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 06285df9f54be3644b1b15b55001bdef' -> (Import Result ID: '295a5069bb8d923876fdd9625c854ff2') in 0.002 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=7bec9431a88c66482194bfe014a4f24c DependenciesID=47d39a7c915c6c634ca79cc9805b3550 StaticDependenciesID=eede0f579c5350941197c3a669d43c8a 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 11
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:05:44.4497623Z
+  Time since last request: 0.0002985 seconds.
+  importAddress: GUID: 924a5dbbed188f549a3f62d85f73ae0a - Path: Assets/AvionesPapelVR/Data/Plane_ZigZag.asset - Importer: PreviewImporter
+Importing 'GUID: 924a5dbbed188f549a3f62d85f73ae0a - Path: Assets/AvionesPapelVR/Data/Plane_ZigZag.asset - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 924a5dbbed188f549a3f62d85f73ae0a' -> (Import Result ID: 'bc4df432a1ab60518b7a5e6c2c53eb4f') in 0.002 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=267dcdf4ec9b99dc1a4650239c6a383c DependenciesID=d5463137aa85a7e80f6fdfe367ee36f6 StaticDependenciesID=58739ef7e06c243227086ec9cf57fba5 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 13
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:05:44.4656313Z
+  Time since last request: 0.0003063 seconds.
+  importAddress: GUID: 8063d18c602155646b96953d19f2473b - Path: Assets/AvionesPapelVR/Data/Plane_GliderLong.asset - Importer: PreviewImporter
+Importing 'GUID: 8063d18c602155646b96953d19f2473b - Path: Assets/AvionesPapelVR/Data/Plane_GliderLong.asset - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 8063d18c602155646b96953d19f2473b' -> (Import Result ID: 'bb4389e40ed1f6d9edcc5233e4126d9f') in 0.002 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=780e4788e4d26af0ed5a07eb02bcfbc3 DependenciesID=e0aad1151728efdb40765dd53f397dcd StaticDependenciesID=6881f2b034779191291a119beb0544ad 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 13
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:05:44.4819557Z
+  Time since last request: 0.0003178 seconds.
+  importAddress: GUID: 6cc176e3e45687943a8e5b9a4b5e95d8 - Path: Assets/AvionesPapelVR/Data/Plane_CanardAce.asset - Importer: PreviewImporter
+Importing 'GUID: 6cc176e3e45687943a8e5b9a4b5e95d8 - Path: Assets/AvionesPapelVR/Data/Plane_CanardAce.asset - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 6cc176e3e45687943a8e5b9a4b5e95d8' -> (Import Result ID: '5e5b425116d93ed012e0c87950c94983') in 0.002 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=0628421149369a0d2af57f235960725e DependenciesID=5a69506060e42e14a0cf731aaf09dd0a StaticDependenciesID=fa633c84d793238c856d4e0481ef7f00 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 13
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:05:44.4983355Z
+  Time since last request: 0.000306 seconds.
+  importAddress: GUID: 287564b56ace150448973876edcda557 - Path: Assets/AvionesPapelVR/Data/Plane_HeavyBomber.asset - Importer: PreviewImporter
+Importing 'GUID: 287564b56ace150448973876edcda557 - Path: Assets/AvionesPapelVR/Data/Plane_HeavyBomber.asset - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 287564b56ace150448973876edcda557' -> (Import Result ID: '41a7ba8faff692c8717966e1bcc5ab1b') in 0.002 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=852c726b94a4e6913053d8cc163aa1f2 DependenciesID=f8f4b6eca3e867598a33de59a6db9740 StaticDependenciesID=12dce520a5c672fbd57d5494a31ac1c7 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 13
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:05:44.5146651Z
+  Time since last request: 0.0003516 seconds.
+  importAddress: GUID: d4a76d68025988946bf1b15f163a927b - Path: Assets/AvionesPapelVR/Data/Plane_CloudSkimmer.asset - Importer: PreviewImporter
+Importing 'GUID: d4a76d68025988946bf1b15f163a927b - Path: Assets/AvionesPapelVR/Data/Plane_CloudSkimmer.asset - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: d4a76d68025988946bf1b15f163a927b' -> (Import Result ID: '6c114a85f415b42a5cf900276cfe304c') in 0.002 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=cfeca3120c2968a309a265fe360022a5 DependenciesID=511cb9b2010f1c66e990d359495cf2cd StaticDependenciesID=8bf4db46d7043c47da79076571bf7504 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 13
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:05:44.5311955Z
+  Time since last request: 0.000234 seconds.
+  importAddress: GUID: cd9b1594ff3ca6945831c89cbf7bdcba - Path: Assets/AvionesPapelVR/Data/PowerUp_Turbo.asset - Importer: PreviewImporter
+Importing 'GUID: cd9b1594ff3ca6945831c89cbf7bdcba - Path: Assets/AvionesPapelVR/Data/PowerUp_Turbo.asset - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: cd9b1594ff3ca6945831c89cbf7bdcba' -> (Import Result ID: '6bdafd0a058cc2c357bb345eebb6842b') in 0.002 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=af27467b84138ac56a9fcff9f9e57c63 DependenciesID=47d6bf007081f3e1accf89e83001ebef StaticDependenciesID=010c04e0c4618d9645732cdfa4378f94 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 12
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:05:44.5474794Z
+  Time since last request: 0.0003269 seconds.
+  importAddress: GUID: 20f7df6e1d5fae44596ad34256c1a750 - Path: Assets/AvionesPapelVR/Data/Plane_OrigamiPhoenix.asset - Importer: PreviewImporter
+Importing 'GUID: 20f7df6e1d5fae44596ad34256c1a750 - Path: Assets/AvionesPapelVR/Data/Plane_OrigamiPhoenix.asset - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 20f7df6e1d5fae44596ad34256c1a750' -> (Import Result ID: 'b1213d92e613643bbc09571bef39fd55') in 0.002 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=f25fd94cae2b9e22f9b77cbe365a8070 DependenciesID=4f3b38e19a474da3f2a8f23240db1ee4 StaticDependenciesID=111e050408c0f9f522770a66bc393967 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 13
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:05:44.5635946Z
+  Time since last request: 0.0002785 seconds.
+  importAddress: GUID: 424df0964358f334f9753fd2c03036fe - Path: Assets/AvionesPapelVR/Data/Plane_DeltaRacer.asset - Importer: PreviewImporter
+Importing 'GUID: 424df0964358f334f9753fd2c03036fe - Path: Assets/AvionesPapelVR/Data/Plane_DeltaRacer.asset - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 424df0964358f334f9753fd2c03036fe' -> (Import Result ID: 'e7eb5587b3454c120a0e6f4ec91a2765') in 0.002 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=d48630c9f0447598d4c7303cb7f1439c DependenciesID=2c75ad581145772b60608ee617c4d850 StaticDependenciesID=c1e7333aaae1b0df66d3b84aac09a72e 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 13
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:05:44.5796797Z
+  Time since last request: 0.0002673 seconds.
+  importAddress: GUID: 00249d4db81e70749a8868a70634a898 - Path: Assets/AvionesPapelVR/Data/Plane_DartClassic.asset - Importer: PreviewImporter
+Importing 'GUID: 00249d4db81e70749a8868a70634a898 - Path: Assets/AvionesPapelVR/Data/Plane_DartClassic.asset - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 00249d4db81e70749a8868a70634a898' -> (Import Result ID: 'ae5ba4a9da4aedaf54a133977f909c1e') in 0.002 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=a587e688886ae8621dfb367157296de1 DependenciesID=9e40556f7a596dde96c42a3bee0cd947 StaticDependenciesID=328af61dae621ae6654746e6612a08a8 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 13
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:05:53.1487993Z
+  Time since last request: 8.5536256 seconds.
+  importAddress: GUID: 3e229b8e66f6586ffc108db3c7916e8c - Path: Assets/AvionesPapelVR/Audio/sfx_collision.wav - Importer: PreviewImporter
+Importing 'GUID: 3e229b8e66f6586ffc108db3c7916e8c - Path: Assets/AvionesPapelVR/Audio/sfx_collision.wav - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 3e229b8e66f6586ffc108db3c7916e8c' -> (Import Result ID: '52379878a6c5e16fd6d10ec2cec349f2') in 0.058 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=18e19cee1687de09dceefb019d43617a DependenciesID=d277deeb4a899cdb24427835db7a6d08 StaticDependenciesID=7becff7a8243b7ea6b8f0cc4e4b6cf98 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:05:53.2234139Z
+  Time since last request: 0.0000455 seconds.
+  importAddress: GUID: 1fe3b2e1c57ef6c69a7ddb9dd6c4bf43 - Path: Assets/AvionesPapelVR/Audio/sfx_pickup.wav - Importer: PreviewImporter
+Importing 'GUID: 1fe3b2e1c57ef6c69a7ddb9dd6c4bf43 - Path: Assets/AvionesPapelVR/Audio/sfx_pickup.wav - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 1fe3b2e1c57ef6c69a7ddb9dd6c4bf43' -> (Import Result ID: '8e17532fd3c5275555e26395ff76c723') in 0.009 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=bac97edc7dcd112e824598f010894ded DependenciesID=6dd585c554e591902a07889bf40e413e StaticDependenciesID=2cc436b12ca9af44a5c7f11b53d500b8 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:05:53.2504399Z
+  Time since last request: 0.000573 seconds.
+  importAddress: GUID: 76a5f690401a4f07fe054440aac4f17b - Path: Assets/AvionesPapelVR/Audio/sfx_explosion_ink.wav - Importer: PreviewImporter
+Importing 'GUID: 76a5f690401a4f07fe054440aac4f17b - Path: Assets/AvionesPapelVR/Audio/sfx_explosion_ink.wav - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 76a5f690401a4f07fe054440aac4f17b' -> (Import Result ID: '16ee57bd9afc770238c8684b61adb9bf') in 0.008 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=f3de408a7ab782668493572881580a87 DependenciesID=83b029936ecc763126d4b9c8b35ec1b2 StaticDependenciesID=2eed05fce0d770f183c4c72ade90ba61 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:05:53.2740388Z
+  Time since last request: 0.0007189 seconds.
+  importAddress: GUID: 5cdd06d0dbf6f46a104a50019685d503 - Path: Assets/AvionesPapelVR/Audio/sfx_wind.wav - Importer: PreviewImporter
+Importing 'GUID: 5cdd06d0dbf6f46a104a50019685d503 - Path: Assets/AvionesPapelVR/Audio/sfx_wind.wav - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 5cdd06d0dbf6f46a104a50019685d503' -> (Import Result ID: '8250a4e51e26dfb26a1ab9965d4b7bbb') in 0.008 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=7f5caf77f48cbc609077be99d37d4e3d DependenciesID=98fd430abb65f6501831494ea9677564 StaticDependenciesID=74e4a9692732d3d937af6858dad1a41a 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:05:53.2981919Z
+  Time since last request: 0.0003167 seconds.
+  importAddress: GUID: f9c24e52a73697395892647e06f77b28 - Path: Assets/AvionesPapelVR/Audio/sfx_shoot.wav - Importer: PreviewImporter
+Importing 'GUID: f9c24e52a73697395892647e06f77b28 - Path: Assets/AvionesPapelVR/Audio/sfx_shoot.wav - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: f9c24e52a73697395892647e06f77b28' -> (Import Result ID: '838ab389e9b5e259db20f37e9c63f0b0') in 0.008 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=59a746480559d2ec053abf1f02eff6ce DependenciesID=ed10eb64d41e69e7520dfddbd83fbdd6 StaticDependenciesID=b483ebd34c17eb9f296bd5d057066214 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+========================================================================
+Received Import Request.
+  Time of request: 2026-09-22T16:05:53.3205485Z
+  Time since last request: 0.0005365 seconds.
+  importAddress: GUID: 1364d0f543728af38ed89a5f8c64cb9f - Path: Assets/AvionesPapelVR/Audio/sfx_launch.wav - Importer: PreviewImporter
+Importing 'GUID: 1364d0f543728af38ed89a5f8c64cb9f - Path: Assets/AvionesPapelVR/Audio/sfx_launch.wav - Importer: PreviewImporter' with importer (PreviewImporter)
+Imported 'GUID: 1364d0f543728af38ed89a5f8c64cb9f' -> (Import Result ID: 'd5be0fce338292b36ccc874d7b8449ae') in 0.008 seconds [static and dynamic dependencies]. Details - ImportResultOutputID=14d481a47eb047ea120bdac8b4c195d9 DependenciesID=870147e07346b07ad778ddb9e7f47565 StaticDependenciesID=39cc4ac64a9dca362b7a9701305619de 
+Number of updated asset objects reloaded before import = 0
+Number of asset objects unloaded after import = 2
+Editor requested this worker to shutdown with reason: Editor is closing down
+AcceleratorClientConnectionCallback - disconnected - :0
+AssetImportWorker is now disconnected from the server
+Process exiting
+Exiting without the bug reporter. Application will terminate with return code 0

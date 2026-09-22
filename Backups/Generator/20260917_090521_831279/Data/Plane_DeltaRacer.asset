@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a323ff693e5655498fffb753efff4e1, type: 3}
+  m_Name: Plane_DeltaRacer
+  m_EditorClassIdentifier: Assembly-CSharp::AvionesPapelVR.PlaneDefinition
+  displayName: Delta Racer
+  rarity: 1
+  speed: 0.8
+  glide: 0.5
+  stability: 0.55
+  windResistance: 0.45
+  firePower: 0.6
+  unlockedByDefault: 1
+  skinId: amarillo
+  stickerId: none
+  prefab: {fileID: 8052285100523697000, guid: f2257946a578d7d4381776161aa54092, type: 3}
+  accentColor: {r: 0.95, g: 0.85, b: 0.3, a: 1}
+  unlockScore: 300

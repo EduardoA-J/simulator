@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a323ff693e5655498fffb753efff4e1, type: 3}
+  m_Name: Plane_CanardAce
+  m_EditorClassIdentifier: Assembly-CSharp::AvionesPapelVR.PlaneDefinition
+  displayName: Canard Ace
+  rarity: 1
+  speed: 0.65
+  glide: 0.65
+  stability: 0.8
+  windResistance: 0.7
+  firePower: 0.55
+  unlockedByDefault: 0
+  skinId: verde
+  stickerId: asa
+  prefab: {fileID: 4532762451773803867, guid: 5eef176bbb7af9d47a608f1f4942625e, type: 3}
+  accentColor: {r: 0.4, g: 0.8, b: 0.45, a: 1}
+  unlockScore: 300

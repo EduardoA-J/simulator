@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a323ff693e5655498fffb753efff4e1, type: 3}
+  m_Name: Plane_StormCutter
+  m_EditorClassIdentifier: Assembly-CSharp::AvionesPapelVR.PlaneDefinition
+  displayName: Cortatormentas
+  rarity: 2
+  speed: 0.85
+  glide: 0.45
+  stability: 0.7
+  windResistance: 0.95
+  firePower: 0.65
+  unlockedByDefault: 0
+  skinId: tormenta
+  stickerId: nube
+  prefab: {fileID: 5356345887596653449, guid: e6194e2a839910b40a45a338c0922021, type: 3}
+  accentColor: {r: 0.35, g: 0.85, b: 0.9, a: 1}
+  unlockScore: 600

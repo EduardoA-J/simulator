@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a323ff693e5655498fffb753efff4e1, type: 3}
+  m_Name: Plane_GliderLong
+  m_EditorClassIdentifier: Assembly-CSharp::AvionesPapelVR.PlaneDefinition
+  displayName: Planeador Largo
+  rarity: 0
+  speed: 0.35
+  glide: 0.9
+  stability: 0.7
+  windResistance: 0.55
+  firePower: 0.25
+  unlockedByDefault: 1
+  skinId: azul
+  stickerId: estrella
+  prefab: {fileID: 8067228857599027918, guid: 28a6da472f2d61c41aa18f741ff23501, type: 3}
+  accentColor: {r: 0.55, g: 0.75, b: 0.95, a: 1}
+  unlockScore: 0

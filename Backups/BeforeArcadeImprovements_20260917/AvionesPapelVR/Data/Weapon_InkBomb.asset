@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9da4f4041ba61a49855de81cfed17b9, type: 3}
+  m_Name: Weapon_InkBomb
+  m_EditorClassIdentifier: Assembly-CSharp::AvionesPapelVR.WeaponDefinition
+  displayName: Bomba de tinta
+  type: 2
+  damage: 40
+  speed: 6
+  cooldown: 1.2
+  projectilePrefab: {fileID: 8763597522788643585, guid: 88f3d78107ab517428a118e673d592c4, type: 3}

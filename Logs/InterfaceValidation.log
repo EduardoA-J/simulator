@@ -1,0 +1,875 @@
+[Licensing::Module] Trying to connect to existing licensing client channel...
+Built from '6000.5/staging' branch; Version is '6000.5.6f1 (0e0577a1a2ac) revision 918903'; Using compiler version '194234433'; Build Type 'Release'
+OS: 'Windows 10  (10.0.19045) 64bit Education' Language: 'es' Physical Memory: 32633 MB
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-Estudiante" at "2026-09-22T15:37:11.2471059Z"
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1
+System  architecture: x64
+Process architecture: x64
+Date: 2026-09-22T15:37:11Z
+
+COMMAND LINE ARGUMENTS:
+C:\Program Files\Unity\Hub\Editor\6000.5.6f1\Editor\Unity.exe
+-batchmode
+-projectPath
+C:/Users/Usuariocc/Downloads/Avion_VR 1/Avion_VR
+-executeMethod
+AvionesPapelVR.Editor.GameplayValidation.RunBatch
+-logFile
+Logs/InterfaceValidation.log
+Successfully changed project path to: C:/Users/Usuariocc/Downloads/Avion_VR 1/Avion_VR
+C:/Users/Usuariocc/Downloads/Avion_VR 1/Avion_VR
+[UnityMemory] Configuration Parameters - Can be set up in boot.config
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-gi-baking-worker=262144"
+    "memorysetup-temp-allocator-size-nav-mesh-worker=65536"
+    "memorysetup-temp-allocator-size-audio-worker=65536"
+    "memorysetup-temp-allocator-size-cloud-worker=32768"
+    "memorysetup-temp-allocator-size-gfx=262144"
+    "memorysetup-temp-allocator-size-preload-manager=33554432"
+    "memorysetup-allocator-temp-initial-block-size-main=262144"
+    "memorysetup-allocator-temp-initial-block-size-worker=262144"
+    "memorysetup-temp-allocator-size-job-worker=262144"
+    "memorysetup-temp-allocator-size-background-worker=32768"
+    "memorysetup-bucket-allocator-granularity=16"
+    "memorysetup-bucket-allocator-bucket-count=8"
+    "memorysetup-bucket-allocator-block-size=33554432"
+    "memorysetup-bucket-allocator-block-count=8"
+    "memorysetup-main-allocator-block-size=16777216"
+    "memorysetup-thread-allocator-block-size=16777216"
+    "memorysetup-main-allocator-mimalloc-enabled=0"
+    "memorysetup-gfx-main-allocator-block-size=16777216"
+    "memorysetup-gfx-thread-allocator-block-size=16777216"
+    "memorysetup-cache-allocator-block-size=4194304"
+    "memorysetup-typetree-allocator-block-size=2097152"
+    "memorysetup-profiler-bucket-allocator-granularity=16"
+    "memorysetup-profiler-bucket-allocator-bucket-count=8"
+    "memorysetup-profiler-bucket-allocator-block-size=33554432"
+    "memorysetup-profiler-bucket-allocator-block-count=8"
+    "memorysetup-profiler-allocator-block-size=16777216"
+    "memorysetup-profiler-editor-allocator-block-size=1048576"
+    "memorysetup-temp-allocator-size-main=16777216"
+    "memorysetup-job-temp-allocator-block-size=2097152"
+    "memorysetup-job-temp-allocator-block-size-background=1048576"
+    "memorysetup-job-temp-allocator-reduction-small-platforms=262144"
+Logging is directed to a specific file, skipping project log.Player connection [4536]  Target information:
+
+Player connection [4536]  * "[IP] 192.168.13.40 [Port] 55504 [Flags] 2 [Guid] 1373927620 [EditorId] 1373927620 [Version] 1048832 [Id] WindowsEditor(7,T104-18) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [4536]  * "[IP] 172.20.224.1 [Port] 55504 [Flags] 2 [Guid] 1373927620 [EditorId] 1373927620 [Version] 1048832 [Id] WindowsEditor(7,T104-18) [Debug] 1 [PackageName] WindowsEditor [ProjectName] Editor" 
+
+Player connection [4536] Host joined multi-casting on [225.0.0.222:54997]...
+Player connection [4536] Host joined alternative multi-casting on [225.0.0.222:34997]...
+Input System module state changed to: Initialized.
+[Physics::Module] Initialized fallback backend.
+[Physics::Module] Id: 0xdecafbad
+[Package Manager] Connected to IPC stream "Upm-11884" after 0.3 seconds.
+[Licensing::Module] Licensing is not yet initialized.
+[Licensing::Client] Error: HandshakeResponse reported an error:
+	ResponseCode: 505
+	ResponseStatus: Unsupported protocol version '1.18.1'.
+[Licensing::Module] Error: Failed to handshake to channel: "LicenseClient-Estudiante"
+[Licensing::IpcConnector] LicenseClient-Estudiante channel disconnected successfully.
+[Licensing::IpcConnector] Channel LicenseClient-Estudiante-6000.5.6 doesn't exist
+[Licensing::Module] Successfully launched the LicensingClient (PId: 9512)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-Estudiante-6000.5.6" at "2026-09-22T15:37:13.5152986Z"
+[Licensing::Client] Code 10 while verifying Licensing Client signature (process Id: 9512, path: "C:/Program Files/Unity/Hub/Editor/6000.5.6f1/Editor/Data/Resources/Licensing/Client/Unity.Licensing.Client.exe")
+[Licensing::Module] LicensingClient has failed validation; ignoring
+[Licensing::Client] Handshaking with LicensingClient:
+  Version:                 1.18.1+9fbee8e
+  Session Id:              0b677ca913124337b062245301255208
+  Correlation Id:          e5fc4a8b13676ef24f072c0dd7839c8c
+  External correlation Id: 5835709861503123914
+  Machine Id:              q62SqGutQS+9FySXBEK7bYqzfC8=
+[Licensing::Module] Successfully connected to LicensingClient on channel: "LicenseClient-Estudiante-6000.5.6" (connect: 0.37s, validation: 0.20s, handshake: 0.01s)
+[Licensing::IpcConnector] Successfully connected to: "LicenseClient-Estudiante-6000.5.6-notifications" at "2026-09-22T15:37:13.7247287Z"
+[Licensing::Module] Connected to LicensingClient (PId: 9512, launch time: 0.00, total connection time: 0.58s)
+[Licensing::Module] Error: Access token is unavailable; failed to update
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] License group:
+  Id: 4674117524204-UnityPersXXXX
+  Product: Unity Personal
+  Type: Assigned
+  Expiration: Unlimited
+[Licensing::Client] Successfully updated license, isAsync: True, time: 0.01
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Module] Licensing Background thread has ended after 2.53s
+[Licensing::Module] Licensing is initialized (took 1.98s).
+[Licensing::Client] Successfully resolved entitlement details
+Library Redirect Path: Library/
+Default GameObject Tag: Player already registered
+[Physics::Module] Selected backend.
+[Physics::Module] Name: PhysX
+[Physics::Module] Id: 0xf2b8ea05
+[Physics::Module] SDK Version: 4.1.2
+[Physics::Module] Integration Version: 1.0.0
+[Physics::Module] Threading Mode: Multi-Threaded
+Artifact Garbage Collection - Removed 3 unused hashed content files
+Refreshing native plugins compatible for Editor in 2.82 ms, found 0 plugins.
+Initialize engine version: 6000.5.6f1 (0e0577a1a2ac)
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/6000.5.6f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/Usuariocc/Downloads/Avion_VR 1/Avion_VR/Assets
+GfxDevice: creating device client; kGfxThreadingModeNonThreaded
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: Radeon RX 550X (ID=0x699f)
+    Vendor:   ATI
+    VRAM:     4075 MB
+    Driver:   31.0.21924.3004
+Initialize mono
+Mono path[0] = 'C:/Program Files/Unity/Hub/Editor/6000.5.6f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Program Files/Unity/Hub/Editor/6000.5.6f1/Editor/Data/BCLExtensions/runtime/netstandard2.1'
+Mono path[2] = 'C:/Program Files/Unity/Hub/Editor/6000.5.6f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit-win32'
+Mono config path = 'C:/Program Files/Unity/Hub/Editor/6000.5.6f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56884
+CodeReloadManager initialized
+ImportWorker Server TCP listen port: 0
+AcceleratorClientConnectionCallback - disconnected - :0
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.5.6f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll
+Register platform support module: C:/Program Files/Unity/Hub/Editor/6000.5.6f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.002927 seconds.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Package Manager log level set to [2]
+ScheduleIndexationOnStartup MainProcess:False IndexOnStartup:True
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  0.578 seconds
+Domain Reload Profiling: 1318ms
+	BeginReloadAssembly (199ms)
+		CreateAndSetChildDomain (19ms)
+	RebuildCommonClasses (6ms)
+	RebuildNativeTypeToScriptingClass (24ms)
+	initialDomainReloadingComplete (88ms)
+	LoadAllAssembliesAndSetupDomain (419ms)
+		LoadAssemblies (176ms)
+		AnalyzeDomain (302ms)
+			TypeCache.Refresh (300ms)
+				TypeCache.ScanAssembly (281ms)
+	FinalizeReload (582ms)
+		SetupLoadedEditorAssemblies (0ms)
+			InitializePlatformSupportModulesInManaged (4ms)
+			BeforeProcessingInitializeOnLoad (129ms)
+			ProcessInitializeOnLoadAttributes (142ms)
+			ProcessInitializeOnLoadMethodAttributes (199ms)
+[Licensing::Client] Successfully resolved entitlement details
+Application.AssetDatabase Initial Refresh Start
+[Package Manager] Restoring resolved packages state from cache
+[Licensing::Client] Successfully resolved entitlement details
+[Package Manager] Registered 69 packages:
+  Packages from [https://packages.unity.com]:
+    com.unity.inputsystem@1.20.0 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.inputsystem@7a4e1a2a8194)
+    com.unity.learn.iet-framework@6.0.6 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.learn.iet-framework@20adddfea631)
+    com.unity.xr.androidxr-openxr@1.3.1 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.xr.androidxr-openxr@85a4ea3b26b6)
+    com.unity.xr.arfoundation@6.5.0 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.xr.arfoundation@13d2457b468b)
+    com.unity.xr.compositionlayers@2.5.0 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.xr.compositionlayers@2843cb312e13)
+    com.unity.xr.core-utils@2.6.0 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.xr.core-utils@a8b900321199)
+    com.unity.xr.hands@1.8.1 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.xr.hands@0908de89928b)
+    com.unity.xr.interaction.toolkit@3.5.1 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.xr.interaction.toolkit@63ca3b7ce776)
+    com.unity.xr.management@4.6.0 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.xr.management@ca5b202bb583)
+    com.unity.xr.meta-openxr@2.5.1 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.xr.meta-openxr@6d169a09f2c7)
+    com.unity.xr.openxr@1.17.1 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.xr.openxr@58837b2992e0)
+    com.unity.xr.legacyinputhelpers@3.0.1 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.xr.legacyinputhelpers@3f62d634f63b)
+    com.unity.editorcoroutines@1.1.0 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.editorcoroutines@87a15ed012c2)
+    com.unity.settings-manager@2.1.1 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.settings-manager@0b8638c5ce86)
+    com.unity.ide.visualstudio@2.0.26 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.ide.visualstudio@a99d56dec63f)
+    com.unity.ide.rider@3.0.40 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.ide.rider@e4950c6d131b)
+    com.unity.performance.profile-analyzer@1.4.0 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.performance.profile-analyzer@2bb26871883c)
+    com.unity.testtools.codecoverage@1.3.0 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.testtools.codecoverage@19a841221620)
+    com.unity.searcher@4.9.4 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.searcher@d45a78918735)
+    com.unity.burst@1.8.29 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.burst@6bb9aca3ef38)
+    com.unity.nuget.mono-cecil@1.11.6 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.nuget.mono-cecil@ecb9724e46ff)
+    com.unity.test-framework.performance@3.5.0 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.test-framework.performance@8b56083ec0f0)
+  Built-in packages:
+    com.unity.feature.development@1.0.2 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.feature.development@767aadbc6eb7)
+    com.unity.multiplayer.center@1.0.1 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.multiplayer.center@b860850997d0)
+    com.unity.render-pipelines.universal@17.5.0 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.render-pipelines.universal@73b4c4ff130e)
+    com.unity.modules.accessibility@1.0.0 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.modules.accessibility)
+    com.unity.modules.adaptiveperformance@1.0.0 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.modules.adaptiveperformance)
+    com.unity.modules.ai@1.0.0 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.modules.ai)
+    com.unity.modules.androidjni@1.0.0 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.modules.androidjni)
+    com.unity.modules.animation@1.0.0 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.modules.animation)
+    com.unity.modules.assetbundle@1.0.0 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.modules.assetbundle)
+    com.unity.modules.audio@1.0.0 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.modules.audio)
+    com.unity.modules.cloth@1.0.0 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.modules.cloth)
+    com.unity.modules.director@1.0.0 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.modules.director)
+    com.unity.modules.imageconversion@1.0.0 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.modules.imageconversion)
+    com.unity.modules.imgui@1.0.0 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.modules.imgui)
+    com.unity.modules.jsonserialize@1.0.0 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.modules.jsonserialize)
+    com.unity.modules.particlesystem@1.0.0 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.modules.particlesystem)
+    com.unity.modules.physics@1.0.0 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.modules.physics)
+    com.unity.modules.physics2d@1.0.0 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.modules.physics2d)
+    com.unity.modules.physicscore2d@1.0.0 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.modules.physicscore2d)
+    com.unity.modules.screencapture@1.0.0 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.modules.screencapture)
+    com.unity.modules.terrain@1.0.0 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.modules.terrain)
+    com.unity.modules.terrainphysics@1.0.0 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.modules.terrainphysics)
+    com.unity.modules.tilemap@1.0.0 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.modules.tilemap)
+    com.unity.modules.ui@1.0.0 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.modules.ui)
+    com.unity.modules.uielements@1.0.0 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.modules.uielements)
+    com.unity.modules.umbra@1.0.0 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.modules.umbra)
+    com.unity.modules.unityanalytics@1.0.0 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.modules.unityanalytics)
+    com.unity.modules.unitywebrequest@1.0.0 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.modules.unitywebrequest)
+    com.unity.modules.unitywebrequestassetbundle@1.0.0 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.modules.unitywebrequestassetbundle)
+    com.unity.modules.unitywebrequestaudio@1.0.0 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.modules.unitywebrequestaudio)
+    com.unity.modules.unitywebrequesttexture@1.0.0 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.modules.unitywebrequesttexture)
+    com.unity.modules.unitywebrequestwww@1.0.0 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.modules.unitywebrequestwww)
+    com.unity.modules.vectorgraphics@1.0.0 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.modules.vectorgraphics)
+    com.unity.modules.vehicles@1.0.0 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.modules.vehicles)
+    com.unity.modules.video@1.0.0 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.modules.video)
+    com.unity.modules.wind@1.0.0 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.modules.wind)
+    com.unity.modules.xr@1.0.0 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.modules.xr)
+    com.unity.modules.subsystems@1.0.0 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.modules.subsystems)
+    com.unity.modules.hierarchycore@1.0.0 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.modules.hierarchycore)
+    com.unity.ugui@2.5.0 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.ugui@67707a67a4ab)
+    com.unity.mathematics@1.4.0 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.mathematics@981956d94fb6)
+    com.unity.render-pipelines.core@17.5.0 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.render-pipelines.core@645717f21c5f)
+    com.unity.shadergraph@17.5.0 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.shadergraph@8d7376ec43ee)
+    com.unity.render-pipelines.universal-config@17.5.0 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.render-pipelines.universal-config@fdda01c80fe3)
+    com.unity.test-framework@1.7.0 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.test-framework@1405238725ab)
+    com.unity.collections@6.5.0 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.collections@a43cabe808ca)
+    com.unity.ext.nunit@2.1.0 (location: C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.ext.nunit@44f7d31723bd)
+[Subsystems] Looking for new subsystems at path C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.xr.arfoundation@13d2457b468b
+[Subsystems] Novel subsystem found at Library/PackageCache/com.unity.xr.arfoundation@13d2457b468b/Runtime/UnitySubsystemsManifest.json
+[Subsystems] Discovering subsystems at path C:/Program Files/Unity/Hub/Editor/6000.5.6f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Users/Usuariocc/Downloads/Avion_VR 1/Avion_VR/Assets
+[Subsystems] Discovering subsystems at path C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.xr.arfoundation@13d2457b468b
+[Subsystems] No descriptors matched for  examples in Library/PackageCache/com.unity.xr.arfoundation@13d2457b468b/Runtime/UnitySubsystemsManifest.json.
+[Subsystems] 1 'inputs' descriptors matched in Library/PackageCache/com.unity.xr.arfoundation@13d2457b468b/Runtime/UnitySubsystemsManifest.json
+[Subsystems] No descriptors matched for  displays in Library/PackageCache/com.unity.xr.arfoundation@13d2457b468b/Runtime/UnitySubsystemsManifest.json.
+[Subsystems] 1 'meshings' descriptors matched in Library/PackageCache/com.unity.xr.arfoundation@13d2457b468b/Runtime/UnitySubsystemsManifest.json
+[Subsystems] Discovering subsystems at path C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.xr.meta-openxr@6d169a09f2c7
+[Subsystems] No descriptors matched for  examples in Library/PackageCache/com.unity.xr.meta-openxr@6d169a09f2c7/Runtime/UnitySubsystemsManifest.json.
+[Subsystems] No descriptors matched for  inputs in Library/PackageCache/com.unity.xr.meta-openxr@6d169a09f2c7/Runtime/UnitySubsystemsManifest.json.
+[Subsystems] No descriptors matched for  displays in Library/PackageCache/com.unity.xr.meta-openxr@6d169a09f2c7/Runtime/UnitySubsystemsManifest.json.
+[Subsystems] 1 'meshings' descriptors matched in Library/PackageCache/com.unity.xr.meta-openxr@6d169a09f2c7/Runtime/UnitySubsystemsManifest.json
+[Subsystems] Discovering subsystems at path C:\Users\Usuariocc\Downloads\Avion_VR 1\Avion_VR\Library\PackageCache\com.unity.xr.openxr@58837b2992e0
+[Subsystems] No descriptors matched for  examples in Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Runtime/UnitySubsystemsManifest.json.
+[Subsystems] 1 'inputs' descriptors matched in Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Runtime/UnitySubsystemsManifest.json
+[Subsystems] 1 'displays' descriptors matched in Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Runtime/UnitySubsystemsManifest.json
+[Subsystems] No descriptors matched for  meshings in Library/PackageCache/com.unity.xr.openxr@58837b2992e0/Runtime/UnitySubsystemsManifest.json.
+[Package Manager] Done registering packages in 0.04 seconds
+[ScriptCompilation] Requested script compilation because: AssetDatabase observed changes in script compilation related files
+Starting: C:\Program Files\Unity\Hub\Editor\6000.5.6f1\Editor\Data\Tools\BuildPipeline\bee_backend.exe --ipc --defer-dag-verification --dagfile="Library/Bee/1900b0aE.dag" --continue-on-failure --profile="Library/Bee/backend1.traceevents" ScriptAssemblies
+WorkingDir: C:/Users/Usuariocc/Downloads/Avion_VR 1/Avion_VR
+DisplayProgressbar: Compiling Scripts
+ExitCode: 0 Duration: 3s519ms
+[1106/1448  0s] ILPP-Configuration Library/ilpp-configuration.nevergeneratedoutput
+[1440/1448  2s] Csc Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp.dll (+2 others)
+Assets\AvionesPapelVR\Scripts\Gameplay\XrSimulatorGuard.cs(45,117): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+
+Assets\AvionesPapelVR\Scripts\Gameplay\XrSimulatorGuard.cs(45,39): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsInactive, FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+
+Assets\AvionesPapelVR\Scripts\Core\GameManager.cs(139,36): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\AvionesPapelVR\Scripts\Core\GameManager.cs(140,56): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\AvionesPapelVR\Scripts\Core\GameManager.cs(141,62): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\AvionesPapelVR\Scripts\Core\GameManager.cs(142,62): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\AvionesPapelVR\Scripts\Core\GameManager.cs(143,52): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+[1441/1448  0s] Csc Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp-Editor.dll (+2 others)
+Assets\AvionesPapelVR\Scripts\Editor\KeyboardPlaySetup.cs(82,76): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+
+Assets\AvionesPapelVR\Scripts\Editor\KeyboardPlaySetup.cs(82,34): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+
+Assets\AvionesPapelVR\Scripts\Editor\KeyboardPlaySetup.cs(86,76): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+
+Assets\AvionesPapelVR\Scripts\Editor\KeyboardPlaySetup.cs(86,37): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+
+Assets\AvionesPapelVR\Scripts\Editor\KeyboardPlaySetup.cs(91,28): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\AvionesPapelVR\Scripts\Editor\KeyboardPlaySetup.cs(143,21): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\AvionesPapelVR\Scripts\Editor\PlayableVrGameBuilder.cs(151,17): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+
+Assets\AvionesPapelVR\Scripts\Editor\GameplayValidation.cs(178,108): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+
+Assets\AvionesPapelVR\Scripts\Editor\GameplayValidation.cs(178,29): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsInactive, FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+
+Assets\AvionesPapelVR\Scripts\Editor\GameplayValidation.cs(235,75): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+
+Assets\AvionesPapelVR\Scripts\Editor\GameplayValidation.cs(235,19): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+
+Assets\AvionesPapelVR\Scripts\Editor\GameplayValidation.cs(266,88): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+
+Assets\AvionesPapelVR\Scripts\Editor\GameplayValidation.cs(266,39): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+
+Assets\AvionesPapelVR\Scripts\Editor\GameplayValidation.cs(268,76): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+
+Assets\AvionesPapelVR\Scripts\Editor\GameplayValidation.cs(268,27): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+
+Assets\AvionesPapelVR\Scripts\Editor\GameplayValidation.cs(275,68): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+
+Assets\AvionesPapelVR\Scripts\Editor\GameplayValidation.cs(275,19): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+
+Assets\AvionesPapelVR\Scripts\Editor\GameplayValidation.cs(280,80): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+
+Assets\AvionesPapelVR\Scripts\Editor\GameplayValidation.cs(280,24): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+
+Assets\AvionesPapelVR\Scripts\Editor\GameplayValidation.cs(312,75): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+
+Assets\AvionesPapelVR\Scripts\Editor\GameplayValidation.cs(312,19): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+[1442/1448  0s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/Assembly-CSharp.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp.dll, with 145 defines and 384 references
+
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+
+running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[1443/1448  0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp.pdb
+[1444/1448  0s] ILPostProcess Library/Bee/artifacts/1900b0aE.dag/post-processed/Assembly-CSharp-Editor.dll (+pdb)
+Processing assembly Library/Bee/artifacts/1900b0aE.dag/Assembly-CSharp-Editor.dll, with 143 defines and 397 references
+
+processors: Unity.Jobs.CodeGen.JobsILPostProcessor, zzzUnity.Burst.CodeGen.BurstILPostProcessor
+
+running Unity.Jobs.CodeGen.JobsILPostProcessor
+
+running zzzUnity.Burst.CodeGen.BurstILPostProcessor
+[1445/1448  0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp-Editor.pdb
+[1446/1448  0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp.dll
+[1447/1448  0s] CopyFiles Library/ScriptAssemblies/Assembly-CSharp-Editor.dll
+*** Tundra build success (3.46 seconds), 9 items updated, 1448 evaluated
+Assets\AvionesPapelVR\Scripts\Gameplay\XrSimulatorGuard.cs(45,117): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\AvionesPapelVR\Scripts\Gameplay\XrSimulatorGuard.cs(45,39): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsInactive, FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\AvionesPapelVR\Scripts\Core\GameManager.cs(139,36): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\AvionesPapelVR\Scripts\Core\GameManager.cs(140,56): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\AvionesPapelVR\Scripts\Core\GameManager.cs(141,62): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\AvionesPapelVR\Scripts\Core\GameManager.cs(142,62): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\AvionesPapelVR\Scripts\Core\GameManager.cs(143,52): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\AvionesPapelVR\Scripts\Editor\KeyboardPlaySetup.cs(82,76): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\AvionesPapelVR\Scripts\Editor\KeyboardPlaySetup.cs(82,34): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\AvionesPapelVR\Scripts\Editor\KeyboardPlaySetup.cs(86,76): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\AvionesPapelVR\Scripts\Editor\KeyboardPlaySetup.cs(86,37): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\AvionesPapelVR\Scripts\Editor\KeyboardPlaySetup.cs(91,28): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\AvionesPapelVR\Scripts\Editor\KeyboardPlaySetup.cs(143,21): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\AvionesPapelVR\Scripts\Editor\PlayableVrGameBuilder.cs(151,17): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'
+Assets\AvionesPapelVR\Scripts\Editor\GameplayValidation.cs(178,108): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\AvionesPapelVR\Scripts\Editor\GameplayValidation.cs(178,29): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsInactive, FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\AvionesPapelVR\Scripts\Editor\GameplayValidation.cs(235,75): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\AvionesPapelVR\Scripts\Editor\GameplayValidation.cs(235,19): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\AvionesPapelVR\Scripts\Editor\GameplayValidation.cs(266,88): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\AvionesPapelVR\Scripts\Editor\GameplayValidation.cs(266,39): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\AvionesPapelVR\Scripts\Editor\GameplayValidation.cs(268,76): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\AvionesPapelVR\Scripts\Editor\GameplayValidation.cs(268,27): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\AvionesPapelVR\Scripts\Editor\GameplayValidation.cs(275,68): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\AvionesPapelVR\Scripts\Editor\GameplayValidation.cs(275,19): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\AvionesPapelVR\Scripts\Editor\GameplayValidation.cs(280,80): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\AvionesPapelVR\Scripts\Editor\GameplayValidation.cs(280,24): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Assets\AvionesPapelVR\Scripts\Editor\GameplayValidation.cs(312,75): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'
+Assets\AvionesPapelVR\Scripts\Editor\GameplayValidation.cs(312,19): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'
+Total cache size 58348068
+Total cache size after purge 58348068, took 00:00:00.1244055
+AssetDatabase: script compilation time: 4.397603s
+Begin MonoManager ReloadAssembly
+Refreshing native plugins compatible for Editor in 11.14 ms, found 10 plugins.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+Starting new worker id: 0 with log in C:/Users/Usuariocc/Downloads/Avion_VR 1/Avion_VR/Logs/AssetImportWorkerHW0.log
+ScheduleIndexationOnStartup MainProcess:True IndexOnStartup:True
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  4.817 seconds
+Domain Reload Profiling: 6170ms
+	BeginReloadAssembly (329ms)
+		DisableScriptedObjects (34ms)
+		CreateAndSetChildDomain (64ms)
+	RebuildCommonClasses (13ms)
+	RebuildNativeTypeToScriptingClass (24ms)
+	initialDomainReloadingComplete (81ms)
+	LoadAllAssembliesAndSetupDomain (904ms)
+		LoadAssemblies (479ms)
+		AnalyzeDomain (386ms)
+			TypeCache.Refresh (229ms)
+				TypeCache.ScanAssembly (211ms)
+			BuildScriptInfoCaches (142ms)
+			ResolveRequiredComponents (12ms)
+	FinalizeReload (4818ms)
+		SetupLoadedEditorAssemblies (0ms)
+			InitializePlatformSupportModulesInManaged (3ms)
+			BeforeProcessingInitializeOnLoad (127ms)
+			ProcessInitializeOnLoadAttributes (3631ms)
+			ProcessInitializeOnLoadMethodAttributes (349ms)
+			AfterProcessingInitializeOnLoad (10ms)
+		AwakeInstancesAfterBackupRestoration (39ms)
+Importing 'GUID: 3dd11dcd12272e54f8a19d8224e35f53 - Path: Assets/XR/Settings/OpenXRPackageSettings.asset' with importer (NativeFormatImporter)
+Imported 'GUID: 3dd11dcd12272e54f8a19d8224e35f53' -> (Import Result ID: '867e2179504d6c0baeb74813fbf4caf2') in 0.009 seconds [static dependencies only]. Details - ImportResultOutputID=3d0ff95768777574ce44899db1f7672a DependenciesID=698378a94b422654b3a8a328c26c11df StaticDependenciesID=37b1602ab6db57b9427a82a7ea77bb99 
+Refreshing native plugins compatible for Editor in 8.40 ms, found 10 plugins.
+
+Asset Pipeline Refresh (id=2da1c468b8cdfc64085daa10e878128a): Total: 12.249 seconds - Initiated by InitialRefreshV2(ForceSynchronousImport)
+	(Values over 0.05ms)
+	Summary:
+		Imports: total=1 (actual=1, local cache=0, cache server=0)
+		Asset DB Process Time: managed=2 ms, native=5718 ms
+		Asset DB Callback time: managed=531 ms, native=55 ms
+		Scripting: domain reloads=1, domain reload time=1432 ms, compile time=4399 ms, other=110 ms
+		Project Asset Count: scripts=1784, non-scripts=2918
+		Asset File Changes: new=0, changed=4, moved=0, deleted=0
+		Scan Filter Count: 0
+	InvokePackagesCallback: 42.982ms
+	ApplyChangesToAssetFolders: 0.708ms
+	Scan: 271.370ms
+	Collect global state as custom dependencies: 28.752ms
+	OnSourceAssetsModified: 1.662ms
+	CategorizeScriptCompilationAssets: 48.231ms
+	ProcessAssetsWithTransientArtifactChanges: 114.220ms
+	CategorizeAssets: 99.414ms
+	CompileScripts: 4398.960ms
+	ImportOutOfDateAssets: 4945.255ms (4868.200ms without children)
+		ImportManagerImport: 11.356ms (1.494ms without children)
+		UnloadImportedAssets: 1.017ms
+		ReloadImportedAssets: 0.246ms
+		EnsureUptoDateAssetsAreRegisteredWithGuidPM: 1.036ms
+		ImportSchedulerStart: 63.560ms
+	PostProcessAllAssets: 533.691ms
+		XRBuildSystem.XRAssetImported 2.732ms
+		PostProcessCallbackCreateDeferredMaterials 0.060ms
+		MonoPostProcessAllAssets: 530.139ms
+			AssetPostprocessor.OnPostprocessAllAssets 287.171ms
+			StyleCatalogPostProcessor.OnPostprocessAllAssets 121.344ms
+			AssetCallbacks.OnPostprocessAllAssets 45.729ms
+			UniversalRenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 14.598ms
+			BuilderAssetPostprocessor.OnPostprocessAllAssets 12.752ms
+			SyncVS.PostprocessSyncProject 5.492ms
+			ShaderGraphAssetPostProcessor.OnPostprocessAllAssets 2.955ms
+			WindowAssetPostprocessingWatcher.OnPostprocessAllAssets 2.727ms
+			SpeedTree9Postprocessor.OnPostprocessAllAssets 2.544ms
+			AssetChangedListener.OnPostprocessAllAssets 2.421ms
+			RetainedModeAssetPostprocessor.OnPostprocessAllAssets 1.868ms
+			EditModeScopePostprocessor.OnPostprocessAllAssets 1.328ms
+			RenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 1.032ms
+			MaterialPostprocessor.OnPostprocessAllAssets 1.002ms
+			TextAssetPostProcessor.OnPostprocessAllAssets 0.902ms
+			ArtifactBrowserPostProcessor.OnPostprocessAllAssets 0.745ms
+			InputActionAssetPostprocessor.OnPostprocessAllAssets 0.571ms
+			SampleDependencyImporterPostProcessor.OnPostprocessAllAssets 0.562ms
+			TMPro_TexturePostProcessor.OnPostprocessAllAssets 0.561ms
+			EnvironmentAssetPostprocessor.OnPostprocessAllAssets 0.533ms
+			AudioMixerPostprocessor.OnPostprocessAllAssets 0.498ms
+			InputActionJsonNameModifierAssetProcessor.OnPostprocessAllAssets 0.445ms
+			ShaderReflectionAssetPostProcessor.OnPostprocessAllAssets 0.436ms
+			ReferencedClipsPostProcessor.OnPostprocessAllAssets 0.417ms
+			AssetEvents.OnPostprocessAllAssets 0.348ms
+			PostProcessor.OnPostprocessAllAssets 0.313ms
+			ConfigAssetsTracker.OnPostprocessAllAssets 0.307ms
+			ProjectSettingsPostprocessor.OnPostprocessAllAssets 0.244ms
+			TerrainToolbarOverlayPostProcessor.OnPostprocessAllAssets 0.215ms
+			AssetDatabaseCallbacks.OnPostprocessAllAssets 0.206ms
+			SpeedTreePostProcessor.OnPostprocessAllAssets 0.200ms
+			ScenarioDriftAssetsTracker.OnPostprocessAllAssets 0.177ms
+			AudioContainerPostProcessor.OnPostprocessAllAssets 0.127ms
+	PostAssetChangesProfiler: 10.617ms
+	UnloadStreamsBegin: 4.051ms
+	PersistCurrentRevisions: 0.276ms
+	GenerateScriptTypeHashes: 15.022ms
+	GenerateScriptTypeSerializationHashes: 22.372ms
+	Untracked: 1722.488ms
+
+Application.AssetDatabase Initial Refresh End
+Shader Hidden/ChartRasterizerHardware is not supported: GPU does not support conservative rasterization
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.02 seconds
+Shader Hidden/ChartRasterizerHardware is not supported: GPU does not support conservative rasterization
+Scanning for USB devices : 4.322ms
+Initializing Unity extensions:
+[MODES] ModeService[none].Initialize
+[MODES] ModeService[none].LoadModes
+[MODES] Loading mode Default (0) for mode-current-id-Avion_VR
+Unloading 32 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 6291 unused Assets / (9.3 MB). Loaded Objects now: 7330.
+Memory consumption went from 508.5 MB to 499.3 MB.
+Total: 30.803200 ms (FindLiveObjects: 0.860400 ms CreateObjectMapping: 3.188300 ms MarkObjects: 18.418300 ms  DeleteObjects: 8.328800 ms)
+
+Importing 'GUID: 4b3de149e50ea0c4f8ad04c79b9f12ec - Path: Assets/XR/XRGeneralSettingsPerBuildTarget.asset' with importer (NativeFormatImporter)
+Imported 'GUID: 4b3de149e50ea0c4f8ad04c79b9f12ec' -> (Import Result ID: '6dc1ae115c576dfb11b5a4b7e6e5d0e5') in 0.002 seconds [static dependencies only]. Details - ImportResultOutputID=b9c8fa02fe9922b78e5e698649fd4540 DependenciesID=38b3ade7d437b6d34f504bda79ad175f StaticDependenciesID=bf6401b6c3287428dc0fa870a7a23f43 
+Refreshing native plugins compatible for Editor in 8.42 ms, found 10 plugins.
+Asset Pipeline Refresh (id=c277dedab3c6ec643b78022cbef4dda1): Total: 0.147 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+[AvionesPapelVR] XR desactivado solo en Standalone. Android conserva su configuracion.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+AvionesPapelVR.Editor.KeyboardPlaySetup:DisableXrOnStartupForEditorTesting () (at Assets/AvionesPapelVR/Scripts/Editor/KeyboardPlaySetup.cs:42)
+AvionesPapelVR.Editor.GameplayValidation:RunBatch () (at Assets/AvionesPapelVR/Scripts/Editor/GameplayValidation.cs:51)
+
+(Filename: Assets/AvionesPapelVR/Scripts/Editor/KeyboardPlaySetup.cs Line: 42)
+
+D3D11 device created for Microsoft Media Foundation video decoding.
+[Project] Loading completed in 18.302 seconds
+	Project init time: 				17.700 seconds
+		Template init time: 		0.000 seconds
+		Package Manager init time: 		2.304 seconds
+		Asset Database init time: 		0.234 seconds
+		Global illumination init time: 	0.003 seconds
+		Assemblies load time: 			1.374 seconds
+		Unity extensions init time: 	0.022 seconds
+		Asset Database refresh time: 	12.250 seconds
+	Scene opening time: 			0.387 seconds
+##utp:{"type":"ProjectInfo","version":2,"phase":"Immediate","time":1790091449539,"processId":11884,"projectLoad":18.302093499999999,"projectInit":17.6999832,"templateInit":0.0,"packageManagerInit":2.3041538,"assetDatabaseInit":0.2341843,"globalIlluminationInit":0.0032311,"assembliesLoad":1.3740554,"unityExtensionsInit":0.0219507,"assetDatabaseRefresh":12.2497112,"sceneOpening":0.3866511}
+##utp:{"type":"EditorInfo","version":2,"phase":"Immediate","time":1790091449539,"processId":11884,"editorVersion":"6000.5.6f1 (0e0577a1a2ac)","branch":"6000.5/staging","buildType":"Release","platform":"Windows"}
+[Licensing::Client] Successfully resolved entitlement details
+Worker ready: AssetImportWorkerHW0 0
+Opening scene 'Assets/AvionesPapelVR/Scenes/Game_VR_Oculus.unity'
+Unloading 139 Unused Serialized files (Serialized files now loaded: 0)
+Loaded scene 'Assets/AvionesPapelVR/Scenes/Game_VR_Oculus.unity'
+	Deserialize:            29.320 ms
+	Integration:            323.294 ms
+	Integration of assets:  13.111 ms
+	Thread Wait Time:       0.071 ms
+	Total Operation Time:   365.795 ms
+Unloading 34 unused Assets / (96.5 MB). Loaded Objects now: 10439.
+Memory consumption went from 0.59 GB to 506.3 MB.
+Total: 28.856300 ms (FindLiveObjects: 0.736300 ms CreateObjectMapping: 1.834100 ms MarkObjects: 21.892000 ms  DeleteObjects: 4.392800 ms)
+
+Importing 'GUID: 3dd11dcd12272e54f8a19d8224e35f53 - Path: Assets/XR/Settings/OpenXRPackageSettings.asset' with importer (NativeFormatImporter)
+Imported 'GUID: 3dd11dcd12272e54f8a19d8224e35f53' -> (Import Result ID: '867e2179504d6c0baeb74813fbf4caf2') in 0.002 seconds [static dependencies only]. Details - ImportResultOutputID=3d0ff95768777574ce44899db1f7672a DependenciesID=698378a94b422654b3a8a328c26c11df StaticDependenciesID=37b1602ab6db57b9427a82a7ea77bb99 
+Refreshing native plugins compatible for Editor in 9.02 ms, found 10 plugins.
+Asset Pipeline Refresh (id=daf8d69e9bd0586408d6d633c843ec99): Total: 0.099 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: 3dd11dcd12272e54f8a19d8224e35f53 - Path: Assets/XR/Settings/OpenXRPackageSettings.asset' with importer (NativeFormatImporter)
+Imported 'GUID: 3dd11dcd12272e54f8a19d8224e35f53' -> (Import Result ID: '867e2179504d6c0baeb74813fbf4caf2') in 0.002 seconds [static dependencies only]. Details - ImportResultOutputID=3d0ff95768777574ce44899db1f7672a DependenciesID=698378a94b422654b3a8a328c26c11df StaticDependenciesID=37b1602ab6db57b9427a82a7ea77bb99 
+Refreshing native plugins compatible for Editor in 9.08 ms, found 10 plugins.
+Asset Pipeline Refresh (id=c6ce94f81c767d84496c5e1b1d07d77f): Total: 0.083 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: 3dd11dcd12272e54f8a19d8224e35f53 - Path: Assets/XR/Settings/OpenXRPackageSettings.asset' with importer (NativeFormatImporter)
+Imported 'GUID: 3dd11dcd12272e54f8a19d8224e35f53' -> (Import Result ID: '867e2179504d6c0baeb74813fbf4caf2') in 0.002 seconds [static dependencies only]. Details - ImportResultOutputID=3d0ff95768777574ce44899db1f7672a DependenciesID=698378a94b422654b3a8a328c26c11df StaticDependenciesID=37b1602ab6db57b9427a82a7ea77bb99 
+Refreshing native plugins compatible for Editor in 8.89 ms, found 10 plugins.
+Asset Pipeline Refresh (id=fc68eedcd799b694597a6b1dc858ad58): Total: 0.080 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+[Licensing::Client] Successfully resolved entitlement details
+[Licensing::Client] Successfully resolved entitlement details
+Start Indexing on Editor startup
+[Indexing] Starting Initial Indexing for Assets
+Reloading assemblies for play mode.
+Reloading assemblies after forced synchronous recompile.
+Begin MonoManager ReloadAssembly
+Refreshing native plugins compatible for Editor in 7.98 ms, found 10 plugins.
+Native extension for WindowsStandalone target not found
+Native extension for WebGL target not found
+ScheduleIndexationOnStartup MainProcess:True IndexOnStartup:True
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  2.264 seconds
+Domain Reload Profiling: 4299ms
+	BeginReloadAssembly (1603ms)
+		DisableScriptedObjects (35ms)
+		CreateAndSetChildDomain (481ms)
+	RebuildCommonClasses (13ms)
+	RebuildNativeTypeToScriptingClass (23ms)
+	initialDomainReloadingComplete (83ms)
+	LoadAllAssembliesAndSetupDomain (310ms)
+		LoadAssemblies (206ms)
+		AnalyzeDomain (56ms)
+			TypeCache.Refresh (9ms)
+			ResolveRequiredComponents (39ms)
+	FinalizeReload (2265ms)
+		SetupLoadedEditorAssemblies (0ms)
+			InitializePlatformSupportModulesInManaged (3ms)
+			BeforeProcessingInitializeOnLoad (125ms)
+			ProcessInitializeOnLoadAttributes (1042ms)
+			ProcessInitializeOnLoadMethodAttributes (201ms)
+			AfterProcessingInitializeOnLoad (10ms)
+		AwakeInstancesAfterBackupRestoration (263ms)
+No restricted APIs configured; Validation skipped.
+Checking 13 assemblies for restricted APIs found 0 usage(s) in 5 ms
+Refreshing native plugins compatible for Editor in 8.22 ms, found 10 plugins.
+
+Asset Pipeline Refresh (id=9061c9a02d1a32d47be7670474df0c40): Total: 6.248 seconds - Initiated by StopAssetImportingV2(ForceSynchronousImport | ForceDomainReload)
+	(Values over 0.05ms)
+	Summary:
+		Imports: total=0 (actual=0, local cache=0, cache server=0)
+		Asset DB Process Time: managed=0 ms, native=2741 ms
+		Asset DB Callback time: managed=1070 ms, native=335 ms
+		Scripting: domain reloads=1, domain reload time=2099 ms, compile time=1 ms, other=0 ms
+		Project Asset Count: scripts=1784, non-scripts=2918
+		Asset File Changes: new=0, changed=0, moved=0, deleted=0
+		Scan Filter Count: 0
+	InvokePackagesCallback: 2.084ms
+	ApplyChangesToAssetFolders: 0.395ms
+	Collect global state as custom dependencies: 3.422ms
+	ProcessAssetsWithTransientArtifactChanges: 252.962ms
+	CategorizeAssets: 81.309ms
+	CompileScripts: 1.382ms
+	ImportOutOfDateAssets: 2345.939ms (2291.103ms without children)
+		CollectScriptTypesHashes: 3.131ms
+		ReloadNativeAssets: 2.383ms
+		UnloadImportedAssets: 0.371ms
+		EnsureUptoDateAssetsAreRegisteredWithGuidPM: 0.975ms
+		ImportSchedulerStart: 51.062ms
+	PostProcessAllAssets: 1394.972ms
+		AssemblyValidation.PostprocessAllAssets 26.329ms
+		PostProcessCallbackCreateDeferredMaterials 20.138ms
+		SpeedTreeImporter.PostprocessAllAssets 15.437ms
+		RaytracingShaderImportPostprocess 13.628ms
+		ComputeShaderImportPostprocess 9.776ms
+		ShaderAssetModifiedCallback 8.552ms
+		BlockShaderImporter.PostprocessAllAssets 3.611ms
+		XRBuildSystem.XRAssetImported 3.546ms
+		LocalizationDatabase.AssetDatabasePostprocessCallback 3.336ms
+		MonoPostProcessAllAssets: 1069.005ms
+			SyncVS.PostprocessSyncProject 384.104ms
+			ShaderGraphAssetPostProcessor.OnPostprocessAllAssets 207.777ms
+			AssetCallbacks.OnPostprocessAllAssets 106.357ms
+			AssetPostprocessor.OnPostprocessAllAssets 43.706ms
+			PostProcessor.OnPostprocessAllAssets 42.167ms
+			MaterialPostprocessor.OnPostprocessAllAssets 40.380ms
+			InputActionJsonNameModifierAssetProcessor.OnPostprocessAllAssets 40.378ms
+			InputActionAssetPostprocessor.OnPostprocessAllAssets 39.157ms
+			StyleCatalogPostProcessor.OnPostprocessAllAssets 22.668ms
+			TextAssetPostProcessor.OnPostprocessAllAssets 22.631ms
+			AssetChangedListener.OnPostprocessAllAssets 15.865ms
+			UniversalRenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 13.587ms
+			BuilderAssetPostprocessor.OnPostprocessAllAssets 8.742ms
+			SpeedTree9Postprocessor.OnPostprocessAllAssets 6.613ms
+			RenderPipelineGlobalSettingsPostprocessor.OnPostprocessAllAssets 6.568ms
+			WindowAssetPostprocessingWatcher.OnPostprocessAllAssets 2.778ms
+			RetainedModeAssetPostprocessor.OnPostprocessAllAssets 2.613ms
+			ShaderReflectionAssetPostProcessor.OnPostprocessAllAssets 0.521ms
+			ProjectSettingsPostprocessor.OnPostprocessAllAssets 0.511ms
+			SpeedTreePostProcessor.OnPostprocessAllAssets 0.486ms
+			ArtifactBrowserPostProcessor.OnPostprocessAllAssets 0.428ms
+			AudioMixerPostprocessor.OnPostprocessAllAssets 0.411ms
+			SampleDependencyImporterPostProcessor.OnPostprocessAllAssets 0.392ms
+			TMPro_TexturePostProcessor.OnPostprocessAllAssets 0.379ms
+			ReferencedClipsPostProcessor.OnPostprocessAllAssets 0.365ms
+			AssetEvents.OnPostprocessAllAssets 0.358ms
+			EditModeScopePostprocessor.OnPostprocessAllAssets 0.345ms
+			AssetDatabaseCallbacks.OnPostprocessAllAssets 0.341ms
+			ConfigAssetsTracker.OnPostprocessAllAssets 0.266ms
+			EnvironmentAssetPostprocessor.OnPostprocessAllAssets 0.266ms
+			TerrainToolbarOverlayPostProcessor.OnPostprocessAllAssets 0.228ms
+			ScenarioDriftAssetsTracker.OnPostprocessAllAssets 0.189ms
+			AudioContainerPostProcessor.OnPostprocessAllAssets 0.100ms
+	PostAssetChangesProfiler: 10.025ms
+	GatherAllCurrentPrimaryImportResultRevisions: 0.186ms
+	UnloadStreamsBegin: 2.071ms
+	PersistCurrentRevisions: 0.173ms
+	GenerateScriptTypeHashes: 11.722ms
+	GenerateScriptTypeSerializationHashes: 18.468ms
+	Untracked: 2146.305ms
+
+Only one UI Input Module allowed on the EventSystem GameObject. Disabling InputSystemUIInputModule on EventSystem since it will block the XRUIInputModule from receiving input events.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:LogWarning (object)
+UnityEngine.XR.Interaction.Toolkit.UI.RegisteredUIInteractorCache:OnFindEventSystem (UnityEngine.EventSystems.EventSystem) (at ./Library/PackageCache/com.unity.xr.interaction.toolkit@63ca3b7ce776/Runtime/UI/RegisteredUIInteractorCache.cs:172)
+UnityEngine.XR.Interaction.Toolkit.Utilities.ComponentLocatorUtility`1<UnityEngine.EventSystems.EventSystem>:FindComponentDeferred (System.Action`1<UnityEngine.EventSystems.EventSystem>,bool,bool,bool) (at ./Library/PackageCache/com.unity.xr.interaction.toolkit@63ca3b7ce776/Runtime/Utilities/ComponentLocatorUtility.cs:285)
+UnityEngine.XR.Interaction.Toolkit.UI.RegisteredUIInteractorCache:HandleOnEnable () (at ./Library/PackageCache/com.unity.xr.interaction.toolkit@63ca3b7ce776/Runtime/UI/RegisteredUIInteractorCache.cs:96)
+UnityEngine.XR.Interaction.Toolkit.Interactors.NearFarInteractor:OnEnable () (at ./Library/PackageCache/com.unity.xr.interaction.toolkit@63ca3b7ce776/Runtime/Interaction/Interactors/NearFarInteractor.cs:380)
+
+(Filename: ./Library/PackageCache/com.unity.xr.interaction.toolkit@63ca3b7ce776/Runtime/UI/RegisteredUIInteractorCache.cs Line: 172)
+
+Loaded scene 'Temp/__Backupscenes/0.backup'
+	Deserialize:            28.218 ms
+	Integration:            594.541 ms
+	Integration of assets:  1.186 ms
+	Thread Wait Time:       -0.020 ms
+	Total Operation Time:   623.925 ms
+Created GICache directory at C:/Users/Usuariocc/AppData/LocalLow/Unity/Caches/GiCache. Took: 0.016s, timestamps: [18.305 - 18.322]
+[MODES] ModeService[none].Initialize
+[MODES] ModeService[none].LoadModes
+[Licensing::Client] Successfully resolved entitlement details
+Importing 'GUID: 3dd11dcd12272e54f8a19d8224e35f53 - Path: Assets/XR/Settings/OpenXRPackageSettings.asset' with importer (NativeFormatImporter)
+Imported 'GUID: 3dd11dcd12272e54f8a19d8224e35f53' -> (Import Result ID: '867e2179504d6c0baeb74813fbf4caf2') in 0.006 seconds [static dependencies only]. Details - ImportResultOutputID=3d0ff95768777574ce44899db1f7672a DependenciesID=698378a94b422654b3a8a328c26c11df StaticDependenciesID=37b1602ab6db57b9427a82a7ea77bb99 
+Refreshing native plugins compatible for Editor in 8.20 ms, found 10 plugins.
+Asset Pipeline Refresh (id=72013fe37ed3bf54e84a35f4e7384e04): Total: 0.088 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: 3dd11dcd12272e54f8a19d8224e35f53 - Path: Assets/XR/Settings/OpenXRPackageSettings.asset' with importer (NativeFormatImporter)
+Imported 'GUID: 3dd11dcd12272e54f8a19d8224e35f53' -> (Import Result ID: '867e2179504d6c0baeb74813fbf4caf2') in 0.002 seconds [static dependencies only]. Details - ImportResultOutputID=3d0ff95768777574ce44899db1f7672a DependenciesID=698378a94b422654b3a8a328c26c11df StaticDependenciesID=37b1602ab6db57b9427a82a7ea77bb99 
+Refreshing native plugins compatible for Editor in 7.78 ms, found 10 plugins.
+Asset Pipeline Refresh (id=afa8a6366fd979540b483f3365501aa9): Total: 0.083 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: 3dd11dcd12272e54f8a19d8224e35f53 - Path: Assets/XR/Settings/OpenXRPackageSettings.asset' with importer (NativeFormatImporter)
+Imported 'GUID: 3dd11dcd12272e54f8a19d8224e35f53' -> (Import Result ID: '867e2179504d6c0baeb74813fbf4caf2') in 0.002 seconds [static dependencies only]. Details - ImportResultOutputID=3d0ff95768777574ce44899db1f7672a DependenciesID=698378a94b422654b3a8a328c26c11df StaticDependenciesID=37b1602ab6db57b9427a82a7ea77bb99 
+Refreshing native plugins compatible for Editor in 7.95 ms, found 10 plugins.
+Asset Pipeline Refresh (id=5fa697caa3f522541ab3b36cbd9deb53): Total: 0.081 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: 3dd11dcd12272e54f8a19d8224e35f53 - Path: Assets/XR/Settings/OpenXRPackageSettings.asset' with importer (NativeFormatImporter)
+Imported 'GUID: 3dd11dcd12272e54f8a19d8224e35f53' -> (Import Result ID: '867e2179504d6c0baeb74813fbf4caf2') in 0.002 seconds [static dependencies only]. Details - ImportResultOutputID=3d0ff95768777574ce44899db1f7672a DependenciesID=698378a94b422654b3a8a328c26c11df StaticDependenciesID=37b1602ab6db57b9427a82a7ea77bb99 
+Refreshing native plugins compatible for Editor in 7.92 ms, found 10 plugins.
+Asset Pipeline Refresh (id=a7eefb20b33bd7e449564074c8b65ee3): Total: 0.080 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+Importing 'GUID: 3dd11dcd12272e54f8a19d8224e35f53 - Path: Assets/XR/Settings/OpenXRPackageSettings.asset' with importer (NativeFormatImporter)
+Imported 'GUID: 3dd11dcd12272e54f8a19d8224e35f53' -> (Import Result ID: '867e2179504d6c0baeb74813fbf4caf2') in 0.002 seconds [static dependencies only]. Details - ImportResultOutputID=3d0ff95768777574ce44899db1f7672a DependenciesID=698378a94b422654b3a8a328c26c11df StaticDependenciesID=37b1602ab6db57b9427a82a7ea77bb99 
+Refreshing native plugins compatible for Editor in 8.02 ms, found 10 plugins.
+Asset Pipeline Refresh (id=f33297266bdbfa7448eb8a10ff3a8054): Total: 0.082 seconds - Initiated by StopAssetImportingV2(NoUpdateAssetOptions)
+[Licensing::Client] Successfully resolved entitlement details
+To avoid interfering with point and click interactions, XRUIInputModule mouse and touch input will be disabled while the simulated devices are active.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object,UnityEngine.Object)
+UnityEngine.Debug:Log (object,UnityEngine.Object)
+UnityEngine.XR.Interaction.Toolkit.Inputs.Simulation.XRInteractionSimulator:DisableInputModuleInput () (at ./Library/PackageCache/com.unity.xr.interaction.toolkit@63ca3b7ce776/Runtime/Inputs/Simulation/XRInteractionSimulator.cs:2410)
+UnityEngine.XR.Interaction.Toolkit.Inputs.Simulation.XRInteractionSimulator:HandlePointAndClickActive () (at ./Library/PackageCache/com.unity.xr.interaction.toolkit@63ca3b7ce776/Runtime/Inputs/Simulation/XRInteractionSimulator.cs:2461)
+UnityEngine.XR.Interaction.Toolkit.Inputs.Simulation.XRInteractionSimulator:Update () (at ./Library/PackageCache/com.unity.xr.interaction.toolkit@63ca3b7ce776/Runtime/Inputs/Simulation/XRInteractionSimulator.cs:1438)
+
+(Filename: ./Library/PackageCache/com.unity.xr.interaction.toolkit@63ca3b7ce776/Runtime/Inputs/Simulation/XRInteractionSimulator.cs Line: 2410)
+
+Your project uses a scriptable render pipeline. You can use Camera.stereoTargetEye only with the built-in renderer.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:LogWarning (object)
+UnityEngine.Camera:set_stereoTargetEye (UnityEngine.StereoTargetEyeMask)
+AvionesPapelVR.Editor.GameplayValidationProbe:CaptureInterface (AvionesPapelVR.GameManager,string) (at Assets/AvionesPapelVR/Scripts/Editor/GameplayValidation.cs:378)
+AvionesPapelVR.Editor.GameplayValidationProbe/<Checks>d__9:MoveNext () (at Assets/AvionesPapelVR/Scripts/Editor/GameplayValidation.cs:156)
+AvionesPapelVR.Editor.GameplayValidationProbe/<Start>d__8:MoveNext () (at Assets/AvionesPapelVR/Scripts/Editor/GameplayValidation.cs:134)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+(Filename: Assets/AvionesPapelVR/Scripts/Editor/GameplayValidation.cs Line: 378)
+
+Your project uses a scriptable render pipeline. You can use Camera.stereoTargetEye only with the built-in renderer.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:LogWarning (object)
+UnityEngine.Camera:set_stereoTargetEye (UnityEngine.StereoTargetEyeMask)
+AvionesPapelVR.Editor.GameplayValidationProbe:CaptureInterface (AvionesPapelVR.GameManager,string) (at Assets/AvionesPapelVR/Scripts/Editor/GameplayValidation.cs:378)
+AvionesPapelVR.Editor.GameplayValidationProbe/<Checks>d__9:MoveNext () (at Assets/AvionesPapelVR/Scripts/Editor/GameplayValidation.cs:177)
+AvionesPapelVR.Editor.GameplayValidationProbe/<Start>d__8:MoveNext () (at Assets/AvionesPapelVR/Scripts/Editor/GameplayValidation.cs:134)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+(Filename: Assets/AvionesPapelVR/Scripts/Editor/GameplayValidation.cs Line: 378)
+
+Setting linear velocity of a kinematic body is not supported.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.Rigidbody:set_linearVelocity (UnityEngine.Vector3)
+AvionesPapelVR.FlightController:ApplyBoost () (at Assets/AvionesPapelVR/Scripts/Gameplay/FlightController.cs:250)
+AvionesPapelVR.GameManager:ActivatePowerUp (AvionesPapelVR.PowerUpType,single) (at Assets/AvionesPapelVR/Scripts/Core/GameManager.cs:455)
+AvionesPapelVR.GameManager:ActivatePowerUp (AvionesPapelVR.PowerUpType) (at Assets/AvionesPapelVR/Scripts/Core/GameManager.cs:22)
+AvionesPapelVR.GameManager:CollectRing (bool) (at Assets/AvionesPapelVR/Scripts/Core/GameManager.cs:405)
+AvionesPapelVR.CollectiblePickup:Collect () (at Assets/AvionesPapelVR/Scripts/Gameplay/CollectiblePickup.cs:89)
+AvionesPapelVR.CollectiblePickup:FixedUpdate () (at Assets/AvionesPapelVR/Scripts/Gameplay/CollectiblePickup.cs:58)
+
+[Assets/AvionesPapelVR/Scripts/Gameplay/FlightController.cs line 250]
+
+Setting linear velocity of a kinematic body is not supported.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.Rigidbody:set_linearVelocity (UnityEngine.Vector3)
+AvionesPapelVR.FlightController:ApplyBoost () (at Assets/AvionesPapelVR/Scripts/Gameplay/FlightController.cs:250)
+AvionesPapelVR.GameManager:ActivatePowerUp (AvionesPapelVR.PowerUpType,single) (at Assets/AvionesPapelVR/Scripts/Core/GameManager.cs:455)
+AvionesPapelVR.GameManager:ActivatePowerUp (AvionesPapelVR.PowerUpType) (at Assets/AvionesPapelVR/Scripts/Core/GameManager.cs:22)
+AvionesPapelVR.GameManager:CollectRing (bool) (at Assets/AvionesPapelVR/Scripts/Core/GameManager.cs:405)
+AvionesPapelVR.CollectiblePickup:Collect () (at Assets/AvionesPapelVR/Scripts/Gameplay/CollectiblePickup.cs:89)
+AvionesPapelVR.CollectiblePickup:FixedUpdate () (at Assets/AvionesPapelVR/Scripts/Gameplay/CollectiblePickup.cs:58)
+
+[Assets/AvionesPapelVR/Scripts/Gameplay/FlightController.cs line 250]
+
+Setting linear velocity of a kinematic body is not supported.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.Rigidbody:set_linearVelocity (UnityEngine.Vector3)
+AvionesPapelVR.FlightController:ApplyBoost () (at Assets/AvionesPapelVR/Scripts/Gameplay/FlightController.cs:250)
+AvionesPapelVR.GameManager:ActivatePowerUp (AvionesPapelVR.PowerUpType,single) (at Assets/AvionesPapelVR/Scripts/Core/GameManager.cs:455)
+AvionesPapelVR.GameManager:ActivatePowerUp (AvionesPapelVR.PowerUpType) (at Assets/AvionesPapelVR/Scripts/Core/GameManager.cs:22)
+AvionesPapelVR.GameManager:CollectRing (bool) (at Assets/AvionesPapelVR/Scripts/Core/GameManager.cs:405)
+AvionesPapelVR.CollectiblePickup:Collect () (at Assets/AvionesPapelVR/Scripts/Gameplay/CollectiblePickup.cs:89)
+AvionesPapelVR.CollectiblePickup:FixedUpdate () (at Assets/AvionesPapelVR/Scripts/Gameplay/CollectiblePickup.cs:58)
+
+[Assets/AvionesPapelVR/Scripts/Gameplay/FlightController.cs line 250]
+
+Setting linear velocity of a kinematic body is not supported.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.Rigidbody:set_linearVelocity (UnityEngine.Vector3)
+AvionesPapelVR.FlightController:ApplyBoost () (at Assets/AvionesPapelVR/Scripts/Gameplay/FlightController.cs:250)
+AvionesPapelVR.GameManager:ActivatePowerUp (AvionesPapelVR.PowerUpType,single) (at Assets/AvionesPapelVR/Scripts/Core/GameManager.cs:455)
+AvionesPapelVR.GameManager:ActivatePowerUp (AvionesPapelVR.PowerUpType) (at Assets/AvionesPapelVR/Scripts/Core/GameManager.cs:22)
+AvionesPapelVR.GameManager:CollectRing (bool) (at Assets/AvionesPapelVR/Scripts/Core/GameManager.cs:405)
+AvionesPapelVR.CollectiblePickup:Collect () (at Assets/AvionesPapelVR/Scripts/Gameplay/CollectiblePickup.cs:89)
+AvionesPapelVR.CollectiblePickup:FixedUpdate () (at Assets/AvionesPapelVR/Scripts/Gameplay/CollectiblePickup.cs:58)
+
+[Assets/AvionesPapelVR/Scripts/Gameplay/FlightController.cs line 250]
+
+Your project uses a scriptable render pipeline. You can use Camera.stereoTargetEye only with the built-in renderer.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:LogWarning (object)
+UnityEngine.Camera:set_stereoTargetEye (UnityEngine.StereoTargetEyeMask)
+AvionesPapelVR.Editor.GameplayValidationProbe:CaptureInterface (AvionesPapelVR.GameManager,string) (at Assets/AvionesPapelVR/Scripts/Editor/GameplayValidation.cs:378)
+AvionesPapelVR.Editor.GameplayValidationProbe/<Checks>d__9:MoveNext () (at Assets/AvionesPapelVR/Scripts/Editor/GameplayValidation.cs:299)
+AvionesPapelVR.Editor.GameplayValidationProbe/<Start>d__8:MoveNext () (at Assets/AvionesPapelVR/Scripts/Editor/GameplayValidation.cs:134)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+(Filename: Assets/AvionesPapelVR/Scripts/Editor/GameplayValidation.cs Line: 378)
+
+Your project uses a scriptable render pipeline. You can use Camera.stereoTargetEye only with the built-in renderer.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:LogWarning (object)
+UnityEngine.Camera:set_stereoTargetEye (UnityEngine.StereoTargetEyeMask)
+AvionesPapelVR.Editor.GameplayValidationProbe:CaptureCourse (AvionesPapelVR.GameManager) (at Assets/AvionesPapelVR/Scripts/Editor/GameplayValidation.cs:402)
+AvionesPapelVR.Editor.GameplayValidationProbe/<Checks>d__9:MoveNext () (at Assets/AvionesPapelVR/Scripts/Editor/GameplayValidation.cs:315)
+AvionesPapelVR.Editor.GameplayValidationProbe/<Start>d__8:MoveNext () (at Assets/AvionesPapelVR/Scripts/Editor/GameplayValidation.cs:134)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+(Filename: Assets/AvionesPapelVR/Scripts/Editor/GameplayValidation.cs Line: 402)
+
+Your project uses a scriptable render pipeline. You can use Camera.stereoTargetEye only with the built-in renderer.
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:LogWarning (object)
+UnityEngine.Camera:set_stereoTargetEye (UnityEngine.StereoTargetEyeMask)
+AvionesPapelVR.Editor.GameplayValidationProbe:CaptureInterface (AvionesPapelVR.GameManager,string) (at Assets/AvionesPapelVR/Scripts/Editor/GameplayValidation.cs:378)
+AvionesPapelVR.Editor.GameplayValidationProbe/<Checks>d__9:MoveNext () (at Assets/AvionesPapelVR/Scripts/Editor/GameplayValidation.cs:363)
+AvionesPapelVR.Editor.GameplayValidationProbe/<Start>d__8:MoveNext () (at Assets/AvionesPapelVR/Scripts/Editor/GameplayValidation.cs:134)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+(Filename: Assets/AvionesPapelVR/Scripts/Editor/GameplayValidation.cs Line: 378)
+
+[AvionesValidation] PASS 105 checks
+UnityEngine.Debug:ExtractStackTraceNoAlloc (byte*,int,string)
+UnityEngine.StackTraceUtility:ExtractStackTrace ()
+UnityEngine.DebugLogHandler:Internal_Log (UnityEngine.LogType,UnityEngine.LogOption,string,UnityEngine.Object)
+UnityEngine.DebugLogHandler:LogFormat (UnityEngine.LogType,UnityEngine.Object,string,object[])
+UnityEngine.Logger:Log (UnityEngine.LogType,object)
+UnityEngine.Debug:Log (object)
+AvionesPapelVR.Editor.GameplayValidationProbe/<Start>d__8:MoveNext () (at Assets/AvionesPapelVR/Scripts/Editor/GameplayValidation.cs:143)
+UnityEngine.SetupCoroutine:InvokeMoveNext (System.Collections.IEnumerator,intptr)
+
+(Filename: Assets/AvionesPapelVR/Scripts/Editor/GameplayValidation.cs Line: 143)
+
+Unloading 27 Unused Serialized files (Serialized files now loaded: 0)
+Loaded scene 'Temp/__Backupscenes/0.backup'
+	Deserialize:            12.180 ms
+	Integration:            252.539 ms
+	Integration of assets:  0.012 ms
+	Thread Wait Time:       0.032 ms
+	Total Operation Time:   264.763 ms
+Unloading 5345 unused Assets / (374.4 MB). Loaded Objects now: 10435.
+Memory consumption went from 0.90 GB to 0.54 GB.
+Total: 40.437500 ms (FindLiveObjects: 1.223600 ms CreateObjectMapping: 3.611200 ms MarkObjects: 16.384200 ms  DeleteObjects: 19.217500 ms)
+
+Default GameObject Tag: Player already registered
+MonoPathRemapper: Attempts to remap: 54694; Successful remaps: 26484
+Serialized file version minimum: 23, current 23
+[Physics::Module] Cleanup current backend.
+[Physics::Module] Id: 0xf2b8ea05
+Input System module state changed to: ShutdownInProgress.
+Input Polling Thread exited.
+Input System module state changed to: Shutdown.
+[Licensing::IpcConnector] LicenseClient-Estudiante-6000.5.6-notifications channel disconnected successfully.
+[Licensing::IpcConnector] LicenseClient-Estudiante-6000.5.6 channel disconnected successfully.
+AcceleratorClientConnectionCallback - disconnected - :0
+Cleanup mono
+CodeReloadManager destroyed
+Checking for leaked weakptr:
+  Found no leaked weakptrs.
+[Package Manager] Server process was shutdown
+##utp:{"type":"MemoryLeaks","version":2,"phase":"Immediate","time":1790091464553,"processId":11884,"allocatedMemory":18118202,"memoryLabels":[{"Default":233727},{"Permanent":15516},{"NewDelete":67067},{"Thread":4197560},{"Manager":817637},{"VertexData":584},{"Geometry":816},{"Texture":24},{"Shader":852704},{"Material":24},{"GfxDevice":55760},{"Animation":952},{"FreeType":8},{"FontEngine":736},{"Physics":2146},{"Physics2D":16},{"Serialization":1816},{"Input":42840},{"JobScheduler":256},{"TextLib":280},{"Mono":48},{"MonoCode":64},{"ScriptingNativeRuntime":1770452},{"BaseObject":1626952},{"Resource":1208},{"Renderer":3080},{"Transform":4685},{"File":4009},{"WebCam":616},{"Culling":32},{"Terrain":11442},{"Wind":24},{"STL":40},{"String":35157},{"StaticString":3808},{"Utility":2672422},{"Curl":2498},{"PoolAlloc":2360},{"AI":80},{"TypeTree":17165},{"CodeReload":448},{"RuntimeInitializeOnLoadManager":64},{"Sprites":102},{"SpriteAtlas":120},{"GI":7816},{"Director":8296},{"CloudService":16856},{"WebRequest":552},{"VR":47546},{"SceneManager":608},{"Video":208},{"LazyScriptCache":32},{"Camera":17},{"Secure":2377},{"SerializationCache":1576},{"APIUpdating":10320},{"VirtualTexturing":57888},{"StaticSafetyDebugInfo":278528},{"Analytics":552},{"Hierarchy":1176},{"UIElements":72},{"CoreStats":13688},{"Identifiers":6768},{"Gui":128},{"EditorUtility":142504},{"VersionControl":8},{"Undo":931},{"AssetDatabase":5020417},{"AssetImporter":40},{"EditorGi":328},{"UnityConnect":38929},{"Upm":1912},{"UpmDiagnostics":8},{"AssetCompliance":64},{"DrivenProperties":72},{"LocalIPC":216},{"ProfilerEditor":9778},{"CoreBusinessMetrics":3486},{"Windowing":456},{"Licensing":664},{"AssetReference":32},{"IPCStream":32}]}

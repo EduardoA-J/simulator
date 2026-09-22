@@ -1,0 +1,6 @@
+F:\Avion_VR\Avion_VR\Temp\bin\Debug\Unity.XR.Interaction.Toolkit.Samples.StarterAssets.Editor.dll
+F:\Avion_VR\Avion_VR\Temp\bin\Debug\Unity.XR.Interaction.Toolkit.Samples.StarterAssets.Editor.pdb
+F:\Avion_VR\Avion_VR\obj\Debug\Unity.XR.Interaction.Toolkit.Samples.StarterAssets.Editor.csproj.AssemblyReference.cache
+F:\Avion_VR\Avion_VR\obj\Debug\Unity.XR.Interaction.Toolkit.Samples.StarterAssets.Editor.csproj.CoreCompileInputs.cache
+F:\Avion_VR\Avion_VR\obj\Debug\Unity.XR.Interaction.Toolkit.Samples.StarterAssets.Editor.dll
+F:\Avion_VR\Avion_VR\obj\Debug\Unity.XR.Interaction.Toolkit.Samples.StarterAssets.Editor.pdb

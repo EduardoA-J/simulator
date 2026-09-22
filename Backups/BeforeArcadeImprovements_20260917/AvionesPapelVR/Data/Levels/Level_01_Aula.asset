@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23cc5a09231f1034d84a54f860944fa6, type: 3}
+  m_Name: Level_01_Aula
+  m_EditorClassIdentifier: Assembly-CSharp::AvionesPapelVR.LevelDefinition
+  displayName: Aula Escolar
+  theme: 0
+  length: 70
+  enemyCount: 6
+  obstacleCount: 4
+  starCount: 8
+  coinCount: 10
+  powerUpCount: 3
+  enemySpeed: 2.5
+  windStrength: 0.3
+  targetScore: 640
+  fogColor: {r: 0.7, g: 0.75, b: 0.65, a: 1}
