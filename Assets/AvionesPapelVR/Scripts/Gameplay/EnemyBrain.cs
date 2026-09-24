@@ -36,11 +36,8 @@ namespace AvionesPapelVR
             if (GameManager.Instance == null || GameManager.Instance.State != GameState.Flight)
                 return;
 
-            if (_player == null)
-            {
-                var p = GameObject.FindGameObjectWithTag("Player");
-                if (p != null) _player = p.transform;
-            }
+            // El avión pilotado lo publica GameManager: sin búsquedas por tag por frame.
+            _player = GameManager.Instance.Player;
 
             float t = Time.time + _phase;
             var offset = new Vector3(Mathf.Sin(t * 1.3f) * amplitude, Mathf.Cos(t * 0.9f) * amplitude * 0.4f, Mathf.Sin(t * 0.5f) * 0.5f);

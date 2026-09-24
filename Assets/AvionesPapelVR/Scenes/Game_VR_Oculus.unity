@@ -944,6 +944,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9e648d2b24024fa4aa59d94b134c4431, type: 2}
   - {fileID: 11400000, guid: 262f299d5f37c1342a4701d9506fa8df, type: 2}
   - {fileID: 11400000, guid: a9fcaf69b0bb5374888917d07c45ea03, type: 2}
+  - {fileID: 11400000, guid: 5dc45e083acd05d44b00e497d752dd03, type: 2}
+  - {fileID: 11400000, guid: 6aec1314a258b3044b0101bbf978a873, type: 2}
   weapons:
   - {fileID: 11400000, guid: 06285df9f54be3644b1b15b55001bdef, type: 2}
   - {fileID: 11400000, guid: f6a068e14440f1a4f9c3ef6b7d43674d, type: 2}

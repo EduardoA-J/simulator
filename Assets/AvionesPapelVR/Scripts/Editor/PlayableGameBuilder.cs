@@ -172,7 +172,6 @@ namespace AvionesPapelVR.Editor
             var list = new List<LevelDefinition>();
             foreach (var s in LevelSpecs)
             {
-                if (list.Count == 3) break;
                 var path = $"{Root}/Data/Levels/Level_{s.id}.asset";
                 var asset = AssetDatabase.LoadAssetAtPath<LevelDefinition>(path);
                 if (asset != null) { list.Add(asset); continue; }

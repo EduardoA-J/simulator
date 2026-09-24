@@ -47,17 +47,17 @@ namespace AvionesPapelVR
                 go.transform.localRotation = Quaternion.identity;
                 go.transform.localScale = Vector3.one * Mathf.Min(displayScale.x, 0.35f);
                 foreach (var demo in go.GetComponentsInChildren<PlaneFlightDemo>()) { demo.enabled = false; Destroy(demo); }
+                foreach (var spin in go.GetComponentsInChildren<SpinBob>()) { spin.enabled = false; Destroy(spin); }
                 foreach (var rb in go.GetComponentsInChildren<Rigidbody>())
                     if (rb.gameObject != go) Destroy(rb);
+                // Todo avión expuesto es un cuerpo cinemático en reposo; sólo los desbloqueados se pueden agarrar.
+                var body = go.GetComponent<Rigidbody>();
+                if (body == null) body = go.AddComponent<Rigidbody>();
+                VrGrabPlane.ConfigureTableBody(body);
                 if (enableVrGrab && GameManager.Instance.IsPlaneUnlocked(def))
                 {
                     var grab = go.AddComponent<VrGrabPlane>();
                     grab.Arm(def);
-                }
-                else
-                {
-                    var rb = go.GetComponent<Rigidbody>();
-                    if (rb != null) rb.isKinematic = true;
                 }
                 _planes.Add(go);
                 _spawned.Add(go);
@@ -129,6 +129,18 @@ namespace AvionesPapelVR
                 if (plane == null) continue;
                 var grab = plane.GetComponent<XRGrabInteractable>();
                 if (grab != null) grab.enabled = true;
+            }
+        }
+
+        /// <summary>Devuelve todos los aviones expuestos a su pose de mesa (sin agarre ni velocidad).</summary>
+        public void ResetTable()
+        {
+            _holding = false;
+            foreach (var plane in _planes)
+            {
+                if (plane == null) continue;
+                var grab = plane.GetComponent<VrGrabPlane>();
+                if (grab != null && grab.IsArmed) grab.ResetToTable();
             }
         }
 
@@ -210,6 +222,9 @@ namespace AvionesPapelVR
         public void Clear()
         {
             _active = _holding = false;
+            // Retirar antes de desactivar: ningún avión debe lanzar ni notificar mientras se desmonta la mesa.
+            foreach (var go in _spawned)
+                if (go != null && go.TryGetComponent(out VrGrabPlane grab)) grab.Retire();
             foreach (var go in _spawned)
                 if (go != null) { go.SetActive(false); Destroy(go); }
             _spawned.Clear();

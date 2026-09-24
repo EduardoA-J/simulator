@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AvionesPapelVR.LevelDefinition
   displayName: "Bosque M\xE1gico"
   theme: 4
-  length: 110
-  enemyCount: 14
-  obstacleCount: 8
+  length: 470
+  enemyCount: 8
+  obstacleCount: 34
   starCount: 14
   coinCount: 16
   powerUpCount: 5
@@ -24,3 +24,31 @@ MonoBehaviour:
   windStrength: 0.75
   targetScore: 960
   fogColor: {r: 0.25, g: 0.15, b: 0.4, a: 1}
+  difficulty: LEYENDA
+  curveAmplitude: 20
+  curveCycles: 4
+  climbAmplitude: 5
+  flightSpeedLimit: 9
+  timeLimit: 300
+  ringSpacing: 5.5
+  layoutSeed: 505
+  routePoints:
+  - {x: 0, y: 1.8, z: 0}
+  - {x: 0, y: 1.8, z: 18}
+  - {x: 10, y: 3.5, z: 42}
+  - {x: 24, y: 7.5, z: 70}
+  - {x: 18, y: 12, z: 100}
+  - {x: -2, y: 13, z: 128}
+  - {x: -22, y: 9, z: 158}
+  - {x: -26, y: 4, z: 186}
+  - {x: -10, y: 2.2, z: 212}
+  - {x: 12, y: 3.8, z: 240}
+  - {x: 26, y: 8.5, z: 270}
+  - {x: 16, y: 12.5, z: 300}
+  - {x: -6, y: 10, z: 330}
+  - {x: -24, y: 6, z: 360}
+  - {x: -16, y: 2.6, z: 390}
+  - {x: 2, y: 3.6, z: 418}
+  - {x: 6, y: 2.4, z: 446}
+  - {x: 0, y: 2.4, z: 460}
+  - {x: 0, y: 2.4, z: 470}

@@ -85,6 +85,16 @@ namespace AvionesPapelVR
             _onLaunched?.Invoke(vel);
         }
 
+        /// <summary>Aborta la carga sin lanzar (cambio de estado externo). El avión queda en manos de GameManager.</summary>
+        public void Cancel()
+        {
+            _active = false;
+            _charging = false;
+            _trigWas = false;
+            _plane = null;
+            _onLaunched = null;
+        }
+
         public float Charge01 => _charge;
         public bool IsActive => _active;
     }

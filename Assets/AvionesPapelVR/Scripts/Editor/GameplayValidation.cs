@@ -98,6 +98,7 @@ namespace AvionesPapelVR.Editor
     public class GameplayValidationProbe : MonoBehaviour
     {
         [Serializable] class Report { public bool passed; public string failure; public List<string> checks = new(); public List<string> errors = new(); }
+        const int ExpectedLevels = 5;
         readonly Report _report = new();
         void OnEnable() => Application.logMessageReceived += OnLog;
         void OnDisable() => Application.logMessageReceived -= OnLog;
@@ -165,14 +166,14 @@ namespace AvionesPapelVR.Editor
             if (gm != null) gm.persistProgress = false;
             Check(gm != null && gm.State == GameState.MainMenu, "Main menu initialized");
             Check(gm.hud.InterfaceCanvas != null, "Structured interface canvas initialized");
-            Check(gm.levels.Count == 3 && gm.levels.All(l => l != null), "Exactly three referenced map assets");
+            Check(gm.levels.Count == ExpectedLevels && gm.levels.All(l => l != null), "Exactly five referenced map assets");
             Check(EditorBuildSettings.scenes.Any(s => s.enabled && s.path.EndsWith("/Game_VR_Oculus.unity")) &&
                 EditorBuildSettings.scenes.Any(s => s.enabled && s.path.EndsWith("/Game_Playable.unity")),
                 "VR and keyboard entry scenes are enabled in Build Settings");
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < gm.levels.Count; i++)
             {
                 yield return null;
-                Click(gm, "Metric" + i);
+                Click(gm, "Map" + i);
                 Check(gm.State == GameState.PlaneSelect && gm.CurrentLevelIndex == i,
                     "Existing map card " + (i + 1) + " selects its own LevelDefinition");
                 Check(UnityEngine.Object.FindObjectsByType<GameManager>(FindObjectsSortMode.None).Length == 1,
@@ -413,9 +414,8 @@ namespace AvionesPapelVR.Editor
             SetInput(right.deviceRotation, Quaternion.identity);
             SetInput(right.primary2DAxis, Vector2.zero);
             yield return VerifyCourses(gm);
-            yield return FlyCourse(gm, right, 0);
-            yield return FlyCourse(gm, right, 1);
-            yield return FlyCourse(gm, right, 2);
+            for (int index = 0; index < gm.levels.Count; index++)
+                yield return FlyCourse(gm, right, index);
             gm.GoToMainMenu();
             yield return VerifyKeyboardScene();
             Destroy(hand);
@@ -449,7 +449,7 @@ namespace AvionesPapelVR.Editor
                 t.gameObject.SetActive(true);
             ray.enableUIInteraction = true;
             Check(ray.isActiveAndEnabled && ray.enableUIInteraction, "Right NearFarInteractor is active for UI");
-            var card = gm.hud.InterfaceCanvas.GetComponentsInChildren<UnityEngine.UI.Button>().Single(b => b.name == "Metric2");
+            var card = gm.hud.InterfaceCanvas.GetComponentsInChildren<UnityEngine.UI.Button>().Single(b => b.name == "Map2");
             Check(card.isActiveAndEnabled && card.IsInteractable() && card.targetGraphic.raycastTarget,
                 "Map 3 card remains a real interactable Button with raycast graphics");
             var hand = ray.GetComponentsInParent<Transform>(true)
@@ -508,11 +508,12 @@ namespace AvionesPapelVR.Editor
         IEnumerator VerifyCourses(GameManager gm)
         {
             var originalRig = gm.xrOrigin;
-            for (int index = 1; index < 3; index++)
+            int last = gm.levels.Count - 1;
+            for (int index = 1; index <= last; index++)
             {
                 gm.GoToMainMenu();
                 yield return null;
-                Click(gm, "Metric" + index);
+                Click(gm, "Map" + index);
                 yield return null;
                 gm.BeginFlightFromVrThrow(gm.planes.First(d => d.unlockedByDefault), gm.CourseRotation * Vector3.forward * 8f);
                 gm.flightController.enabled = false;
@@ -534,9 +535,12 @@ namespace AvionesPapelVR.Editor
                     peakHeight = Mathf.Max(peakHeight, level.PathPoint(z).y);
                 }
                 Check(maxTurnRate < gm.SelectedPlane.turnSpeed, "Map " + (index + 1) + " bends stay within aircraft turning authority: " + maxTurnRate.ToString("0.0") + " deg/s");
-                if (index == 2)
+                if (index >= 2)
                     Check(peakHeight > 8 && minPitch < -4 && maxPitch > 4 && level.length > gm.levels[1].length * 2,
-                        "Expert course combines climbs, descents and a substantially longer route");
+                        "Map " + (index + 1) + " combines climbs, descents and a substantially longer route");
+                if (index >= 3)
+                    Check(level.routePoints != null && level.routePoints.Length > 8 && level.enemyCount > gm.levels[index - 1].enemyCount,
+                        "Map " + (index + 1) + " is authored with its own route and escalating enemies");
                 var obstacles = gm.levelRoot.GetComponentsInChildren<Damageable>().Where(d => d.name.StartsWith("Obstacle_")).ToArray();
                 Check(obstacles.Length == level.obstacleCount, "All authored obstacles are built");
                 Physics.SyncTransforms();
@@ -572,16 +576,16 @@ namespace AvionesPapelVR.Editor
                 yield return null;
                 body.position = finish + finishForward;
                 yield return null;
-                Check(index == 1 ? gm.State == GameState.LevelComplete : gm.State == GameState.GameOver && gm.CampaignComplete,
+                Check(index < last ? gm.State == GameState.LevelComplete : gm.State == GameState.GameOver && gm.CampaignComplete,
                     "Map " + (index + 1) + " reaches the correct results state");
                 gm.flightController.enabled = true;
                 yield return null;
                 Click(gm, "Primary");
-                Check(gm.State == GameState.PlaneSelect && gm.CurrentLevelIndex == (index == 1 ? 2 : 0),
+                Check(gm.State == GameState.PlaneSelect && gm.CurrentLevelIndex == (index < last ? index + 1 : 0),
                     "Results button advances to the next map or restarts the completed campaign");
             }
             gm.GoToMainMenu(); yield return null;
-            Click(gm, "Metric1"); yield return null;
+            Click(gm, "Map1"); yield return null;
             gm.BeginFlightFromVrThrow(gm.planes.First(d => d.unlockedByDefault), gm.CourseRotation * Vector3.forward * 8f);
             gm.FinishRun(false); yield return null;
             Click(gm, "Primary");
@@ -621,8 +625,9 @@ namespace AvionesPapelVR.Editor
                 yield return null;
             }
             SetInput(right.primary2DAxis, Vector2.zero);
-            Check(gm.State == (index < 2 ? GameState.LevelComplete : GameState.GameOver) &&
-                gm.levelRunner.GatesPassed == gm.levelRunner.GateCount && (index != 2 || gm.CampaignComplete),
+            bool lastMap = index == gm.levels.Count - 1;
+            Check(gm.State == (!lastMap ? GameState.LevelComplete : GameState.GameOver) &&
+                gm.levelRunner.GatesPassed == gm.levelRunner.GateCount && (!lastMap || gm.CampaignComplete),
                 "Physical flight completes map " + (index + 1) + " with the starter plane; elapsed=" + elapsed.ToString("0.0") +
                 "; gates=" + gm.levelRunner.GatesPassed + "/" + gm.levelRunner.GateCount + "; position=" + gm.CoursePoint(body.position));
             Check(gm.BoostsCollected > 2, "Physical flight collects the route's energy boosts");
@@ -634,11 +639,11 @@ namespace AvionesPapelVR.Editor
             yield return null; yield return null;
             var gm = GameManager.Instance;
             gm.persistProgress = false;
-            Check(!gm.vrMode && gm.levels.Count == 3, "SceneManager loads the keyboard entry with the same three maps");
-            for (int index = 0; index < 3; index++)
+            Check(!gm.vrMode && gm.levels.Count == ExpectedLevels, "SceneManager loads the keyboard entry with the same five maps");
+            for (int index = 0; index < gm.levels.Count; index++)
             {
                 yield return null;
-                Click(gm, "Metric" + index);
+                Click(gm, "Map" + index);
                 Check(gm.CurrentLevelIndex == index && gm.State == GameState.PlaneSelect, "Keyboard map card loads map " + (index + 1));
                 yield return null;
                 var previousPlane = gm.planeSelector.Current;

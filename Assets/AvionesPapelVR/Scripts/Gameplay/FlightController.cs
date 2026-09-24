@@ -71,6 +71,7 @@ namespace AvionesPapelVR
         Vector3 _lastPosition;
         public float Speed => _rb != null ? _rb.linearVelocity.magnitude : 0f;
         public float Distance { get; private set; }
+        public float FlightTime => _flightTime;
         public bool IsActive => _active;
         public Vector2 SteeringInput => new Vector2(_pitchInput, _rollInput);
         public Transform Plane => _plane;
@@ -114,13 +115,18 @@ namespace AvionesPapelVR
             if (!vrMode) { Cursor.lockState = CursorLockMode.Locked; Cursor.visible = false; }
         }
 
+        /// <summary>Cede el control: el cuerpo queda cinemático, sin velocidad ni fuerzas pendientes.</summary>
         public void Release()
         {
-            if (_rb != null && !_rb.isKinematic)
+            if (_rb != null)
             {
-                _rb.linearVelocity = Vector3.zero;
-                _rb.angularVelocity = Vector3.zero;
+                if (!_rb.isKinematic)
+                {
+                    _rb.linearVelocity = Vector3.zero;
+                    _rb.angularVelocity = Vector3.zero;
+                }
                 _rb.isKinematic = true;
+                _rb.constraints = RigidbodyConstraints.None;
                 _rb.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
             }
             _active = false;
@@ -202,6 +208,13 @@ namespace AvionesPapelVR
             if (!_active || _rb == null || GameManager.Instance == null || GameManager.Instance.State != GameState.Flight) return;
             float dt = Time.fixedDeltaTime;
             _flightTime += dt;
+            Vector3 currentVelocity = _rb.linearVelocity;
+            if (float.IsNaN(currentVelocity.x) || float.IsNaN(currentVelocity.y) || float.IsNaN(currentVelocity.z) || float.IsInfinity(currentVelocity.sqrMagnitude))
+            {
+                // Nunca propagar un estado numérico inválido: se recupera un planeo mínimo hacia el morro.
+                _rb.linearVelocity = _rb.rotation * Vector3.forward * Mathf.Max(_def.stallSpeed, 1f);
+                _rb.angularVelocity = Vector3.zero;
+            }
             Distance += Vector3.Distance(_rb.position, _lastPosition);
             _lastPosition = _rb.position;
             float speed = Speed;

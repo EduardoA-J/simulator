@@ -13,8 +13,18 @@ namespace AvionesPapelVR
         public List<LevelDefinition> levels = new();
         public List<WeaponDefinition> weapons = new();
         public List<PowerUpDefinition> powerUps = new();
-        public WeaponDefinition Weapon(WeaponType type) => weapons.Find(w => w != null && w.type == type);
-        public PowerUpDefinition PowerUp(PowerUpType type) => powerUps.Find(p => p != null && p.type == type);
+        public WeaponDefinition Weapon(WeaponType type)
+        {
+            if (_weaponLookup.TryGetValue(type, out var cached) && cached != null) return cached;
+            foreach (var w in weapons) if (w != null && w.type == type) { _weaponLookup[type] = w; return w; }
+            return null;
+        }
+        public PowerUpDefinition PowerUp(PowerUpType type)
+        {
+            if (_powerUpLookup.TryGetValue(type, out var cached) && cached != null) return cached;
+            foreach (var p in powerUps) if (p != null && p.type == type) { _powerUpLookup[type] = p; return p; }
+            return null;
+        }
         public void ActivatePowerUp(PowerUpType type)
         {
             var definition = PowerUp(type);
@@ -85,6 +95,9 @@ namespace AvionesPapelVR
         }
 
         bool _vrTrigR, _vrTrigL, _vrPrimary;
+        static readonly Key[] MapKeys = { Key.Digit1, Key.Digit2, Key.Digit3, Key.Digit4, Key.Digit5, Key.Digit6, Key.Digit7, Key.Digit8, Key.Digit9 };
+        readonly Dictionary<WeaponType, WeaponDefinition> _weaponLookup = new();
+        readonly Dictionary<PowerUpType, PowerUpDefinition> _powerUpLookup = new();
 
         public GameState State { get; private set; } = GameState.MainMenu;
         public PlaneDefinition SelectedPlane { get; private set; }
@@ -112,9 +125,20 @@ namespace AvionesPapelVR
         public int BestScore { get; private set; }
         public float BestDistance { get; private set; }
         public float RunDistance { get; private set; }
+        public float LastRunTime { get; private set; }
         public string EndReason { get; private set; } = "";
         public List<string> NewlyUnlocked { get; } = new();
         public Transform Player => _playerPlane != null ? _playerPlane.transform : null;
+        Rigidbody _playerBody;
+        public Rigidbody PlayerBody
+        {
+            get
+            {
+                if (_playerPlane == null) return null;
+                if (_playerBody == null || _playerBody.gameObject != _playerPlane) _playerBody = _playerPlane.GetComponent<Rigidbody>();
+                return _playerBody;
+            }
+        }
         public FlightTutorial Tutorial => _tutorial;
         public event System.Action<PlaneDefinition> PlaneGrabbed;
         public event System.Action<Vector3> FlightStarted;
@@ -159,9 +183,10 @@ namespace AvionesPapelVR
             switch (State)
             {
                 case GameState.MainMenu:
-                    if (GameInput.IsDown(Key.Digit1)) { StartSelectedLevel(0); break; }
-                    if (GameInput.IsDown(Key.Digit2)) { StartSelectedLevel(1); break; }
-                    if (GameInput.IsDown(Key.Digit3)) { StartSelectedLevel(2); break; }
+                    int pressed = -1;
+                    for (int i = 0; i < levels.Count && i < MapKeys.Length; i++)
+                        if (GameInput.IsDown(MapKeys[i])) { pressed = i; break; }
+                    if (pressed >= 0) { StartSelectedLevel(pressed); break; }
                     if (GameInput.ConfirmDown() || vrConfirm)
                         StartSelectedLevel(0);
                     break;
@@ -175,7 +200,7 @@ namespace AvionesPapelVR
                     break;
             }
 
-            if ((State == GameState.PlaneSelect || State == GameState.LevelComplete || State == GameState.GameOver) &&
+            if ((State == GameState.PlaneSelect || State == GameState.Launch || State == GameState.LevelComplete || State == GameState.GameOver) &&
                 GameInput.IsDown(Key.Escape)) GoToMainMenu();
 
             if (GameInput.IsDown(Key.F1))
@@ -253,12 +278,12 @@ namespace AvionesPapelVR
         public void NotifyVrPlaneGrabbed(PlaneDefinition def)
         {
             if (def == null || !IsPlaneUnlocked(def)) return;
+            if (State != GameState.PlaneSelect && State != GameState.Launch) return;
             SelectedPlane = def;
             planeSelector?.SelectGrabbed(def);
             _tutorial?.Record(FlightTutorial.Step.Grab);
             PlaneGrabbed?.Invoke(def);
-            if (State == GameState.PlaneSelect)
-                State = GameState.Launch;
+            State = GameState.Launch;
             hud?.Refresh();
         }
 
@@ -269,37 +294,23 @@ namespace AvionesPapelVR
             hud?.Refresh();
         }
 
-        public void ConfirmVrPlaneSelection(PlaneDefinition def)
+        /// <summary>
+        /// Lanzamiento desde un avión de mesa. El avión de mesa se retira y el vuelo lo realiza un avión nuevo
+        /// creado en <see cref="FlightStart"/>. Devuelve false si no se pudo iniciar (el avión vuelve a la mesa).
+        /// </summary>
+        public bool BeginFlightFromVrThrow(PlaneDefinition def, Vector3 velocity, Vector3? releasePosition = null)
         {
-            if (def != null) SelectedPlane = def;
+            if (State != GameState.PlaneSelect && State != GameState.Launch) return false;
+            if (velocity.sqrMagnitude < 0.01f || CurrentLevel == null) return false;
+            if (def == null) def = SelectedPlane;
+            if (!IsPlaneUnlocked(def)) return false;
+            SelectedPlane = def;
             planeSelector?.Clear();
-            if (State == GameState.PlaneSelect || State == GameState.Launch)
-                BeginLaunch();
-        }
-
-        public void BeginFlightFromVrThrow(PlaneDefinition def, Vector3 velocity, Vector3? releasePosition = null)
-        {
-            if (State != GameState.PlaneSelect && State != GameState.Launch) return;
-            if (velocity.sqrMagnitude < 0.01f || CurrentLevel == null || !IsPlaneUnlocked(def)) return;
-            if (def != null) SelectedPlane = def;
-            planeSelector?.Clear();
-            if (SelectedPlane == null) return;
-
-            if (_playerPlane == null)
-            {
-                velocity = AssistedLaunch(velocity);
-                SpawnPlayerAt(
-                    FlightStart,
-                    Quaternion.LookRotation(velocity.normalized),
-                    forLaunch: false);
-            }
             BeginFlight(velocity);
+            return State == GameState.Flight;
         }
 
-        public void BeginFlightFromVrThrow(Vector3 velocity)
-        {
-            BeginFlightFromVrThrow(SelectedPlane, velocity);
-        }
+        public bool BeginFlightFromVrThrow(Vector3 velocity) => BeginFlightFromVrThrow(SelectedPlane, velocity);
 
         public void BeginLaunch()
         {
@@ -361,11 +372,46 @@ namespace AvionesPapelVR
         public void CompleteLevel()
         {
             if (State != GameState.Flight) return;
+            float time = flightController != null ? flightController.FlightTime : 0f;
             FinishRun(true);
             CampaignComplete = CurrentLevelIndex >= levels.Count - 1;
             State = CampaignComplete ? GameState.GameOver : GameState.LevelComplete;
             EndReason = CampaignComplete ? "MAPA FINAL COMPLETADO" : "ESCENARIO COMPLETADO";
+            LastRunTime = time;
+            Progress.RecordCompletion(CurrentLevelIndex, time, persistProgress);
             hud?.Refresh();
+        }
+
+        /// <summary>Persistencia sencilla en PlayerPrefs: récord global, por nivel y progreso de campaña.</summary>
+        public static class Progress
+        {
+            const string Prefix = "AvionesPapelVR.";
+            public static int LevelBestScore(int level) => PlayerPrefs.GetInt(Prefix + "Level" + level + ".BestScore", 0);
+            public static float LevelBestTime(int level) => PlayerPrefs.GetFloat(Prefix + "Level" + level + ".BestTime", 0f);
+            public static bool LevelCompleted(int level) => PlayerPrefs.GetInt(Prefix + "Level" + level + ".Completed", 0) == 1;
+            public static string LevelBestPlane(int level) => PlayerPrefs.GetString(Prefix + "Level" + level + ".Plane", "");
+            /// <summary>Número de niveles superados de forma consecutiva desde el primero.</summary>
+            public static int CampaignReach => PlayerPrefs.GetInt(Prefix + "Campaign.Reach", 0);
+
+            public static void RecordRun(int level, int levelScore, string planeId, bool persist)
+            {
+                if (!persist || level < 0) return;
+                if (levelScore > LevelBestScore(level))
+                {
+                    PlayerPrefs.SetInt(Prefix + "Level" + level + ".BestScore", levelScore);
+                    PlayerPrefs.SetString(Prefix + "Level" + level + ".Plane", planeId ?? "");
+                }
+            }
+
+            public static void RecordCompletion(int level, float time, bool persist)
+            {
+                if (!persist || level < 0) return;
+                PlayerPrefs.SetInt(Prefix + "Level" + level + ".Completed", 1);
+                float best = LevelBestTime(level);
+                if (time > 0f && (best <= 0f || time < best)) PlayerPrefs.SetFloat(Prefix + "Level" + level + ".BestTime", time);
+                if (level + 1 > CampaignReach) PlayerPrefs.SetInt(Prefix + "Campaign.Reach", level + 1);
+                PlayerPrefs.Save();
+            }
         }
 
         public void NextLevelOrFinish()
@@ -414,6 +460,8 @@ namespace AvionesPapelVR
             foreach (var def in planes)
                 if (def != null && !def.unlockedByDefault && previousBest < def.unlockScore && BestScore >= def.unlockScore)
                     NewlyUnlocked.Add(def.displayName);
+            LastRunTime = flightController != null ? flightController.FlightTime : 0f;
+            Progress.RecordRun(CurrentLevelIndex, Score - _levelStartScore, SelectedPlane != null ? SelectedPlane.SaveId : "", persistProgress);
             if (persistProgress)
             {
                 PlayerPrefs.SetInt("AvionesPapelVR.BestScore", BestScore);
@@ -558,22 +606,24 @@ namespace AvionesPapelVR
                 if (c is MeshCollider mesh) mesh.convex = true;
             }
 
-            // quitar demos
-            foreach (var d in _playerPlane.GetComponentsInChildren<PlaneFlightDemo>())
-                Destroy(d);
-            foreach (var s in _playerPlane.GetComponentsInChildren<SpinBob>())
-                Destroy(s);
+            // Quitar animaciones de exposición y cualquier grab: el avión de vuelo sólo lo mueve FlightController.
+            foreach (var d in _playerPlane.GetComponentsInChildren<PlaneFlightDemo>()) { d.enabled = false; Destroy(d); }
+            foreach (var s in _playerPlane.GetComponentsInChildren<SpinBob>()) { s.enabled = false; Destroy(s); }
+            foreach (var g in _playerPlane.GetComponentsInChildren<VrGrabPlane>()) { g.Retire(); Destroy(g); }
+            foreach (var g in _playerPlane.GetComponentsInChildren<UnityEngine.XR.Interaction.Toolkit.Interactables.XRBaseInteractable>()) { g.enabled = false; Destroy(g); }
             foreach (var rb in _playerPlane.GetComponentsInChildren<Rigidbody>())
             {
                 if (rb.gameObject != _playerPlane)
                     Destroy(rb);
             }
 
+            // Hasta que FlightController tome posesión el cuerpo permanece cinemático y sin velocidad.
             var body = _playerPlane.GetComponent<Rigidbody>();
             if (body == null) body = _playerPlane.AddComponent<Rigidbody>();
             body.useGravity = false;
-            body.isKinematic = forLaunch;
-            body.collisionDetectionMode = forLaunch ? CollisionDetectionMode.ContinuousSpeculative : CollisionDetectionMode.ContinuousDynamic;
+            body.isKinematic = true;
+            body.constraints = RigidbodyConstraints.None;
+            body.collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
             body.interpolation = RigidbodyInterpolation.Interpolate;
 
             var playerHit = _playerPlane.GetComponent<PlayerHitbox>();
@@ -589,9 +639,15 @@ namespace AvionesPapelVR
 
         void CleanupPlayer()
         {
+            launchController?.Cancel();
             flightController?.Release();
-            if (_playerPlane != null) Destroy(_playerPlane);
+            if (_playerPlane != null)
+            {
+                _playerPlane.SetActive(false);
+                Destroy(_playerPlane);
+            }
             _playerPlane = null;
+            _playerBody = null;
         }
 
         public void PlaySfx(AudioClip clip, float vol = 0.5f)

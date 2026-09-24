@@ -29,7 +29,11 @@ namespace AvionesPapelVR
         Image _progress, _boost;
         RectTransform _steerDot;
         Button _primary, _previous, _next;
-        readonly Button[] _mapButtons = new Button[3];
+        readonly GameObject[] _metricCards = new GameObject[3];
+        Button[] _mapButtons = new Button[0];
+        Image[] _mapCards = new Image[0], _mapBars = new Image[0];
+        Text[] _mapCaptions = new Text[0], _mapNames = new Text[0], _mapRecords = new Text[0];
+        const float MapCardWidth = 196f, MapCardStep = 209f;
         XRRayInteractor[] _rays;
         NearFarInteractor[] _nearFar;
         string _feedback;
@@ -179,13 +183,31 @@ namespace AvionesPapelVR
             for (int i = 0; i < 3; i++)
             {
                 var card = Panel("Metric" + i, _menu, 44 + i * 350, 321, 332, 144, Card);
+                _metricCards[i] = card.gameObject;
                 _statLabels[i] = Label("Caption", card.transform, 22, 17, 290, 26, 16, Muted);
                 _statValues[i] = Label("Value", card.transform, 22, 48, 290, 59, 36, Color.white);
                 _statBars[i] = Bar("Meter", card.transform, 22, 121, 288, i == 2 ? Gold : Cyan);
-                // Reuse the three existing cards; all layout, typography and base colours stay intact.
+            }
+            // Fila de mapas: una tarjeta por nivel configurado (sólo visible en el menú principal).
+            int mapCount = gm != null ? Mathf.Max(1, gm.levels.Count) : 1;
+            _mapButtons = new Button[mapCount]; _mapCards = new Image[mapCount]; _mapBars = new Image[mapCount];
+            _mapCaptions = new Text[mapCount]; _mapNames = new Text[mapCount]; _mapRecords = new Text[mapCount];
+            float step = mapCount <= 1 ? 0f : Mathf.Min(MapCardStep, (1032f - MapCardWidth) / (mapCount - 1));
+            for (int i = 0; i < mapCount; i++)
+            {
+                var card = Panel("Map" + i, _menu, 44 + i * step, 321, MapCardWidth, 144, Card);
+                _mapCards[i] = card;
+                _mapCaptions[i] = Label("Caption", card.transform, 16, 14, MapCardWidth - 32, 24, 14, Muted);
+                _mapNames[i] = Label("Name", card.transform, 16, 40, MapCardWidth - 32, 56, 24, Color.white);
+                _mapRecords[i] = Label("Record", card.transform, 16, 96, MapCardWidth - 32, 22, 14, Gold);
+                _mapBars[i] = Bar("Meter", card.transform, 16, 125, MapCardWidth - 32, Cyan);
                 int mapIndex = i;
                 var button = card.gameObject.AddComponent<Button>();
                 button.targetGraphic = card;
+                var colors = button.colors;
+                colors.highlightedColor = new Color(0.11f, 0.19f, 0.26f);
+                colors.pressedColor = new Color(0.16f, 0.30f, 0.38f);
+                button.colors = colors;
                 button.onClick.AddListener(() => SelectMap(mapIndex));
                 _mapButtons[i] = button;
             }
@@ -228,12 +250,15 @@ namespace AvionesPapelVR
             var gm = GameManager.Instance;
             if (gm == null) return;
             bool flight = gm.State == GameState.Flight;
+            bool mainMenu = gm.State == GameState.MainMenu;
             for (int i = 0; i < _mapButtons.Length; i++)
             {
-                bool active = gm.State == GameState.MainMenu && i < gm.levels.Count && gm.levels[i] != null;
+                bool active = mainMenu && i < gm.levels.Count && gm.levels[i] != null;
+                _mapCards[i].gameObject.SetActive(mainMenu);
                 _mapButtons[i].enabled = active;
                 _mapButtons[i].targetGraphic.raycastTarget = active;
             }
+            foreach (var card in _metricCards) card.SetActive(!mainMenu);
             _menu.gameObject.SetActive(!flight); _flight.gameObject.SetActive(flight);
             if (_shownState != gm.State)
             {
@@ -294,22 +319,32 @@ namespace AvionesPapelVR
                     gm.State == GameState.LevelComplete ? $"Nivel {gm.CurrentLevelIndex + 1} superado." : _victory ? "Un vuelo para recordar." : "Cada vuelo cuenta.";
                 _description.text = gm.EndReason + (gm.NewlyUnlocked.Count > 0 ? "  /  Nuevo: " + string.Join(", ", gm.NewlyUnlocked) : "  /  Vuelve al taller y mejora tu marca.");
                 Metric(0, "PUNTOS", gm.Score.ToString("0000"), 1);
-                Metric(1, "DISTANCIA", $"{gm.RunDistance:0.0} m", 1);
-                Metric(2, "MEJOR MARCA", gm.BestScore.ToString("0000"), 1);
+                Metric(1, "DISTANCIA · TIEMPO", $"{gm.RunDistance:0.0} m · {gm.LastRunTime:0.0} s", 1);
+                Metric(2, "RÉCORD DEL NIVEL", GameManager.Progress.LevelBestScore(gm.CurrentLevelIndex).ToString("0000"), 1);
                 _primaryLabel.text = gm.State == GameState.LevelComplete ? "SIGUIENTE ESCENARIO" : gm.CampaignComplete ? "VOLVER AL NIVEL 1" : "REINTENTAR ESTE NIVEL";
                 _footer.text = gm.State == GameState.LevelComplete ? $"Siguiente: {gm.levels[gm.CurrentLevelIndex + 1].displayName} · Trigger, A o Enter para continuar" :
                     $"Aros: {gm.RingsCollected}   /   Impulsos: {gm.BoostsCollected}   /   Trigger, A o Enter para reintentar";
             }
             else
             {
-                _eyebrow.text = "DEL TALLER AL CIELO";
+                int reach = GameManager.Progress.CampaignReach;
+                _eyebrow.text = reach > 0 ? $"DEL TALLER AL CIELO · CAMPAÑA {Mathf.Min(reach, gm.levels.Count)}/{gm.levels.Count}" : "DEL TALLER AL CIELO";
                 _title.text = "Un pliegue. Mil caminos.";
-                _description.text = "Tres retos: aula, parque con curvas y oficina con cambios de altura.\nElige un avión, lánzalo y supera cada recorrido para avanzar.";
-                Metric(0, "MAPA 1 · FÁCIL", "Aula", 1f / 3f);
-                Metric(1, "MAPA 2 · MEDIO", "Parque", 2f / 3f);
-                Metric(2, "MAPA 3 · DIFÍCIL", "Oficina", 1);
+                _description.text = $"{gm.levels.Count} retos: aula, parque, oficina, mini ciudad y mundo mágico.\nElige un avión, lánzalo y supera cada recorrido para avanzar.";
+                for (int i = 0; i < _mapButtons.Length; i++)
+                {
+                    var level = i < gm.levels.Count ? gm.levels[i] : null;
+                    bool done = GameManager.Progress.LevelCompleted(i);
+                    int best = GameManager.Progress.LevelBestScore(i);
+                    _mapCaptions[i].text = level != null ? $"MAPA {i + 1} · {level.difficulty}" : $"MAPA {i + 1}";
+                    _mapNames[i].text = level != null ? level.displayName : "—";
+                    _mapRecords[i].text = level == null ? "" : done ? $"SUPERADO · {best:0000}" : best > 0 ? $"RÉCORD {best:0000}" : "SIN VOLAR";
+                    _mapRecords[i].color = done ? Cyan : Gold;
+                    _mapBars[i].color = done ? Cyan : Gold;
+                    Fill(_mapBars[i], (i + 1f) / Mathf.Max(1, _mapButtons.Length), MapCardWidth - 32);
+                }
                 _primaryLabel.text = "ENTRAR AL TALLER";
-                _footer.text = "Elige una tarjeta con el rayo y Trigger. Teclado: 1, 2 o 3. Enter empieza en el mapa 1.";
+                _footer.text = $"Elige una tarjeta con el rayo y Trigger. Teclado: 1 a {gm.levels.Count}. Enter empieza en el mapa 1.";
             }
         }
 

@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AvionesPapelVR.LevelDefinition
   displayName: Ciudad en Miniatura
   theme: 3
-  length: 100
-  enemyCount: 12
-  obstacleCount: 8
+  length: 380
+  enemyCount: 6
+  obstacleCount: 28
   starCount: 12
   coinCount: 14
   powerUpCount: 4
@@ -24,3 +24,29 @@ MonoBehaviour:
   windStrength: 0.6
   targetScore: 880
   fogColor: {r: 0.45, g: 0.5, b: 0.55, a: 1}
+  difficulty: MAESTRO
+  curveAmplitude: 16
+  curveCycles: 3.5
+  climbAmplitude: 4
+  flightSpeedLimit: 9.5
+  timeLimit: 240
+  ringSpacing: 6
+  layoutSeed: 404
+  routePoints:
+  - {x: 0, y: 1.8, z: 0}
+  - {x: 0, y: 1.8, z: 18}
+  - {x: -9, y: 2.6, z: 40}
+  - {x: -18, y: 5.5, z: 64}
+  - {x: -8, y: 9, z: 92}
+  - {x: 10, y: 10.5, z: 118}
+  - {x: 22, y: 7, z: 146}
+  - {x: 14, y: 3, z: 172}
+  - {x: -4, y: 2.2, z: 198}
+  - {x: -20, y: 4.5, z: 226}
+  - {x: -16, y: 8.5, z: 254}
+  - {x: 2, y: 11, z: 280}
+  - {x: 18, y: 8, z: 306}
+  - {x: 10, y: 4, z: 332}
+  - {x: 0, y: 2.4, z: 358}
+  - {x: 0, y: 2.4, z: 370}
+  - {x: 0, y: 2.4, z: 380}

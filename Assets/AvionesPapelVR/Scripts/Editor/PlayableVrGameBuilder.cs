@@ -289,8 +289,8 @@ namespace AvionesPapelVR.Editor
                 var def = AssetDatabase.LoadAssetAtPath<LevelDefinition>(AssetDatabase.GUIDToAssetPath(guid));
                 if (def != null) list.Add(def);
             }
+            // Orden por nombre (Level_01 … Level_05): la campaña completa entra en la escena.
             list.Sort((a, b) => string.CompareOrdinal(a.name, b.name));
-            if (list.Count > 3) list.RemoveRange(3, list.Count - 3);
             return list;
         }
 
