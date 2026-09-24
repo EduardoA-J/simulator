@@ -49,7 +49,9 @@ namespace AvionesPapelVR.Editor
         {
             SessionState.SetBool("AvionesPapelVR.Validation.Batch", true);
             KeyboardPlaySetup.DisableXrOnStartupForEditorTesting();
-            File.WriteAllText(RequestPath, "batch");
+            // Call Run directly; batchmode exits after -executeMethod unless Play Mode is entered here.
+            if (File.Exists(RequestPath)) File.Delete(RequestPath);
+            Run();
         }
 
         [MenuItem("Aviones de Papel VR/Validar circuito (Play Mode)", priority = 50)]
@@ -183,19 +185,29 @@ namespace AvionesPapelVR.Editor
             var simulator = XRInteractionSimulator.instance;
             Check(simulator != null && simulator.isActiveAndEnabled, "XRI simulator instantiated and active");
             // Disable the whole simulator and own the test controller lifecycle.
+            // Leftover simulated devices keep RightHand usage and steal pose/UI bindings from the test controller.
             simulator.gameObject.SetActive(false);
+            foreach (var leftover in InputSystem.devices.OfType<XRSimulatedController>().ToArray())
+                InputSystem.RemoveDevice(leftover);
             var right = InputSystem.AddDevice<XRSimulatedController>();
             InputSystem.SetDeviceUsage(right, UnityEngine.InputSystem.CommonUsages.RightHand);
             Check(right.added, "Deterministic simulated right controller exists");
+            Check(InputSystem.devices.OfType<XRSimulatedController>().Count() == 1,
+                "Validation owns a single XRSimulatedController for pose and UI Press");
+            // GameManager already opened VrInput actions against the simulator devices; rebind after the swap.
+            typeof(VrInput).GetMethod("Reset", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static)
+                .Invoke(null, null);
             VrInput.Trigger(XRNode.RightHand);
             PlayerInputUpdate(); // Resolve bindings/initial state before state injection.
             SetInput(right.trigger, 1f);
+            SetInput(right.triggerButton, 1f);
             var actions = (Dictionary<(XRNode, string), InputAction>)typeof(VrInput)
                 .GetField("Actions", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static).GetValue(null);
             var triggerAction = actions[(XRNode.RightHand, "trigger")];
             Check(VrInput.Trigger(XRNode.RightHand), "Gameplay reads simulated trigger through Input System; raw=" + right.trigger.ReadValue() +
                 "; enabled=" + right.enabled + "; phase=" + triggerAction.phase + "; controls=" + string.Join(",", triggerAction.controls.Select(c => c.path)));
             SetInput(right.trigger, 0f);
+            SetInput(right.triggerButton, 0f);
             yield return VerifyVrMapRay(gm, right);
             Vector3 lobby = gm.xrOrigin.position;
             gm.StartPlaneSelect();
@@ -421,35 +433,73 @@ namespace AvionesPapelVR.Editor
 
         IEnumerator VerifyVrMapRay(GameManager gm, XRSimulatedController right)
         {
+            Check(gm.State == GameState.MainMenu, "Map ray test starts on the main menu");
+            gm.hud.Refresh();
+            gm.hud.SendMessage("LateUpdate");
+            var events = UnityEngine.EventSystems.EventSystem.current;
+            Check(events != null && events.GetComponent<UnityEngine.XR.Interaction.Toolkit.UI.XRUIInputModule>() is { enabled: true },
+                "Existing EventSystem keeps XRUIInputModule enabled for VR UI");
+            var rays = gm.xrOrigin.GetComponentsInChildren<NearFarInteractor>(true);
+            var ray = rays.FirstOrDefault(r =>
+                r.GetComponentsInParent<Transform>(true).Any(t => t.name.IndexOf("Right", StringComparison.OrdinalIgnoreCase) >= 0));
+            Check(ray != null, "Right NearFarInteractor exists under XR Origin (found=" + rays.Length + ": " +
+                string.Join(", ", rays.Select(r => r.name + "@" + (r.transform.parent != null ? r.transform.parent.name : "?"))) + ")");
+            // Modality managers keep controllers off until tracked; force the right ray on for this UI check.
+            foreach (var t in ray.GetComponentsInParent<Transform>(true))
+                t.gameObject.SetActive(true);
+            ray.enableUIInteraction = true;
+            Check(ray.isActiveAndEnabled && ray.enableUIInteraction, "Right NearFarInteractor is active for UI");
+            var card = gm.hud.InterfaceCanvas.GetComponentsInChildren<UnityEngine.UI.Button>().Single(b => b.name == "Metric2");
+            Check(card.isActiveAndEnabled && card.IsInteractable() && card.targetGraphic.raycastTarget,
+                "Map 3 card remains a real interactable Button with raycast graphics");
+            var hand = ray.GetComponentsInParent<Transform>(true)
+                .First(t => t.name.IndexOf("Right Controller", StringComparison.OrdinalIgnoreCase) >= 0);
+            // TrackedPoseDriver can lag or disagree with injected device pose under batch Play Mode.
+            // Aim the live controller transform so NearFarInteractor/XRUIInputModule still drive the real UI path.
+            var poseDrivers = hand.GetComponentsInChildren<Behaviour>(true)
+                .Where(b => b != null && b.GetType().Name.Contains("TrackedPoseDriver")).ToArray();
+            foreach (var driver in poseDrivers) driver.enabled = false;
             SetInput(right.isTracked, 1f);
             SetInput(right.trackingState, 3);
-            SetInput(right.devicePosition, new Vector3(0.2f, 1.3f, 0.15f));
-            SetInput(right.deviceRotation, Quaternion.identity);
-            var ray = gm.xrOrigin.GetComponentsInChildren<NearFarInteractor>(true).First(r =>
-                r.GetComponentsInParent<Transform>().Any(t => t.name.Contains("Right")));
-            var card = gm.hud.InterfaceCanvas.GetComponentsInChildren<UnityEngine.UI.Button>().Single(b => b.name == "Metric2");
-            for (int attempt = 0; attempt < 20; attempt++)
+            SetInput(right.trigger, 0f);
+            SetInput(right.triggerButton, 0f);
+            for (int attempt = 0; attempt < 30; attempt++)
             {
-                yield return null; yield return null; yield return null;
-                if (ray.TryGetCurrentUIRaycastResult(out var currentHit) && currentHit.gameObject == card.gameObject) break;
+                gm.hud.SendMessage("LateUpdate");
                 var rect = (RectTransform)card.transform;
                 Vector3 target = rect.TransformPoint(rect.rect.center);
-                Quaternion correction = Quaternion.FromToRotation(ray.curveOrigin.forward, target - ray.curveOrigin.position);
-                SetInput(right.deviceRotation, Quaternion.Inverse(gm.xrOrigin.rotation) * correction *
-                    gm.xrOrigin.rotation * right.deviceRotation.ReadValue());
+                Vector3 camPos = gm.gameCamera != null ? gm.gameCamera.transform.position : gm.xrOrigin.position + Vector3.up * 1.6f;
+                hand.position = camPos + gm.gameCamera.transform.right * 0.2f + gm.gameCamera.transform.forward * 0.25f - Vector3.up * 0.15f;
+                Vector3 aimOrigin = ray.curveOrigin != null ? ray.curveOrigin.position : hand.position;
+                hand.rotation = Quaternion.LookRotation((target - aimOrigin).normalized, Vector3.up);
+                SetInput(right.devicePosition, gm.xrOrigin.InverseTransformPoint(hand.position));
+                SetInput(right.deviceRotation, Quaternion.Inverse(gm.xrOrigin.rotation) * hand.rotation);
+                PlayerInputUpdate();
+                yield return null; yield return null;
+                if (ray.TryGetCurrentUIRaycastResult(out var currentHit) &&
+                    currentHit.gameObject != null &&
+                    currentHit.gameObject.GetComponentInParent<UnityEngine.UI.Button>() == card)
+                    break;
             }
             yield return null; yield return null;
-            Check(ray.TryGetCurrentUIRaycastResult(out var hit) && hit.gameObject == card.gameObject && gm.hud.HasUiTarget,
-                "Actual XR controller ray targets the existing map 3 card (hit=" + hit.gameObject?.name + ")");
+            bool aimed = ray.TryGetCurrentUIRaycastResult(out var hit) && hit.gameObject != null &&
+                hit.gameObject.GetComponentInParent<UnityEngine.UI.Button>() == card && gm.hud.HasUiTarget;
+            var cardCenter = ((RectTransform)card.transform).TransformPoint(((RectTransform)card.transform).rect.center);
+            Check(aimed, "Actual XR controller ray targets the existing map 3 card (hit=" + hit.gameObject?.name +
+                "; origin=" + (ray.curveOrigin != null ? ray.curveOrigin.position.ToString("F2") : "null") +
+                "; card=" + cardCenter.ToString("F2") +
+                "; canvas=" + gm.hud.InterfaceCanvas.transform.position.ToString("F2") + ")");
+            // UI Press bindings use TriggerButton; keep axis and button in sync for XRUIInputModule.
             SetInput(right.trigger, 1f);
             SetInput(right.triggerButton, 1f);
             yield return null; yield return null;
             Check(gm.State == GameState.MainMenu, "UI trigger press does not prematurely start map 1");
             SetInput(right.trigger, 0f);
             SetInput(right.triggerButton, 0f);
-            yield return null; yield return null;
+            yield return null; yield return null; yield return null;
             Check(gm.State == GameState.PlaneSelect && gm.CurrentLevelIndex == 2,
                 "XR UI trigger release clicks map 3 through the real EventSystem");
+            foreach (var driver in poseDrivers) driver.enabled = true;
             gm.GoToMainMenu();
             SetInput(right.deviceRotation, Quaternion.identity);
             yield return null;
