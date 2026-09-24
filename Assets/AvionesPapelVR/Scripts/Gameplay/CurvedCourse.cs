@@ -23,9 +23,12 @@ namespace AvionesPapelVR
                 var gm = GameManager.Instance;
                 if (_level == null || !_level.HasCurves || gm == null || gm.Player == null) return "";
                 Vector3 delta = NextGateLocal - gm.CoursePoint(gm.Player.position);
-                string direction = delta.z < -2f ? "REGRESA AL PASO PENDIENTE" :
-                    delta.y > 0.7f ? "SUBE" : delta.y < -0.7f ? "BAJA" :
-                    delta.x > 1.5f ? "CURVA A LA DERECHA" : delta.x < -1.5f ? "CURVA A LA IZQUIERDA" : "SIGUE EL PASO";
+                Vector3 relative = gm.Player.InverseTransformDirection(gm.CourseRotation * delta);
+                string turn = relative.x > 1.5f ? "DERECHA" : relative.x < -1.5f ? "IZQUIERDA" : "";
+                string height = delta.y > 0.7f ? "SUBE" : delta.y < -0.7f ? "BAJA" : "";
+                string direction = relative.z < -2f ? "REGRESA AL PASO" :
+                    height != "" && turn != "" ? height + " + " + turn :
+                    height != "" ? height : turn != "" ? "GIRA " + turn : "SIGUE EL PASO";
                 return GatesPassed < GateCount ? $"PASO {GatesPassed + 1}/{GateCount} · {direction}" : "META · ÚLTIMO TRAMO";
             }
         }
@@ -84,7 +87,7 @@ namespace AvionesPapelVR
             {
                 var post = GameObject.CreatePrimitive(PrimitiveType.Cube);
                 post.name = "BoundaryPost"; post.transform.SetParent(parent, false);
-                float height = level.climbAmplitude > 0 ? 10f : 1.1f;
+                float height = level.theme == LevelTheme.Office ? 12f : 1.1f;
                 post.transform.SetPositionAndRotation(GroundPoint(side * 10.5f, height * 0.5f, z), level.GroundRotation(z));
                 post.transform.localScale = new Vector3(0.45f, height, 0.45f);
                 Tint(post, ThemeWall(level.theme));
@@ -92,6 +95,45 @@ namespace AvionesPapelVR
             var finish = Frame(parent, "Finish", level.PathPoint(level.length), level.PathRotation(level.length),
                 3.5f, 2.25f, new Color(1f, 0.75f, 0.2f));
             Caption(finish.transform, "META", 2.65f);
+        }
+
+        void SpawnCourseObstacles(LevelDefinition level, Transform parent)
+        {
+            bool advanced = level.routePoints != null && level.routePoints.Length > 1;
+            for (int i = 0; i < level.obstacleCount; i++)
+            {
+                // A repeatable rhythm: slalom, moving edge, overhead beam, low hurdle.
+                // The centreline always stays open, including the full moving-obstacle sweep.
+                float z = Mathf.Lerp(26f, level.length - 16f, (i + 0.5f) / level.obstacleCount);
+                int pattern = i % 4;
+                bool moving = pattern == 1;
+                bool beam = advanced && pattern >= 2;
+                var prefab = moving ? GameManager.Instance.obstacleMovingPrefab : GameManager.Instance.obstacleStaticPrefab;
+                var go = !beam && prefab != null ? Instantiate(prefab, parent) : GameObject.CreatePrimitive(PrimitiveType.Cube);
+                go.transform.SetParent(parent, false);
+                go.name = beam ? (pattern == 2 ? "Obstacle_HighBeam" : "Obstacle_LowHurdle") :
+                    moving ? "Obstacle_MovingEdge" : "Obstacle_Slalom";
+                float side = i % 2 == 0 ? -1f : 1f;
+                Vector3 offset = beam ? Vector3.up * (pattern == 2 ? 2f : -1.7f) : Vector3.right * side * 3.5f;
+                go.transform.localPosition = level.PathPoint(z) + level.PathRotation(z) * offset;
+                go.transform.localRotation = level.PathRotation(z);
+                if (beam)
+                {
+                    go.transform.localScale = new Vector3(6.6f, 0.45f, 0.55f);
+                    Tint(go, pattern == 2 ? new Color(0.95f, 0.59f, 0.23f) : new Color(0.25f, 0.67f, 0.74f));
+                }
+                StripGameplay(go);
+                if (moving)
+                {
+                    var motion = go.GetComponent<MovingObstacleMotion>() ?? go.AddComponent<MovingObstacleMotion>();
+                    motion.axis = level.PathRotation(z) * Vector3.right;
+                    motion.distance = advanced ? 0.65f : 0.4f;
+                    motion.speed = advanced ? 1.15f : 0.8f;
+                }
+                EnsureDamageable(go, 55f, 25);
+                _obstacles.Add(go.transform);
+                _spawned.Add(go);
+            }
         }
 
         GameObject Frame(Transform parent, string name, Vector3 point, Quaternion rotation, float halfWidth, float halfHeight, Color color)

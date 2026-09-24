@@ -162,7 +162,7 @@ namespace AvionesPapelVR.Editor
             var anchors = new GameObject("Anchors").transform;
             var select = new GameObject("SelectAnchor").transform;
             select.SetParent(anchors);
-            select.position = new Vector3(0f, 0.9f, 0.85f);
+            select.position = new Vector3(0f, 0.98f, 0.2f);
 
             var launch = new GameObject("LaunchAnchor").transform;
             launch.SetParent(anchors);

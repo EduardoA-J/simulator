@@ -15,7 +15,7 @@ MonoBehaviour:
   displayName: Parque de las Curvas
   theme: 1
   length: 150
-  enemyCount: 8
+  enemyCount: 3
   obstacleCount: 10
   starCount: 10
   coinCount: 12
@@ -28,5 +28,7 @@ MonoBehaviour:
   curveAmplitude: 10
   curveCycles: 1.5
   climbAmplitude: 0
-  flightSpeedLimit: 12
+  flightSpeedLimit: 10
   timeLimit: 180
+  ringSpacing: 7
+  layoutSeed: 202

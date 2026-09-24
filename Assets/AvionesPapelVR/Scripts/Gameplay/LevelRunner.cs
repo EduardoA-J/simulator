@@ -51,13 +51,19 @@ namespace AvionesPapelVR
             holder.transform.localScale = Vector3.one;
             _spawned.Add(holder);
 
-            BuildGroundAndWalls(level, holder.transform);
-            SpawnThemeDecor(level, holder.transform);
-            SpawnEnemies(level, holder.transform);
-            SpawnObstacles(level, holder.transform);
-            SpawnCollectibles(level, holder.transform);
-            SpawnRings(level, holder.transform);
-            BuildRoute(level, holder.transform);
+            var randomState = Random.state;
+            try
+            {
+                Random.InitState(level.layoutSeed);
+                BuildGroundAndWalls(level, holder.transform);
+                SpawnThemeDecor(level, holder.transform);
+                SpawnEnemies(level, holder.transform);
+                SpawnObstacles(level, holder.transform);
+                SpawnCollectibles(level, holder.transform);
+                SpawnRings(level, holder.transform);
+                BuildRoute(level, holder.transform);
+            }
+            finally { Random.state = randomState; }
             var gm = GameManager.Instance;
             if (gm != null)
             {
@@ -156,7 +162,7 @@ namespace AvionesPapelVR
             for (int i = 0; i < level.enemyCount; i++)
             {
                 float z = Mathf.Lerp(10f, level.length - 10f, (i + 1f) / (level.enemyCount + 1f));
-                float x = (i % 2 == 0 ? -1f : 1f) * Random.Range(3.5f, 4.5f);
+                float x = (i % 2 == 0 ? -1f : 1f) * 6f;
                 float y = Random.Range(1.3f, 3.8f);
                 int roll = i % 3;
                 GameObject prefab = null;
@@ -191,13 +197,14 @@ namespace AvionesPapelVR
 
         void SpawnObstacles(LevelDefinition level, Transform parent)
         {
+            if (level.HasCurves) { SpawnCourseObstacles(level, parent); return; }
             var gm = GameManager.Instance;
             for (int i = 0; i < level.obstacleCount; i++)
             {
                 // Even spacing guarantees a readable opening and prevents obstacle clusters.
                 float z = Mathf.Lerp(14f, level.length - 8f, (i + 1f) / (level.obstacleCount + 1f));
-                float x = (i % 2 == 0 ? -1f : 1f) * Random.Range(2.6f, 4f);
-                bool moving = i % 2 == 0;
+                float x = (i % 2 == 0 ? -1f : 1f) * 3.3f;
+                bool moving = false; // The introductory corridor teaches aim before timed obstacles.
                 GameObject prefab = gm != null
                     ? (moving ? gm.obstacleMovingPrefab : gm.obstacleStaticPrefab)
                     : null;
@@ -269,6 +276,12 @@ namespace AvionesPapelVR
             Vector3 current = gm.CoursePoint(gm.Player.position);
             float length = gm.CurrentLevel != null ? gm.CurrentLevel.length : 0f;
             Progress01 = length > 0f ? Mathf.Clamp01(current.z / length) : 0f;
+            foreach (var obstacle in _obstacles)
+                if (obstacle != null && !_passedObstacles.Contains(obstacle) && current.z > gm.CoursePoint(obstacle.position).z + 2f)
+                {
+                    _passedObstacles.Add(obstacle);
+                    gm.NotifyObstaclePassed();
+                }
             if (gm.CurrentLevel != null && gm.CurrentLevel.HasCurves)
             {
                 UpdateCurvedProgress(current);
@@ -276,12 +289,6 @@ namespace AvionesPapelVR
                 _hasPreviousPosition = true;
                 return;
             }
-            foreach (var obstacle in _obstacles)
-                if (obstacle != null && !_passedObstacles.Contains(obstacle) && current.z > gm.CoursePoint(obstacle.position).z + 2f)
-                {
-                    _passedObstacles.Add(obstacle);
-                    gm.NotifyObstaclePassed();
-                }
             if (_hasPreviousPosition && length > 0f && _previousCoursePosition.z < length && current.z >= length)
             {
                 float fraction = (length - _previousCoursePosition.z) / (current.z - _previousCoursePosition.z);
@@ -309,7 +316,7 @@ namespace AvionesPapelVR
                 }
             }
             int index = 0;
-            for (float z = 6f; z < level.length - 5f; z += 7f)
+            for (float z = 6f; z < level.length - 5f; z += Mathf.Max(3f, level.ringSpacing))
             {
                 var ring = new GameObject(index % 2 == 0 ? "ScoreRing" : "BoostRing");
                 ring.transform.SetParent(parent, false);

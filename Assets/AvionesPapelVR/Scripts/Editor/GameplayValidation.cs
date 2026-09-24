@@ -124,16 +124,25 @@ namespace AvionesPapelVR.Editor
             Application.runInBackground = true;
             // Stable sampling for XRI's throw history, independent of headless rendering stalls.
             float previousCapture = Time.captureDeltaTime;
+            bool previousAsyncShaders = ShaderUtil.allowAsyncCompilation;
+            ShaderUtil.allowAsyncCompilation = false;
             Time.captureDeltaTime = 1f / 60f;
             InputSystem.settings.backgroundBehavior = InputSettings.BackgroundBehavior.IgnoreFocus;
-            var run = Checks();
-            while (true)
+            var runs = new Stack<IEnumerator>();
+            runs.Push(Checks());
+            while (runs.Count > 0)
             {
                 object next = null;
                 bool more = false;
-                try { more = run.MoveNext(); if (more) next = run.Current; }
+                try { more = runs.Peek().MoveNext(); if (more) next = runs.Peek().Current; }
                 catch (Exception e) { _report.failure = e.ToString(); break; }
-                if (!more) { _report.passed = _report.errors.Count == 0; break; }
+                if (!more)
+                {
+                    runs.Pop();
+                    if (runs.Count == 0) _report.passed = _report.errors.Count == 0;
+                    continue;
+                }
+                if (next is IEnumerator nested) { runs.Push(nested); continue; }
                 yield return next;
             }
             string report = JsonUtility.ToJson(_report, true);
@@ -142,6 +151,7 @@ namespace AvionesPapelVR.Editor
             File.WriteAllText("Logs/AvionesValidation.json", report);
             Debug.Log("[AvionesValidation] " + (_report.passed ? "PASS" : "FAIL") + " " + _report.checks.Count + " checks");
             Time.captureDeltaTime = previousCapture;
+            ShaderUtil.allowAsyncCompilation = previousAsyncShaders;
             EditorApplication.isPlaying = false;
         }
 
@@ -153,6 +163,22 @@ namespace AvionesPapelVR.Editor
             if (gm != null) gm.persistProgress = false;
             Check(gm != null && gm.State == GameState.MainMenu, "Main menu initialized");
             Check(gm.hud.InterfaceCanvas != null, "Structured interface canvas initialized");
+            Check(gm.levels.Count == 3 && gm.levels.All(l => l != null), "Exactly three referenced map assets");
+            Check(EditorBuildSettings.scenes.Any(s => s.enabled && s.path.EndsWith("/Game_VR_Oculus.unity")) &&
+                EditorBuildSettings.scenes.Any(s => s.enabled && s.path.EndsWith("/Game_Playable.unity")),
+                "VR and keyboard entry scenes are enabled in Build Settings");
+            for (int i = 0; i < 3; i++)
+            {
+                yield return null;
+                Click(gm, "Metric" + i);
+                Check(gm.State == GameState.PlaneSelect && gm.CurrentLevelIndex == i,
+                    "Existing map card " + (i + 1) + " selects its own LevelDefinition");
+                Check(UnityEngine.Object.FindObjectsByType<GameManager>(FindObjectsSortMode.None).Length == 1,
+                    "Map selection keeps one GameManager and the existing XR rig");
+                yield return null;
+                Click(gm, "Primary");
+                Check(gm.State == GameState.MainMenu, "Table button returns to map menu");
+            }
             CaptureInterface(gm, "Interface_Menu");
             var simulator = XRInteractionSimulator.instance;
             Check(simulator != null && simulator.isActiveAndEnabled, "XRI simulator instantiated and active");
@@ -170,6 +196,7 @@ namespace AvionesPapelVR.Editor
             Check(VrInput.Trigger(XRNode.RightHand), "Gameplay reads simulated trigger through Input System; raw=" + right.trigger.ReadValue() +
                 "; enabled=" + right.enabled + "; phase=" + triggerAction.phase + "; controls=" + string.Join(",", triggerAction.controls.Select(c => c.path)));
             SetInput(right.trigger, 0f);
+            yield return VerifyVrMapRay(gm, right);
             Vector3 lobby = gm.xrOrigin.position;
             gm.StartPlaneSelect();
             yield return null;
@@ -179,6 +206,14 @@ namespace AvionesPapelVR.Editor
             Check(allPlanes.Length == gm.planes.Count(d => gm.IsPlaneUnlocked(d)), "Only unlocked planes receive XR grab components");
             var planes = allPlanes.Where(p => p.gameObject.activeInHierarchy).ToArray();
             Check(planes.Length > 0 && planes.Length <= 4, "Reachable table page contains at most four planes");
+            Check(Vector3.Distance(new Vector3(lobby.x, gm.selectAnchor.position.y, lobby.z), planes[0].transform.position) < 0.8f,
+                "First grabbable plane is within 80 cm horizontally of the initial rig");
+            Check(planes[0].transform.position.y > 0.85f && planes[0].transform.position.y < 1.1f,
+                "Aircraft sits at a comfortable standing table height");
+            Check(GameObject.Find("Lobby_Workshop") != null && GameObject.Find("TableLight") != null,
+                "Workshop and local table lighting are present");
+            CaptureView(gm, "Lobby_Workshop", gm.gameCamera.transform.position,
+                Quaternion.LookRotation(gm.selectAnchor.position - gm.gameCamera.transform.position), false);
             foreach (var plane in planes)
             {
                 Check(plane.GetComponent<Rigidbody>() != null, "Rigidbody survives selection: " + plane.definition.name);
@@ -292,8 +327,8 @@ namespace AvionesPapelVR.Editor
             rb.position = gm.CourseOrigin + gm.CourseRotation * new Vector3(0f, 2f, gm.CurrentLevel.length + 1f);
             yield return null;
             gm.flightController.enabled = true;
-            Check(gm.State == GameState.GameOver, "Crossing the open finish gate completes the run");
-            Check(gm.State == GameState.GameOver && rb.isKinematic, "Landing finalizes and freezes player body");
+            Check(gm.State == GameState.LevelComplete, "Map 1 finish advances to level results, not campaign completion");
+            Check(rb.isKinematic, "Finishing freezes player body");
             Check(gm.Score >= score + 200 && gm.BestScore >= gm.Score, "Results include landing bonus and best score");
             gm.hud.SendMessage("LateUpdate");
             CaptureInterface(gm, "Interface_Results");
@@ -362,12 +397,246 @@ namespace AvionesPapelVR.Editor
             gm.hud.SendMessage("LateUpdate");
             CaptureInterface(gm, "Interface_Flight");
             gm.FinishRun(false);
+            gm.flightStartAnchor.rotation = Quaternion.Euler(0, 25f, 0);
+            SetInput(right.deviceRotation, Quaternion.identity);
+            SetInput(right.primary2DAxis, Vector2.zero);
+            yield return VerifyCourses(gm);
+            yield return FlyCourse(gm, right, 0);
+            yield return FlyCourse(gm, right, 1);
+            yield return FlyCourse(gm, right, 2);
+            gm.GoToMainMenu();
+            yield return VerifyKeyboardScene();
             Destroy(hand);
             InputSystem.RemoveDevice(right);
         }
 
+        void Click(GameManager gm, string name)
+        {
+            var button = gm.hud.InterfaceCanvas.GetComponentsInChildren<UnityEngine.UI.Button>()
+                .Single(b => b.name == name);
+            Check(button.isActiveAndEnabled && button.IsInteractable(), name + " is an active button");
+            button.OnPointerClick(new UnityEngine.EventSystems.PointerEventData(UnityEngine.EventSystems.EventSystem.current)
+                { button = UnityEngine.EventSystems.PointerEventData.InputButton.Left });
+        }
+
+        IEnumerator VerifyVrMapRay(GameManager gm, XRSimulatedController right)
+        {
+            SetInput(right.isTracked, 1f);
+            SetInput(right.trackingState, 3);
+            SetInput(right.devicePosition, new Vector3(0.2f, 1.3f, 0.15f));
+            SetInput(right.deviceRotation, Quaternion.identity);
+            var ray = gm.xrOrigin.GetComponentsInChildren<NearFarInteractor>(true).First(r =>
+                r.GetComponentsInParent<Transform>().Any(t => t.name.Contains("Right")));
+            var card = gm.hud.InterfaceCanvas.GetComponentsInChildren<UnityEngine.UI.Button>().Single(b => b.name == "Metric2");
+            for (int attempt = 0; attempt < 20; attempt++)
+            {
+                yield return null; yield return null; yield return null;
+                if (ray.TryGetCurrentUIRaycastResult(out var currentHit) && currentHit.gameObject == card.gameObject) break;
+                var rect = (RectTransform)card.transform;
+                Vector3 target = rect.TransformPoint(rect.rect.center);
+                Quaternion correction = Quaternion.FromToRotation(ray.curveOrigin.forward, target - ray.curveOrigin.position);
+                SetInput(right.deviceRotation, Quaternion.Inverse(gm.xrOrigin.rotation) * correction *
+                    gm.xrOrigin.rotation * right.deviceRotation.ReadValue());
+            }
+            yield return null; yield return null;
+            Check(ray.TryGetCurrentUIRaycastResult(out var hit) && hit.gameObject == card.gameObject && gm.hud.HasUiTarget,
+                "Actual XR controller ray targets the existing map 3 card (hit=" + hit.gameObject?.name + ")");
+            SetInput(right.trigger, 1f);
+            SetInput(right.triggerButton, 1f);
+            yield return null; yield return null;
+            Check(gm.State == GameState.MainMenu, "UI trigger press does not prematurely start map 1");
+            SetInput(right.trigger, 0f);
+            SetInput(right.triggerButton, 0f);
+            yield return null; yield return null;
+            Check(gm.State == GameState.PlaneSelect && gm.CurrentLevelIndex == 2,
+                "XR UI trigger release clicks map 3 through the real EventSystem");
+            gm.GoToMainMenu();
+            SetInput(right.deviceRotation, Quaternion.identity);
+            yield return null;
+        }
+
+        IEnumerator VerifyCourses(GameManager gm)
+        {
+            var originalRig = gm.xrOrigin;
+            for (int index = 1; index < 3; index++)
+            {
+                gm.GoToMainMenu();
+                yield return null;
+                Click(gm, "Metric" + index);
+                yield return null;
+                gm.BeginFlightFromVrThrow(gm.planes.First(d => d.unlockedByDefault), gm.CourseRotation * Vector3.forward * 8f);
+                gm.flightController.enabled = false;
+                var body = gm.Player.GetComponent<Rigidbody>();
+                body.isKinematic = true;
+                yield return null;
+                var level = gm.CurrentLevel;
+                Check(gm.xrOrigin == originalRig && gm.levelRunner.GateCount > 0, "Map " + (index + 1) + " builds its route without replacing XR Origin");
+                float peakHeight = 0, maxTurnRate = 0, minPitch = 0, maxPitch = 0;
+                for (float z = 1; z < level.length - 1; z += 0.25f)
+                {
+                    Vector3 tangent = level.PathRotation(z) * Vector3.forward;
+                    Vector3 next = level.PathRotation(z + 0.25f) * Vector3.forward;
+                    float segment = Vector3.Distance(level.PathPoint(z), level.PathPoint(z + 0.25f));
+                    maxTurnRate = Mathf.Max(maxTurnRate, Vector3.Angle(Vector3.ProjectOnPlane(tangent, Vector3.up),
+                        Vector3.ProjectOnPlane(next, Vector3.up)) / segment * level.flightSpeedLimit);
+                    float pitch = Mathf.Asin(tangent.y) * Mathf.Rad2Deg;
+                    minPitch = Mathf.Min(minPitch, pitch); maxPitch = Mathf.Max(maxPitch, pitch);
+                    peakHeight = Mathf.Max(peakHeight, level.PathPoint(z).y);
+                }
+                Check(maxTurnRate < gm.SelectedPlane.turnSpeed, "Map " + (index + 1) + " bends stay within aircraft turning authority: " + maxTurnRate.ToString("0.0") + " deg/s");
+                if (index == 2)
+                    Check(peakHeight > 8 && minPitch < -4 && maxPitch > 4 && level.length > gm.levels[1].length * 2,
+                        "Expert course combines climbs, descents and a substantially longer route");
+                var obstacles = gm.levelRoot.GetComponentsInChildren<Damageable>().Where(d => d.name.StartsWith("Obstacle_")).ToArray();
+                Check(obstacles.Length == level.obstacleCount, "All authored obstacles are built");
+                Physics.SyncTransforms();
+                for (float z = 8; z < level.length - 8; z += 0.75f)
+                {
+                    Vector3 world = gm.CourseOrigin + gm.CourseRotation * level.PathPoint(z);
+                    var blockers = Physics.OverlapSphere(world, 0.7f, ~0, QueryTriggerInteraction.Ignore)
+                        .Where(c => obstacles.Contains(c.GetComponentInParent<Damageable>())).ToArray();
+                    if (blockers.Length > 0) throw new Exception("Blocked route at " + z + ": " + blockers[0].transform.root.name);
+                }
+                Check(true, "Map " + (index + 1) + " centreline has at least 0.7 m obstacle clearance");
+                CaptureView(gm, "Map" + (index + 1) + "_Course", gm.CourseOrigin + gm.CourseRotation *
+                    (level.PathPoint(index == 1 ? 28 : 185) + new Vector3(-7, 8, -12)),
+                    gm.CourseRotation * Quaternion.Euler(20, 24, 0), true);
+                Vector3 finish = gm.CourseOrigin + gm.CourseRotation * level.PathPoint(level.length);
+                Vector3 finishForward = gm.CourseRotation * level.PathRotation(level.length) * Vector3.forward;
+                body.position = finish - finishForward;
+                yield return null;
+                body.position = finish + finishForward;
+                yield return null;
+                Check(gm.State == GameState.Flight && gm.levelRunner.GatesPassed == 0, "Skipping required gates cannot complete map " + (index + 1));
+                for (int gate = 0; gate < gm.levelRunner.GateCount; gate++)
+                {
+                    Vector3 center = gm.levelRunner.GateWorld(gate);
+                    Vector3 forward = gm.levelRunner.GateRotation(gate) * Vector3.forward;
+                    body.position = center - forward * 0.6f;
+                    yield return new WaitForFixedUpdate(); yield return null;
+                    body.position = center + forward * 0.6f;
+                    yield return new WaitForFixedUpdate(); yield return null;
+                    Check(gm.levelRunner.GatesPassed == gate + 1, "Ordered checkpoint " + gate + " on map " + (index + 1));
+                }
+                body.position = finish - finishForward;
+                yield return null;
+                body.position = finish + finishForward;
+                yield return null;
+                Check(index == 1 ? gm.State == GameState.LevelComplete : gm.State == GameState.GameOver && gm.CampaignComplete,
+                    "Map " + (index + 1) + " reaches the correct results state");
+                gm.flightController.enabled = true;
+                yield return null;
+                Click(gm, "Primary");
+                Check(gm.State == GameState.PlaneSelect && gm.CurrentLevelIndex == (index == 1 ? 2 : 0),
+                    "Results button advances to the next map or restarts the completed campaign");
+            }
+            gm.GoToMainMenu(); yield return null;
+            Click(gm, "Metric1"); yield return null;
+            gm.BeginFlightFromVrThrow(gm.planes.First(d => d.unlockedByDefault), gm.CourseRotation * Vector3.forward * 8f);
+            gm.FinishRun(false); yield return null;
+            Click(gm, "Primary");
+            Check(gm.CurrentLevelIndex == 1 && gm.State == GameState.PlaneSelect && gm.levelRunner.GatesPassed == 0,
+                "Retry stays on selected map and clears checkpoints");
+            yield return null;
+            gm.BeginFlightFromVrThrow(gm.planes.First(d => d.unlockedByDefault), gm.CourseRotation * Vector3.forward * 8f);
+            gm.FinishRun(false); yield return null;
+            Click(gm, "Previous");
+            Check(gm.State == GameState.MainMenu && gm.Player == null && gm.levelRunner.GateCount == 0,
+                "Results back button cleans the course and returns to the map menu");
+        }
+
+        // Test pilot feeds the real simulated stick and physics. No teleport, auto-boost or disabled collisions.
+        IEnumerator FlyCourse(GameManager gm, XRSimulatedController right, int index)
+        {
+            Debug.Log("[AvionesValidation] Starting physical flight for map " + (index + 1));
+            gm.GoToMainMenu(); yield return null;
+            gm.StartSelectedLevel(index); yield return null;
+            var plane = gm.planes.First(d => d.unlockedByDefault);
+            gm.flightController.steering = FlightController.VrSteering.Sticks;
+            gm.BeginFlightFromVrThrow(plane, gm.CourseRotation * Vector3.forward * 8f);
+            var body = gm.Player.GetComponent<Rigidbody>();
+            float elapsed = 0;
+            while (gm.State == GameState.Flight && elapsed < gm.CurrentLevel.timeLimit)
+            {
+                Vector3 local = gm.CoursePoint(body.position);
+                float lookAhead = Mathf.Max(3f, body.linearVelocity.magnitude * 0.65f);
+                Vector3 target = gm.CourseOrigin + gm.CourseRotation * gm.CurrentLevel.PathPoint(local.z + lookAhead);
+                Vector3 delta = target - body.position;
+                float yaw = Mathf.Atan2(delta.x, delta.z) * Mathf.Rad2Deg;
+                float turn = Mathf.Clamp(Mathf.DeltaAngle(body.rotation.eulerAngles.y, yaw) * 3f / plane.turnSpeed, -1f, 1f);
+                float climb = Mathf.Atan2(delta.y, new Vector2(delta.x, delta.z).magnitude) * Mathf.Rad2Deg;
+                float pitch = Mathf.Clamp((climb + 3.5f) / 28f, -1f, 1f);
+                SetInput(right.primary2DAxis, new Vector2(turn, pitch));
+                elapsed += Time.deltaTime;
+                yield return null;
+            }
+            SetInput(right.primary2DAxis, Vector2.zero);
+            Check(gm.State == (index < 2 ? GameState.LevelComplete : GameState.GameOver) &&
+                gm.levelRunner.GatesPassed == gm.levelRunner.GateCount && (index != 2 || gm.CampaignComplete),
+                "Physical flight completes map " + (index + 1) + " with the starter plane; elapsed=" + elapsed.ToString("0.0") +
+                "; gates=" + gm.levelRunner.GatesPassed + "/" + gm.levelRunner.GateCount + "; position=" + gm.CoursePoint(body.position));
+            Check(gm.BoostsCollected > 2, "Physical flight collects the route's energy boosts");
+        }
+
+        IEnumerator VerifyKeyboardScene()
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene("Game_Playable");
+            yield return null; yield return null;
+            var gm = GameManager.Instance;
+            gm.persistProgress = false;
+            Check(!gm.vrMode && gm.levels.Count == 3, "SceneManager loads the keyboard entry with the same three maps");
+            for (int index = 0; index < 3; index++)
+            {
+                yield return null;
+                Click(gm, "Metric" + index);
+                Check(gm.CurrentLevelIndex == index && gm.State == GameState.PlaneSelect, "Keyboard map card loads map " + (index + 1));
+                yield return null;
+                var previousPlane = gm.planeSelector.Current;
+                Click(gm, "Next");
+                Check(gm.planeSelector.Current != previousPlane, "Next aircraft button is connected");
+                Click(gm, "Previous");
+                Check(gm.planeSelector.Current == previousPlane, "Previous aircraft button is connected");
+                Click(gm, "Primary");
+                Check(gm.State == GameState.Launch, "Keyboard selection enters the existing launch controller");
+                gm.BeginFlight(gm.CourseRotation * Vector3.forward * 8);
+                Check(gm.State == GameState.Flight && gm.CurrentLevelIndex == index, "Keyboard launch builds the selected map");
+                gm.GoToMainMenu();
+            }
+#pragma warning disable CS0618
+            var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(AssetDatabase.GUIDToAssetPath("18ddb545287c546e19cc77dc9fbb2189"));
+            var classic = Instantiate(prefab);
+            yield return null;
+            Check(classic.GetComponent<XRDeviceSimulator>().isActiveAndEnabled,
+                "Installed classic XR Device Simulator prefab initializes successfully");
+            Destroy(classic);
+#pragma warning restore CS0618
+        }
+
+        static void CaptureView(GameManager gm, string name, Vector3 position, Quaternion rotation, bool hideInterface)
+        {
+            bool wasEnabled = gm.hud.InterfaceCanvas.enabled;
+            if (hideInterface) gm.hud.InterfaceCanvas.enabled = false;
+            bool fog = RenderSettings.fog;
+            if (hideInterface) RenderSettings.fog = false;
+            var go = new GameObject("ValidationView");
+            var camera = go.AddComponent<Camera>(); camera.CopyFrom(gm.gameCamera);
+            camera.enabled = false; camera.stereoTargetEye = StereoTargetEyeMask.None;
+            camera.fieldOfView = 68; camera.farClipPlane = 650;
+            go.transform.SetPositionAndRotation(position, rotation);
+            var target = new RenderTexture(1280, 800, 24);
+            var previous = RenderTexture.active;
+            camera.targetTexture = target; camera.Render(); RenderTexture.active = target;
+            var texture = new Texture2D(1280, 800, TextureFormat.RGB24, false);
+            texture.ReadPixels(new Rect(0, 0, 1280, 800), 0, 0); texture.Apply();
+            Directory.CreateDirectory("Logs"); File.WriteAllBytes("Logs/" + name + ".png", texture.EncodeToPNG());
+            camera.targetTexture = null; RenderTexture.active = previous; target.Release();
+            Destroy(texture); Destroy(target); Destroy(go);
+            RenderSettings.fog = fog; gm.hud.InterfaceCanvas.enabled = wasEnabled;
+        }
+
         void CaptureInterface(GameManager gm, string filename)
         {
+            gm.hud.SendMessage("LateUpdate");
             Canvas.ForceUpdateCanvases();
             foreach (var text in gm.hud.InterfaceCanvas.GetComponentsInChildren<UnityEngine.UI.Text>())
                 Check(text.preferredHeight <= text.rectTransform.rect.height + 2f,

@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AvionesPapelVR.LevelDefinition
   displayName: Oficina en las Alturas
   theme: 2
-  length: 300
-  enemyCount: 16
-  obstacleCount: 22
+  length: 440
+  enemyCount: 5
+  obstacleCount: 26
   starCount: 10
   coinCount: 12
   powerUpCount: 4
@@ -28,5 +28,25 @@ MonoBehaviour:
   curveAmplitude: 14
   curveCycles: 3
   climbAmplitude: 3
-  flightSpeedLimit: 12
+  flightSpeedLimit: 9
   timeLimit: 240
+  ringSpacing: 6
+  layoutSeed: 303
+  routePoints:
+  - {x: 0, y: 1.8, z: 0}
+  - {x: 0, y: 1.8, z: 18}
+  - {x: 8, y: 3, z: 44}
+  - {x: 20, y: 6, z: 72}
+  - {x: 12, y: 8, z: 100}
+  - {x: -6, y: 5, z: 132}
+  - {x: -15, y: 2.6, z: 160}
+  - {x: -3, y: 4.8, z: 188}
+  - {x: 15, y: 8.5, z: 222}
+  - {x: 23, y: 7, z: 248}
+  - {x: 8, y: 3.2, z: 282}
+  - {x: -12, y: 2.2, z: 318}
+  - {x: -4, y: 4.2, z: 343}
+  - {x: 12, y: 6.4, z: 374}
+  - {x: 2, y: 3.2, z: 404}
+  - {x: 0, y: 2.4, z: 430}
+  - {x: 0, y: 2.4, z: 440}

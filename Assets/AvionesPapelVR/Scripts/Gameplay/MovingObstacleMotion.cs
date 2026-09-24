@@ -9,6 +9,7 @@ namespace AvionesPapelVR
         public float speed = 1f;
         Vector3 _origin;
         Rigidbody _body;
+        float _elapsed;
         void Start()
         {
             _origin = transform.position;
@@ -23,7 +24,8 @@ namespace AvionesPapelVR
         void FixedUpdate()
         {
             if (_body == null || GameManager.Instance == null || GameManager.Instance.State != GameState.Flight) return;
-            _body.MovePosition(_origin + axis.normalized * (Mathf.Sin(Time.fixedTime * speed) * distance));
+            _elapsed += Time.fixedDeltaTime;
+            _body.MovePosition(_origin + axis.normalized * (Mathf.Sin(_elapsed * speed) * distance));
         }
     }
 }

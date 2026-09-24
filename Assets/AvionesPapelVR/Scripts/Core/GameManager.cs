@@ -90,6 +90,7 @@ namespace AvionesPapelVR
         public PlaneDefinition SelectedPlane { get; private set; }
         public int CurrentLevelIndex { get; private set; }
         public bool CampaignComplete { get; private set; }
+        public int LastMenuTransitionFrame { get; private set; } = -1;
         int _levelStartScore;
         public int Score { get; private set; }
         public int Lives { get; private set; } = 3;
@@ -143,6 +144,7 @@ namespace AvionesPapelVR
             if (launchController == null) launchController = FindFirstObjectByType<LaunchController>();
             if (flightController == null) flightController = FindFirstObjectByType<FlightController>();
             if (levelRunner == null) levelRunner = FindFirstObjectByType<LevelRunner>();
+            planeSelector?.PrepareLobby();
             GoToMainMenu();
         }
 
@@ -151,12 +153,17 @@ namespace AvionesPapelVR
             TickPowerUps();
 
             bool vrConfirm = VrInput.AnyConfirmDown(ref _vrTrigR, ref _vrTrigL, ref _vrPrimary);
+            // A UI trigger belongs to the pointed button, not the global 'start map 1' shortcut.
+            if (hud != null && hud.HasUiTarget) vrConfirm = false;
 
             switch (State)
             {
                 case GameState.MainMenu:
+                    if (GameInput.IsDown(Key.Digit1)) { StartSelectedLevel(0); break; }
+                    if (GameInput.IsDown(Key.Digit2)) { StartSelectedLevel(1); break; }
+                    if (GameInput.IsDown(Key.Digit3)) { StartSelectedLevel(2); break; }
                     if (GameInput.ConfirmDown() || vrConfirm)
-                        StartPlaneSelect();
+                        StartSelectedLevel(0);
                     break;
                 case GameState.LevelComplete:
                     if (GameInput.ConfirmDown() || vrConfirm)
@@ -168,12 +175,16 @@ namespace AvionesPapelVR
                     break;
             }
 
+            if ((State == GameState.PlaneSelect || State == GameState.LevelComplete || State == GameState.GameOver) &&
+                GameInput.IsDown(Key.Escape)) GoToMainMenu();
+
             if (GameInput.IsDown(Key.F1))
                 Time.timeScale = Time.timeScale > 0.5f ? 0f : 1f;
         }
 
         public void GoToMainMenu()
         {
+            LastMenuTransitionFrame = Time.frameCount;
             State = GameState.MainMenu;
             if (!vrMode)
             {
@@ -194,12 +205,28 @@ namespace AvionesPapelVR
             CurrentLevelIndex = 0;
             CampaignComplete = false;
             _levelStartScore = 0;
+            EndReason = "";
+            SelectedPlane = null;
+            NewlyUnlocked.Clear();
+            hud?.SetVictory(false);
             ClearPowerUps();
             hud?.Refresh();
         }
 
+        // The three maps are LevelDefinition assets in the existing scene; retain the same XR rig.
+        // Public int argument also supports Inspector Button.OnClick bindings (zero based).
+        public void StartSelectedLevel(int index)
+        {
+            if (State == GameState.Flight || State == GameState.Launch ||
+                index < 0 || index >= levels.Count || levels[index] == null) return;
+            GoToMainMenu();
+            CurrentLevelIndex = index;
+            StartPlaneSelect();
+        }
+
         public void StartPlaneSelect()
         {
+            LastMenuTransitionFrame = Time.frameCount;
             State = GameState.PlaneSelect;
             if (!vrMode)
             {
@@ -337,7 +364,7 @@ namespace AvionesPapelVR
             FinishRun(true);
             CampaignComplete = CurrentLevelIndex >= levels.Count - 1;
             State = CampaignComplete ? GameState.GameOver : GameState.LevelComplete;
-            EndReason = CampaignComplete ? "LOS TRES ESCENARIOS COMPLETADOS" : "ESCENARIO COMPLETADO";
+            EndReason = CampaignComplete ? "MAPA FINAL COMPLETADO" : "ESCENARIO COMPLETADO";
             hud?.Refresh();
         }
 

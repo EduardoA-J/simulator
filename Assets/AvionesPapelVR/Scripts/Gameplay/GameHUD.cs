@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem.UI;
 using UnityEngine.XR.Interaction.Toolkit.UI;
+using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 namespace AvionesPapelVR
 {
@@ -28,12 +29,28 @@ namespace AvionesPapelVR
         Image _progress, _boost;
         RectTransform _steerDot;
         Button _primary, _previous, _next;
+        readonly Button[] _mapButtons = new Button[3];
+        XRRayInteractor[] _rays;
+        NearFarInteractor[] _nearFar;
         string _feedback;
         Color _feedbackColor;
         float _feedbackUntil, _nextRefresh;
         bool _victory;
         GameState _shownState = (GameState)(-1);
         public Canvas InterfaceCanvas => _canvas;
+        public bool HasUiTarget
+        {
+            get
+            {
+                if (_rays != null)
+                    foreach (var ray in _rays)
+                        if (ray != null && ray.isActiveAndEnabled && ray.TryGetCurrentUIRaycastResult(out _)) return true;
+                if (_nearFar != null)
+                    foreach (var ray in _nearFar)
+                        if (ray != null && ray.isActiveAndEnabled && ray.TryGetCurrentUIRaycastResult(out _)) return true;
+                return false;
+            }
+        }
 
         public void SetVictory(bool value) => _victory = value;
         public void ShowFeedback(string message, Color color)
@@ -46,6 +63,8 @@ namespace AvionesPapelVR
         void Start()
         {
             Build();
+            _rays = FindObjectsByType<XRRayInteractor>(FindObjectsInactive.Include, FindObjectsSortMode.None);
+            _nearFar = FindObjectsByType<NearFarInteractor>(FindObjectsInactive.Include, FindObjectsSortMode.None);
             Refresh();
         }
 
@@ -163,9 +182,15 @@ namespace AvionesPapelVR
                 _statLabels[i] = Label("Caption", card.transform, 22, 17, 290, 26, 16, Muted);
                 _statValues[i] = Label("Value", card.transform, 22, 48, 290, 59, 36, Color.white);
                 _statBars[i] = Bar("Meter", card.transform, 22, 121, 288, i == 2 ? Gold : Cyan);
+                // Reuse the three existing cards; all layout, typography and base colours stay intact.
+                int mapIndex = i;
+                var button = card.gameObject.AddComponent<Button>();
+                button.targetGraphic = card;
+                button.onClick.AddListener(() => SelectMap(mapIndex));
+                _mapButtons[i] = button;
             }
             _primary = Action("Primary", _menu, 44, 494, 500, "EMPEZAR VUELO", PrimaryAction, out _primaryLabel);
-            _previous = Action("Previous", _menu, 568, 494, 66, "<", () => GameManager.Instance?.planeSelector?.Browse(-1), out _);
+            _previous = Action("Previous", _menu, 568, 494, 66, "<", PreviousAction, out _);
             _next = Action("Next", _menu, 1010, 494, 66, ">", () => GameManager.Instance?.planeSelector?.Browse(1), out _);
             _page = Label("Page", _menu, 650, 511, 340, 35, 21, Color.white);
             _page.alignment = TextAnchor.MiddleCenter;
@@ -203,6 +228,12 @@ namespace AvionesPapelVR
             var gm = GameManager.Instance;
             if (gm == null) return;
             bool flight = gm.State == GameState.Flight;
+            for (int i = 0; i < _mapButtons.Length; i++)
+            {
+                bool active = gm.State == GameState.MainMenu && i < gm.levels.Count && gm.levels[i] != null;
+                _mapButtons[i].enabled = active;
+                _mapButtons[i].targetGraphic.raycastTarget = active;
+            }
             _menu.gameObject.SetActive(!flight); _flight.gameObject.SetActive(flight);
             if (_shownState != gm.State)
             {
@@ -233,8 +264,9 @@ namespace AvionesPapelVR
                 return;
             }
             bool selection = gm.State == GameState.PlaneSelect;
-            _previous.gameObject.SetActive(selection); _next.gameObject.SetActive(selection);
-            _page.text = selection ? $"MESA  {gm.planeSelector.Page} / {gm.planeSelector.PageCount}" : "";
+            bool results = gm.State == GameState.GameOver || gm.State == GameState.LevelComplete;
+            _previous.gameObject.SetActive(selection || results); _next.gameObject.SetActive(selection);
+            _page.text = selection ? $"MESA  {gm.planeSelector.Page} / {gm.planeSelector.PageCount}" : results ? "VOLVER A MAPAS" : "";
             _primary.interactable = true;
             if (selection || gm.State == GameState.Launch)
             {
@@ -244,20 +276,21 @@ namespace AvionesPapelVR
                 _title.text = plane != null ? plane.displayName : "Mesa de aviones";
                 _description.text = !available ? $"Desbloquea este modelo con un récord de {plane?.unlockScore} puntos." :
                     gm.State == GameState.Launch ? "Lanza y relaja la mano. Después apunta el mando para dirigir el vuelo." :
+                    gm.vrMode ? "Agarra un avión de la mesa con Grip. Muévelo hacia delante y suelta para lanzar." :
                     "Cada pliegue cambia el vuelo. Elige velocidad, planeo o estabilidad.";
                 Metric(0, "VELOCIDAD", plane != null ? $"{plane.speed * 100:0} / 100" : "—", plane != null ? plane.speed : 0);
                 Metric(1, "PLANEO", plane != null ? $"{plane.glide * 100:0} / 100" : "—", plane != null ? plane.glide : 0);
                 Metric(2, "ESTABILIDAD", plane != null ? $"{plane.stability * 100:0} / 100" : "—", plane != null ? plane.stability : 0);
-                _primaryLabel.text = !available ? "MODELO BLOQUEADO" : gm.vrMode ? "GRIP · AGARRA Y LANZA" :
+                _primaryLabel.text = gm.vrMode && selection ? "VOLVER A MAPAS" : !available ? "MODELO BLOQUEADO" : gm.vrMode ? "GRIP · AGARRA Y LANZA" :
                     selection ? "SELECCIONAR AVIÓN" : "ESPACIO · CARGA Y SUELTA";
-                _primary.interactable = available && !gm.vrMode && selection;
+                _primary.interactable = selection && (gm.vrMode || available);
                 _footer.text = gm.vrMode ? "Y recalibra el mando durante el vuelo. X cambia el modo de control." :
                     "Flechas: elegir   /   Enter: confirmar   /   W A S D: pilotar";
             }
             else if (gm.State == GameState.GameOver || gm.State == GameState.LevelComplete)
             {
                 _eyebrow.text = "INFORME DE VUELO";
-                _title.text = gm.CampaignComplete ? "Tres escenarios. Una gran marca." :
+                _title.text = gm.CampaignComplete ? "Último reto superado." :
                     gm.State == GameState.LevelComplete ? $"Nivel {gm.CurrentLevelIndex + 1} superado." : _victory ? "Un vuelo para recordar." : "Cada vuelo cuenta.";
                 _description.text = gm.EndReason + (gm.NewlyUnlocked.Count > 0 ? "  /  Nuevo: " + string.Join(", ", gm.NewlyUnlocked) : "  /  Vuelve al taller y mejora tu marca.");
                 Metric(0, "PUNTOS", gm.Score.ToString("0000"), 1);
@@ -272,11 +305,11 @@ namespace AvionesPapelVR
                 _eyebrow.text = "DEL TALLER AL CIELO";
                 _title.text = "Un pliegue. Mil caminos.";
                 _description.text = "Tres retos: aula, parque con curvas y oficina con cambios de altura.\nElige un avión, lánzalo y supera cada recorrido para avanzar.";
-                Metric(0, "TU RÉCORD", gm.BestScore.ToString("0000"), 1);
-                Metric(1, "AROS AZULES", "+100 pts", 1);
-                Metric(2, "AROS DORADOS", "IMPULSO", 1);
+                Metric(0, "MAPA 1 · FÁCIL", "Aula", 1f / 3f);
+                Metric(1, "MAPA 2 · MEDIO", "Parque", 2f / 3f);
+                Metric(2, "MAPA 3 · DIFÍCIL", "Oficina", 1);
                 _primaryLabel.text = "ENTRAR AL TALLER";
-                _footer.text = "Trigger, A o Enter para empezar   /   Apunta y vuela. Vuelve al centro para estabilizar.";
+                _footer.text = "Elige una tarjeta con el rayo y Trigger. Teclado: 1, 2 o 3. Enter empieza en el mapa 1.";
             }
         }
 
@@ -289,11 +322,27 @@ namespace AvionesPapelVR
         void PrimaryAction()
         {
             var gm = GameManager.Instance;
-            if (gm == null) return;
-            if (gm.State == GameState.MainMenu) gm.StartPlaneSelect();
+            if (gm == null || gm.LastMenuTransitionFrame == Time.frameCount) return;
+            if (gm.State == GameState.MainMenu) gm.StartSelectedLevel(0);
             else if (gm.State == GameState.LevelComplete) gm.NextLevelOrFinish();
             else if (gm.State == GameState.GameOver) gm.RestartRun();
             else if (gm.State == GameState.PlaneSelect && !gm.vrMode) gm.planeSelector.ConfirmCurrent();
+            else if (gm.State == GameState.PlaneSelect) gm.GoToMainMenu();
+        }
+
+        void SelectMap(int index)
+        {
+            var gm = GameManager.Instance;
+            if (gm != null && gm.State == GameState.MainMenu && gm.LastMenuTransitionFrame != Time.frameCount)
+                gm.StartSelectedLevel(index);
+        }
+
+        void PreviousAction()
+        {
+            var gm = GameManager.Instance;
+            if (gm == null) return;
+            if (gm.State == GameState.PlaneSelect) gm.planeSelector?.Browse(-1);
+            else if (gm.State == GameState.GameOver || gm.State == GameState.LevelComplete) gm.GoToMainMenu();
         }
 
         void LateUpdate()
