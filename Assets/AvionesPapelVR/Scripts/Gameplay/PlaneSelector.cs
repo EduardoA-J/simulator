@@ -76,9 +76,9 @@ namespace AvionesPapelVR
             if (GameInput.IsDown(Key.RightArrow)) direction = 1;
             if (direction != 0)
             {
-                _index = (_index + direction + _defs.Count) % _defs.Count;
+                if (enableVrGrab) BrowsePage(direction);
+                else Browse(direction);
                 _stickCooldown = 0.28f;
-                ShowPage();
             }
             if (!enableVrGrab && GameInput.ConfirmDown()) ConfirmCurrent();
         }
@@ -102,6 +102,14 @@ namespace AvionesPapelVR
         {
             if (!_active || _holding || _defs == null || _defs.Count == 0) return;
             _index = (_index + direction + _defs.Count) % _defs.Count;
+            ShowPage();
+        }
+
+        public void BrowsePage(int direction)
+        {
+            if (!_active || _holding || _defs == null || _defs.Count == 0) return;
+            int page = ((_index / 4 + direction) % PageCount + PageCount) % PageCount;
+            _index = page * 4;
             ShowPage();
         }
 

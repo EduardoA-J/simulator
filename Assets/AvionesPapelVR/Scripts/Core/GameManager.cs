@@ -94,7 +94,7 @@ namespace AvionesPapelVR
             return CourseRotation * Quaternion.Euler(-elevation, yaw, 0f) * Vector3.forward * Mathf.Min(limit, Mathf.Max(6f, speed));
         }
 
-        bool _vrTrigR, _vrTrigL, _vrPrimary;
+        bool _vrPrimary, _vrMenu;
         static readonly Key[] MapKeys = { Key.Digit1, Key.Digit2, Key.Digit3, Key.Digit4, Key.Digit5, Key.Digit6, Key.Digit7, Key.Digit8, Key.Digit9 };
         readonly Dictionary<WeaponType, WeaponDefinition> _weaponLookup = new();
         readonly Dictionary<PowerUpType, PowerUpDefinition> _powerUpLookup = new();
@@ -176,9 +176,19 @@ namespace AvionesPapelVR
         {
             TickPowerUps();
 
-            bool vrConfirm = VrInput.AnyConfirmDown(ref _vrTrigR, ref _vrTrigL, ref _vrPrimary);
-            // A UI trigger belongs to the pointed button, not the global 'start map 1' shortcut.
-            if (hud != null && hud.HasUiTarget) vrConfirm = false;
+            // Trigger belongs exclusively to XRI UI. A previous-frame hover check can miss a
+            // newly aimed button and start/retry the wrong map before its click is released.
+            bool primary = vrMode && VrInput.PrimaryButton();
+            bool vrConfirm = primary && !_vrPrimary;
+            _vrPrimary = primary;
+            bool menu = vrMode && VrInput.MenuButton();
+            bool back = menu && !_vrMenu;
+            _vrMenu = menu;
+            if (back && State != GameState.MainMenu)
+            {
+                GoToMainMenu();
+                return;
+            }
 
             switch (State)
             {

@@ -40,6 +40,8 @@ namespace AvionesPapelVR
             Action(node, "primaryButton", "Button").ReadValue<float>() > 0.5f;
         public static bool SecondaryButton(XRNode node = XRNode.RightHand) =>
             Action(node, "secondaryButton", "Button").ReadValue<float>() > 0.5f;
+        public static bool MenuButton() =>
+            Action(XRNode.LeftHand, "menuButton", "Button").ReadValue<float>() > 0.5f;
         public static bool StickClick(XRNode node = XRNode.LeftHand) =>
             Action(node, "primary2DAxisClick", "Button").ReadValue<float>() > 0.5f;
         public static Vector2 Stick(XRNode node = XRNode.LeftHand) =>

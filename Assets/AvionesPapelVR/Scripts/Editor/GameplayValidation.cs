@@ -25,6 +25,7 @@ namespace AvionesPapelVR.Editor
         const string RequestPath = "Temp/AvionesValidation.request";
         const string Running = "AvionesPapelVR.Validation.Running";
         const string Previous = "AvionesPapelVR.Validation.Previous";
+        const string PreviousXrStartup = "AvionesPapelVR.Validation.PreviousXrStartup";
 
         static GameplayValidation()
         {
@@ -48,7 +49,6 @@ namespace AvionesPapelVR.Editor
         public static void RunBatch()
         {
             SessionState.SetBool("AvionesPapelVR.Validation.Batch", true);
-            KeyboardPlaySetup.DisableXrOnStartupForEditorTesting();
             // Call Run directly; batchmode exits after -executeMethod unless Play Mode is entered here.
             if (File.Exists(RequestPath)) File.Delete(RequestPath);
             Run();
@@ -65,6 +65,9 @@ namespace AvionesPapelVR.Editor
                     return;
                 }
             SessionState.SetString(Previous, JsonUtility.ToJson(new SceneSet { scenes = EditorSceneManager.GetSceneManagerSetup() }));
+            var xr = UnityEditor.XR.Management.XRGeneralSettingsPerBuildTarget.XRGeneralSettingsForBuildTarget(BuildTargetGroup.Standalone);
+            SessionState.SetBool(PreviousXrStartup, xr != null && xr.InitManagerOnStart);
+            KeyboardPlaySetup.DisableXrOnStartupForEditorTesting();
             SessionState.SetBool(Running, true);
             SessionState.SetBool(XrSimulatorGuard.ValidationSimulation, true);
             EditorSceneManager.OpenScene("Assets/AvionesPapelVR/Scenes/Game_VR_Oculus.unity");
@@ -80,6 +83,7 @@ namespace AvionesPapelVR.Editor
             {
                 SessionState.SetBool(Running, false);
                 SessionState.SetBool(XrSimulatorGuard.ValidationSimulation, false);
+                KeyboardPlaySetup.SetXrStartup("Standalone Settings", SessionState.GetBool(PreviousXrStartup, true));
                 var previous = JsonUtility.FromJson<SceneSet>(SessionState.GetString(Previous, "{}"));
                 if (previous?.scenes != null && previous.scenes.Any(s => s.isLoaded && s.isActive))
                     EditorSceneManager.RestoreSceneManagerSetup(previous.scenes);
@@ -178,6 +182,7 @@ namespace AvionesPapelVR.Editor
                     "Existing map card " + (i + 1) + " selects its own LevelDefinition");
                 Check(UnityEngine.Object.FindObjectsByType<GameManager>(FindObjectsSortMode.None).Length == 1,
                     "Map selection keeps one GameManager and the existing XR rig");
+                yield return VerifyTablePages(gm);
                 yield return null;
                 Click(gm, "Primary");
                 Check(gm.State == GameState.MainMenu, "Table button returns to map menu");
@@ -209,6 +214,15 @@ namespace AvionesPapelVR.Editor
                 "; enabled=" + right.enabled + "; phase=" + triggerAction.phase + "; controls=" + string.Join(",", triggerAction.controls.Select(c => c.path)));
             SetInput(right.trigger, 0f);
             SetInput(right.triggerButton, 0f);
+            // A trigger without a UI target must never activate the global map-1 shortcut.
+            yield return null;
+            SetInput(right.trigger, 1f);
+            SetInput(right.triggerButton, 1f);
+            yield return null; yield return null;
+            Check(gm.State == GameState.MainMenu, "Unpointed trigger cannot start a map before UI release");
+            SetInput(right.trigger, 0f);
+            SetInput(right.triggerButton, 0f);
+            yield return null;
             yield return VerifyVrMapRay(gm, right);
             Vector3 lobby = gm.xrOrigin.position;
             gm.StartPlaneSelect();
@@ -427,8 +441,51 @@ namespace AvionesPapelVR.Editor
             var button = gm.hud.InterfaceCanvas.GetComponentsInChildren<UnityEngine.UI.Button>()
                 .Single(b => b.name == name);
             Check(button.isActiveAndEnabled && button.IsInteractable(), name + " is an active button");
-            button.OnPointerClick(new UnityEngine.EventSystems.PointerEventData(UnityEngine.EventSystems.EventSystem.current)
-                { button = UnityEngine.EventSystems.PointerEventData.InputButton.Left });
+            // Go through hit testing: invoking Button.OnPointerClick directly hides missing raycasters
+            // and labels which look clickable but do not actually receive pointer events.
+            gm.hud.SendMessage("LateUpdate");
+            Canvas.ForceUpdateCanvases();
+            var canvas = gm.hud.InterfaceCanvas;
+            var rect = (RectTransform)button.transform;
+            var events = UnityEngine.EventSystems.EventSystem.current;
+            var pointer = new UnityEngine.EventSystems.PointerEventData(events)
+            {
+                button = UnityEngine.EventSystems.PointerEventData.InputButton.Left,
+                position = RectTransformUtility.WorldToScreenPoint(
+                    canvas.renderMode == RenderMode.ScreenSpaceOverlay ? null : canvas.worldCamera,
+                    rect.TransformPoint(rect.rect.center))
+            };
+            var hits = new List<UnityEngine.EventSystems.RaycastResult>();
+            events.RaycastAll(pointer, hits);
+            Check(hits.Count > 0 && hits[0].gameObject.GetComponentInParent<UnityEngine.UI.Button>() == button,
+                name + " receives pointer hits at its visible centre");
+            UnityEngine.EventSystems.ExecuteEvents.ExecuteHierarchy(hits[0].gameObject, pointer,
+                UnityEngine.EventSystems.ExecuteEvents.pointerClickHandler);
+        }
+
+        IEnumerator VerifyTablePages(GameManager gm)
+        {
+            var selector = gm.planeSelector;
+            Check(selector.Page == 1 && selector.PageCount == 3, "VR table starts on page 1 of 3");
+            for (int page = 2; page <= selector.PageCount; page++)
+            {
+                yield return null;
+                Click(gm, "Next");
+                Check(selector.Page == page && selector.Current == gm.planes[(page - 1) * 4],
+                    "One Next click switches to table " + page);
+                int visible = gm.selectAnchor.Cast<Transform>().Count(t => t.name.StartsWith("Select_") && t.gameObject.activeInHierarchy);
+                Check(visible == Mathf.Min(4, gm.planes.Count - (page - 1) * 4),
+                    "Table " + page + " shows only its own aircraft");
+            }
+            yield return null;
+            Click(gm, "Next");
+            Check(selector.Page == 1, "Next wraps from table 3 to table 1");
+            for (int page = selector.PageCount; page >= 1; page--)
+            {
+                yield return null;
+                Click(gm, "Previous");
+                Check(selector.Page == page, "Previous switches directly to table " + page);
+            }
         }
 
         IEnumerator VerifyVrMapRay(GameManager gm, XRSimulatedController right)
@@ -594,9 +651,9 @@ namespace AvionesPapelVR.Editor
             yield return null;
             gm.BeginFlightFromVrThrow(gm.planes.First(d => d.unlockedByDefault), gm.CourseRotation * Vector3.forward * 8f);
             gm.FinishRun(false); yield return null;
-            Click(gm, "Previous");
+            Click(gm, "BackToMaps");
             Check(gm.State == GameState.MainMenu && gm.Player == null && gm.levelRunner.GateCount == 0,
-                "Results back button cleans the course and returns to the map menu");
+                "Full results back button cleans the course and returns to the map menu");
         }
 
         // Test pilot feeds the real simulated stick and physics. No teleport, auto-boost or disabled collisions.

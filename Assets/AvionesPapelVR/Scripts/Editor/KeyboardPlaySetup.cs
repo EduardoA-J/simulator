@@ -26,20 +26,27 @@ namespace AvionesPapelVR.Editor
         [MenuItem("Aviones de Papel VR/Modo Teclado: Desactivar XR al iniciar", priority = 11)]
         public static void DisableXrOnStartupForEditorTesting()
         {
-            // Desktop test settings must never disable the Quest/Android loader.
+            SetXrStartup("Standalone Settings", false);
+            Debug.Log("[AvionesPapelVR] XR desactivado solo en Standalone. Android conserva su configuracion.");
+        }
+
+        public static void SetXrStartup(string settingsName, bool enabled)
+        {
+            // Update one target only; simulator tests must not disable the Android loader.
             const string path = "Assets/XR/XRGeneralSettingsPerBuildTarget.asset";
             foreach (var obj in AssetDatabase.LoadAllAssetsAtPath(path))
             {
-                if (obj == null || obj.name != "Standalone Settings") continue;
+                if (obj == null || obj.name != settingsName) continue;
                 var serialized = new SerializedObject(obj);
                 var init = serialized.FindProperty("m_InitManagerOnStart");
                 if (init == null) continue;
-                init.boolValue = false;
+                init.boolValue = enabled;
                 serialized.ApplyModifiedPropertiesWithoutUndo();
                 EditorUtility.SetDirty(obj);
+                AssetDatabase.SaveAssets();
+                return;
             }
-            AssetDatabase.SaveAssets();
-            Debug.Log("[AvionesPapelVR] XR desactivado solo en Standalone. Android conserva su configuracion.");
+            throw new System.InvalidOperationException("No se encontro la configuracion XR: " + settingsName);
         }
 
         [MenuItem("Aviones de Papel VR/Modo VR: Reactivar XR al iniciar", priority = 12)]

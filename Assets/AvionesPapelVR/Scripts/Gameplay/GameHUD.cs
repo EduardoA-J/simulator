@@ -28,7 +28,7 @@ namespace AvionesPapelVR
         Text _score, _speed, _altitude, _route, _flightStatus, _flightHint, _feedbackText;
         Image _progress, _boost;
         RectTransform _steerDot;
-        Button _primary, _previous, _next;
+        Button _primary, _previous, _next, _backToMaps;
         readonly GameObject[] _metricCards = new GameObject[3];
         Button[] _mapButtons = new Button[0];
         Image[] _mapCards = new Image[0], _mapBars = new Image[0];
@@ -146,6 +146,8 @@ namespace AvionesPapelVR
                 root.sizeDelta = new Vector2(1120, 660);
                 root.localScale = Vector3.one * 0.0013f;
                 go.AddComponent<TrackedDeviceGraphicRaycaster>();
+                // The tracked raycaster only accepts XR pointers. The simulator also needs mouse clicks.
+                go.AddComponent<GraphicRaycaster>();
             }
             else
             {
@@ -213,7 +215,8 @@ namespace AvionesPapelVR
             }
             _primary = Action("Primary", _menu, 44, 494, 500, "EMPEZAR VUELO", PrimaryAction, out _primaryLabel);
             _previous = Action("Previous", _menu, 568, 494, 66, "<", PreviousAction, out _);
-            _next = Action("Next", _menu, 1010, 494, 66, ">", () => GameManager.Instance?.planeSelector?.Browse(1), out _);
+            _next = Action("Next", _menu, 1010, 494, 66, ">", () => BrowseSelection(1), out _);
+            _backToMaps = Action("BackToMaps", _menu, 650, 494, 340, "VOLVER A MAPAS", () => GameManager.Instance?.GoToMainMenu(), out _);
             _page = Label("Page", _menu, 650, 511, 340, 35, 21, Color.white);
             _page.alignment = TextAnchor.MiddleCenter;
             _footer = Label("Footer", _menu, 44, 585, 1032, 49, 19, Muted);
@@ -291,7 +294,8 @@ namespace AvionesPapelVR
             bool selection = gm.State == GameState.PlaneSelect;
             bool results = gm.State == GameState.GameOver || gm.State == GameState.LevelComplete;
             _previous.gameObject.SetActive(selection || results); _next.gameObject.SetActive(selection);
-            _page.text = selection ? $"MESA  {gm.planeSelector.Page} / {gm.planeSelector.PageCount}" : results ? "VOLVER A MAPAS" : "";
+            _backToMaps.gameObject.SetActive(results);
+            _page.text = selection ? $"MESA  {gm.planeSelector.Page} / {gm.planeSelector.PageCount}" : "";
             _primary.interactable = true;
             if (selection || gm.State == GameState.Launch)
             {
@@ -309,7 +313,7 @@ namespace AvionesPapelVR
                 _primaryLabel.text = gm.vrMode && selection ? "VOLVER A MAPAS" : !available ? "MODELO BLOQUEADO" : gm.vrMode ? "GRIP · AGARRA Y LANZA" :
                     selection ? "SELECCIONAR AVIÓN" : "ESPACIO · CARGA Y SUELTA";
                 _primary.interactable = selection && (gm.vrMode || available);
-                _footer.text = gm.vrMode ? "Y recalibra el mando durante el vuelo. X cambia el modo de control." :
+                _footer.text = gm.vrMode ? "Stick izquierdo: mesa / Menú izquierdo: mapas / En vuelo: X modo, Y recalibrar" :
                     "Flechas: elegir   /   Enter: confirmar   /   W A S D: pilotar";
             }
             else if (gm.State == GameState.GameOver || gm.State == GameState.LevelComplete)
@@ -322,8 +326,8 @@ namespace AvionesPapelVR
                 Metric(1, "DISTANCIA · TIEMPO", $"{gm.RunDistance:0.0} m · {gm.LastRunTime:0.0} s", 1);
                 Metric(2, "RÉCORD DEL NIVEL", GameManager.Progress.LevelBestScore(gm.CurrentLevelIndex).ToString("0000"), 1);
                 _primaryLabel.text = gm.State == GameState.LevelComplete ? "SIGUIENTE ESCENARIO" : gm.CampaignComplete ? "VOLVER AL NIVEL 1" : "REINTENTAR ESTE NIVEL";
-                _footer.text = gm.State == GameState.LevelComplete ? $"Siguiente: {gm.levels[gm.CurrentLevelIndex + 1].displayName} · Trigger, A o Enter para continuar" :
-                    $"Aros: {gm.RingsCollected}   /   Impulsos: {gm.BoostsCollected}   /   Trigger, A o Enter para reintentar";
+                _footer.text = gm.State == GameState.LevelComplete ? $"Siguiente: {gm.levels[gm.CurrentLevelIndex + 1].displayName} · Apunta y pulsa Trigger, o A / Enter" :
+                    $"Aros: {gm.RingsCollected} / Impulsos: {gm.BoostsCollected} / Reintentar: apunta y pulsa Trigger, o A / Enter";
             }
             else
             {
@@ -376,8 +380,16 @@ namespace AvionesPapelVR
         {
             var gm = GameManager.Instance;
             if (gm == null) return;
-            if (gm.State == GameState.PlaneSelect) gm.planeSelector?.Browse(-1);
+            if (gm.State == GameState.PlaneSelect) BrowseSelection(-1);
             else if (gm.State == GameState.GameOver || gm.State == GameState.LevelComplete) gm.GoToMainMenu();
+        }
+
+        void BrowseSelection(int direction)
+        {
+            var gm = GameManager.Instance;
+            if (gm == null || gm.State != GameState.PlaneSelect) return;
+            if (gm.vrMode) gm.planeSelector?.BrowsePage(direction);
+            else gm.planeSelector?.Browse(direction);
         }
 
         void LateUpdate()
