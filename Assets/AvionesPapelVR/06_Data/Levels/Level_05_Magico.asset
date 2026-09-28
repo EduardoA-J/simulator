@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23cc5a09231f1034d84a54f860944fa6, type: 3}
+  m_Name: Level_05_Magico
+  m_EditorClassIdentifier: Assembly-CSharp::AvionesPapelVR.LevelDefinition
+  displayName: "Bosque M\xE1gico"
+  theme: 4
+  length: 470
+  enemyCount: 8
+  obstacleCount: 34
+  starCount: 14
+  coinCount: 16
+  powerUpCount: 5
+  enemySpeed: 4.2
+  windStrength: 0.75
+  targetScore: 960
+  fogColor: {r: 0.25, g: 0.15, b: 0.4, a: 1}
+  skybox: {fileID: 2100000, guid: 66b334ce6b144868aa3a05a2a9f5e229, type: 2}
+  music: {fileID: 8300000, guid: b2fb0bfe5c1668e42811e50c30c51bcb, type: 3}
+  difficulty: LEYENDA
+  curveAmplitude: 20
+  curveCycles: 4
+  climbAmplitude: 5
+  flightSpeedLimit: 9
+  timeLimit: 300
+  ringSpacing: 5.5
+  layoutSeed: 505
+  routePoints:
+  - {x: 0, y: 1.8, z: 0}
+  - {x: 0, y: 1.8, z: 18}
+  - {x: 10, y: 3.5, z: 42}
+  - {x: 24, y: 7.5, z: 70}
+  - {x: 18, y: 12, z: 100}
+  - {x: -2, y: 13, z: 128}
+  - {x: -22, y: 9, z: 158}
+  - {x: -24, y: 4, z: 186}
+  - {x: -10, y: 2.2, z: 212}
+  - {x: 12, y: 3.8, z: 240}
+  - {x: 26, y: 8.5, z: 270}
+  - {x: 16, y: 12.5, z: 300}
+  - {x: -6, y: 10, z: 330}
+  - {x: -24, y: 6, z: 360}
+  - {x: -16, y: 2.6, z: 390}
+  - {x: -4, y: 3.6, z: 418}
+  - {x: 0, y: 2.4, z: 446}
+  - {x: 0, y: 2.4, z: 460}
+  - {x: 0, y: 2.4, z: 470}

@@ -45,7 +45,7 @@ check(re.search(r"scriptingBackend:\s+Android: 1", player), "Android: IL2CPP")
 check("activeInputHandler: 1" in player, "Input System enabled")
 check("m_AutomaticallyInstantiateSimulatorPrefab: 0" in read(
     "Assets/XRI/Settings/Resources/XRDeviceSimulatorSettings.asset"), "No automatic simulated controllers")
-scene = read("Assets/AvionesPapelVR/Scenes/Game_VR_Oculus.unity")
+scene = read("Assets/AvionesPapelVR/00_Scenes/Game_VR_Oculus.unity")
 gm = next(b for b in scene.split("---") if "Assembly-CSharp::AvionesPapelVR.GameManager" in b)
 check("vrMode: 1" in gm, "VR scene: VR game mode")
 for field in ("gameCamera", "planeSelector", "launchController", "flightController", "levelRunner", "hud", "vrRigFollower", "xrOrigin"):

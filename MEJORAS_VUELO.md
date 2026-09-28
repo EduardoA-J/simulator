@@ -1,6 +1,6 @@
 # Mejoras del circuito de vuelo
 
-Escena principal: `Assets/AvionesPapelVR/Scenes/Game_VR_Oculus.unity`.
+Escena principal: `Assets/AvionesPapelVR/00_Scenes/Game_VR_Oculus.unity`.
 Los cambios se aplican al iniciar Play; no es necesario regenerar escenas ni modelos.
 
 ## Diagnóstico y cambios

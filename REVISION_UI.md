@@ -1,5 +1,7 @@
 # Revisión de menú y botones — 24/09/2026
 
+Actualización del 27/09/2026: la validación se ejecutó en Unity 6000.5.6f1 y superó el rayo XR y el Trigger del mapa 3, las páginas de aviones, lanzamiento, cinco vuelos físicos, campaña, navegación de Game_Playable e inicio del simulador clásico. Se conservaron los bindings y ambos raycasters. La única modificación visual fue reducir de 24 a 20 la fuente de los nombres de mapa, porque las capturas confirmaron que se cortaban. Ver `CONTINUACION_MAPAS.md` y `Logs/AvionesValidation.json` para el estado actual. Lo siguiente documenta el trabajo del 24/09.
+
 ## Correcciones acotadas
 
 - `GameHUD`: el canvas VR tenía únicamente `TrackedDeviceGraphicRaycaster`, que acepta eventos de dispositivos XR, pero no punteros de ratón. Se añadió `GraphicRaycaster` para los clics en las pruebas sin visor. Se conserva el raycaster XR y el módulo de entrada existente.
@@ -17,6 +19,6 @@ Se amplió `GameplayValidation`: los clics comprueban primero la intersección d
 
 El archivo previo `Logs/AvionesValidation.json` corresponde a otra ejecución y contiene un fallo de apuntado XR. No se presenta como resultado de estas correcciones. Ese comportamiento con rayo sigue pendiente de reproducción; no se alteraron a ciegas los mandos ni sus bindings.
 
-Una vez activada la licencia en Unity Hub, abrir la escena `Assets/AvionesPapelVR/Scenes/Game_VR_Oculus.unity` y ejecutar `Aviones de Papel VR > Validar circuito (Play Mode)`. Comprobar además con visor los mapas, las flechas de las mesas, el reintento y ambos retornos a mapas. La prueba también carga `Game_Playable` para comprobar la navegación de teclado.
+Una vez activada la licencia en Unity Hub, abrir la escena `Assets/AvionesPapelVR/00_Scenes/Game_VR_Oculus.unity` y ejecutar `Aviones de Papel VR > Validar circuito (Play Mode)`. Comprobar además con visor los mapas, las flechas de las mesas, el reintento y ambos retornos a mapas. La prueba también carga `Game_Playable` para comprobar la navegación de teclado.
 
 Referencia consultada: [configuración oficial de XR UI Input Module](https://docs.unity3d.com/Packages/com.unity.xr.interaction.toolkit@3.5/manual/xr-ui-input-module.html). Unity documenta una limitación del ratón sobre UI World Space cuando hay un visor activo; el clic de ratón añadido está dirigido a las pruebas sin visor.

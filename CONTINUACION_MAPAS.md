@@ -1,117 +1,63 @@
-# Continuación de mapas y zona inicial
+# Continuación del proyecto — 27/09/2026
 
-Proyecto: `F:\Avion_VR\simulator`. Unity 6000.5.6f1, XRI 3.5.1.
+Proyecto: `F:\Avion_VR\simulator`. Unity 6000.5.6f1, XR Interaction Toolkit 3.5.1.
+Base revisada: commit `8857045`. Se conservaron las escenas, XROrigin, XR Grab Interactable, ambos simuladores y Meta/Oculus Quest.
 
-## Estado encontrado
+## Contraste con el análisis anterior
 
-El vuelo, el agarre XRI, lanzamiento, cámara, puntuación, aviones y UI estaban implementados.
-Las dos escenas de juego ya tenían exactamente tres LevelDefinition asignados. Los assets de
-los mapas 4 y 5 son contenido antiguo sin referencias en esos menús; se conservaron.
+- Las dos escenas contienen **cinco mapas** y doce definiciones de avión.
+- El rayo del mando y el Trigger sobre el mapa 3 **pasaron en el Editor con ventana**, antes de modificar código. No se cambiaron bindings ni raycasters.
+- El agarre, la cancelación, el lanzamiento y el vuelo estaban implementados. Las pruebas ahora avanzan más allá del fallo histórico.
+- Las curvas de Ciudad y Bosque Mágico sí excedían los 45 grados/s del avión inicial: 48,4 y 89,0 respectivamente.
+- Esta máquina sí abre y compila Unity con licencia Personal. Tiene Android Build Support, SDK, NDK y OpenJDK instalados. No había ningún dispositivo conectado en `adb devices -l`.
+- `.gitignore` ya excluye Logs, UserSettings y csproj. El ruido persiste porque varios de esos archivos ya están versionados; no se modificó el índice de Git.
 
-Los mapas 2 y 3 tenían curvas senoidales y checkpoints, pero faltaba seleccionar un mapa
-directamente. El mapa 3 repetía una misma onda de giro/altura. Los obstáculos tenían posiciones
-aleatorias. La prueba anterior fallaba porque todavía esperaba GameOver al terminar el mapa 1,
-aunque la campaña de tres mapas ya devolvía LevelComplete.
+## Grupo 1: rutas y validación
 
-Respaldo anterior a estos cambios: `Backups/Continuation/20260923_214717`.
+Se cambió un punto lateral de Ciudad y tres de Bosque Mágico. Se conservaron longitudes, alturas, velocidades y la física del avión. La exigencia máxima de giro medida en Unity quedó en **41,2 grados/s** y **38,2 grados/s**.
 
-## Cambios
+La prueba de saltarse los pasos ahora mueve el avión por fuera de la ruta antes de cruzar la meta. Antes, el segmento recto del teletransporte atravesaba legítimamente el primer checkpoint y hacía fallar la expectativa de cero pasos.
 
-- Mapa 1, Aula: 70 m de avance, recta introductoria, cuatro obstáculos laterales estáticos,
-  sin enemigos y velocidad limitada a 10 m/s.
-- Mapa 2, Parque: conserva su trazado de 150 m, curvas alternadas, diez obstáculos colocados
-  de forma repetible, obstáculos móviles laterales y diez pasos obligatorios. Límite: 10 m/s.
-- Mapa 3, Oficina: 440 m de avance, aproximadamente 479 m de recorrido, alturas de 1,8 a
-  8,5 m, giros alternados, ascensos y descensos durante giros, enlaces más cerrados al final,
-  26 obstáculos y 36 pasos obligatorios. Aros cada 6 m y límite de 9 m/s para que el avión
-  inicial pueda negociar las curvas. Los impulsos dorados permiten sostener el recorrido.
-- Geometría por tramos en el LevelDefinition existente, con interpolación suave sin sobrepasar
-  las alturas de los puntos de control. El mapa 2 sigue usando el generador anterior.
-- Semillas de distribución y movimiento reiniciado en cada intento. El corredor central se
-  mantiene abierto; vigas altas/bajas y obstáculos laterales hacen necesario seguir su altura.
-- Los tres paneles existentes del menú reciben Button.OnClick: índices 0, 1 y 2.
-  Se conservaron tamaños, posiciones, colores base, tipografía y composición. Solo cambian
-  contenido y comportamiento según el estado del juego.
-- El gatillo sobre UI pertenece al botón apuntado; ya no activa antes el inicio global del mapa 1.
-- Retorno a mapas desde el botón principal de la mesa VR y desde `<` en resultados.
-  Reintentar conserva el mapa actual; siguiente escenario conserva la progresión de puntuación.
-- Mesa VR más próxima, tablero a 90 cm, aviones aproximadamente a 98 cm y orientados hacia
-  delante. Alfombra, bases de exposición, flecha de lanzamiento, lámpara sin sombras y una
-  estantería lateral. La decoración no interfiere con el agarre.
-- Opción adicional para el XR Device Simulator clásico ya instalado. El modo normal de
-  simulador, XROrigin, XRGrabInteractable, entradas Quest y assets de aviones se mantienen.
+La validación desactiva el arranque XR solo en memoria y restaura el valor al terminar. No guarda ese cambio temporal en el asset de configuración. El objeto de validación sobrevive al cambio a Game_Playable. Antes de iniciar el simulador clásico se destruye el simulador moderno: ambos comparten el singleton de dispositivos de XRI, aunque estén desactivados.
 
-Los mapas se generan dentro de la escena actual a partir de los ScriptableObjects. No son
-tres escenas independientes: cargar otra escena para cada botón reemplazaría innecesariamente
-el rig XR. Build Settings ya incluye Game_VR_Oculus y Game_Playable. Los builders siguen
-siendo opcionales y no se ejecutaron para regenerar escenas.
+**Cómo probar:** con las escenas guardadas y fuera de Play, ejecutar `Aviones de Papel VR > Validar circuito (Play Mode)`. Ver el resultado en `Logs/AvionesValidation.json`. La prueba pilota los cinco mapas con entrada simulada y física real, además de verificar checkpoints, reintento, siguiente nivel y final de campaña.
 
-## Probar mapas y botones
+## Grupo 2: agarre, aviones y drones
 
-1. Abre `Assets/AvionesPapelVR/Scenes/Game_VR_Oculus.unity`.
-2. Elige el modo de entrada antes de Play. Para visor: `Aviones de Papel VR > Input VR > Hardware Quest o Link`.
-3. Apunta a una de las tres tarjetas del menú y pulsa/suelta Trigger. Verifica el nombre y
-   número del nivel en la cabecera de la selección de avión.
-4. Agarra un avión desbloqueado con Grip; mueve la mano hacia delante y suelta.
-   Soltar sin impulso debe devolver el avión a su posición de la mesa.
-5. Aula: sigue los aros y cruza la meta. Parque: supera cada PASO en orden. Oficina: combina
-   altura y giro para atravesar los aros; no basta con volar directamente a la meta.
-6. Tras un fallo, pulsa REINTENTAR: debe conservar el mapa. Tras superar 1 o 2, SIGUIENTE
-   ESCENARIO lleva al siguiente. Tras el mapa 3, el botón vuelve al mapa 1.
-7. Desde resultados, `<` vuelve al menú. Desde la mesa VR, VOLVER A MAPAS hace lo mismo.
-   Las flechas de la mesa siguen recorriendo los modelos de avión.
+Un agarre rechazado por GameManager ahora cancela la selección XRI y devuelve el avión a la mesa.
 
-Para teclado, abre `Game_Playable.unity`: clic en la tarjeta o teclas 1/2/3, Enter para
-seleccionar avión, Espacio para cargar/soltar el lanzamiento, W/S para pitch y A/D para roll.
-Escape vuelve al menú desde selección/resultados; durante vuelo conserva su función de cursor.
+**Por qué aparecen cuatro aviones:** la mesa tiene tres páginas de cuatro modelos, incluidos los bloqueados. Usar las flechas del panel o el stick izquierdo. No son solo cuatro aviones disponibles: seis están desbloqueados desde el inicio (Dardo Clásico, Planeador Largo, ZigZag, Flecha Veloz, Delta Racer y Raspanubes).
 
-## XR Device Simulator, sin visor
+Los demás se desbloquean al finalizar un intento cuyo récord alcance:
 
-1. Sal de Play. Selecciona `Aviones de Papel VR > Input VR > XR Device Simulator (clasico)`.
-2. Abre Game_VR_Oculus y pulsa Play. No añadas otro simulador a la escena.
-3. Mantén Espacio para manipular el mando derecho o pulsa Y para mantenerlo seleccionado.
-   Shift izquierdo manipula el izquierdo. Botón derecho del ratón manipula la cabeza.
-4. Usa el ratón y los ejes de traslación para colocar el mando; Ctrl cambia temporalmente
-   a rotación y R alterna transformación del ratón. Consulta también el panel de ayuda del simulador.
-5. Apunta el rayo al mapa; clic izquierdo pulsa Trigger. Cerca del avión, mantén G (Grip),
-   mueve el mando hacia delante y suelta G mientras se mueve.
-6. Después de lanzar, deja el mando neutro medio segundo. Cambia su orientación para dirigir
-   pitch y roll. Para pilotar por sticks, selecciona el eje 2D primario con 1 y usa WASD;
-   confirma el dispositivo seleccionado en el panel del simulador.
+- **300 puntos:** Canard Ace.
+- **600 puntos:** Bombardero Pesado, Night Hawk y Cortatormentas.
+- **900 puntos:** Halcón de Papel y Fénix Origami.
 
-La otra opción, `Simulador (sin visor)`, utiliza XR Interaction Simulator, la variante más
-reciente ya instalada: Tab cambia de dispositivo, `]` selecciona el derecho, `[` el izquierdo,
-WASD/QE trasladan, flechas rotan, T es Trigger y G es Grip. Sus teclas son distintas a las del
-XR Device Simulator clásico. Cambia de modo fuera de Play.
+El requisito usa la mejor puntuación de una partida/campaña, no la suma de intentos separados. Se guarda en PlayerPrefs cuando termina el vuelo; recoger piezas da puntos, no desbloquea un modelo directamente.
 
-## Validación reproducible
+**Drones:** Aula Escolar no tiene enemigos. Los mapas siguientes contienen 3, 5, 6 y 8 enemigos, alternando drones, aves y ventiladores. Los drones y aves se mueven y disparan; los ventiladores aplican viento.
 
-Menú: `Aviones de Papel VR > Validar circuito (Play Mode)` con las escenas guardadas.
-El runner restaura las escenas abiertas y no guarda récords. Usa su propio modo de simulación.
+Antes, las balas enemigas tenían daño cero, ignoraban al jugador y podían consumirse dentro del emisor. Ahora usan el Projectile existente, ignoran al emisor, reconocen los colliders hijos del avión y aplican un empuje de 1,5 m/s una sola vez por impacto. Por defecto no terminan la partida; el escudo bloquea el empuje. Chocar físicamente con un enemigo conserva la regla de choque existente. Los disparos enemigos pertenecen al nivel y se limpian al volver a mapas.
 
-La prueba incluye conexiones de tarjetas y navegación, rayo XR real contra UI, agarre/cancelación/
-lanzamiento, cámara, puntuación, impulsos, checkpoints en orden, rechazo de atajos a meta,
-reintento, avance de campaña, vuelo con entradas simuladas y física real, entrada por teclado
-mediante SceneManager y arranque del prefab de XR Device Simulator clásico.
+**Cómo probar:** en Parque, acercarse a un dron y recibir un disparo: el avión debe desviarse y continuar volando. Agarrar y soltar sin movimiento devuelve el avión a la mesa; mover la mano y soltar inicia vuelo. La validación automatizada comprueba impacto físico, ausencia de impacto contra el emisor, impulso único y desbloqueos en 299/300, 599/600 y 899/900 puntos sin guardar progreso de prueba.
 
-Resultados: `Logs/AvionesValidation.json`. Capturas: `Logs/Interface_Menu.png`,
-`Logs/Interface_Selection.png`, `Logs/Lobby_Workshop.png`, `Logs/Map2_Course.png`,
-`Logs/Map3_Course.png`. El resultado definitivo de esta ejecución se consigna al terminar.
+## Grupo 3: nombres de mapas
 
-La prueba automática de vuelo usa un piloto de prueba que envía entradas de stick al sistema
-real. La comodidad del agarre, el pilotaje humano y FPS/latencia en Meta Quest requieren prueba
-con visor físico; no se han medido en hardware.
+Las capturas confirmaron que los nombres se cortaban. Solo se redujo su fuente de 24 a 20 dentro de las mismas tarjetas; se conservaron tamaños, posiciones, colores, botones y comportamiento.
 
-## Archivos afectados
+**Cómo probar:** abrir el menú de cinco mapas y comprobar que se leen completos Parque de las Curvas, Oficina en las Alturas, Ciudad en Miniatura y Bosque Mágico.
 
-- `Data/Levels/Level_01_Aula.asset`, `Level_02_Parque.asset`, `Level_03_Oficina.asset`.
-- `Scenes/Game_VR_Oculus.unity`: posición de SelectAnchor.
-- `Scripts/Core/LevelDefinition.cs`, `GameManager.cs`.
-- `Scripts/Gameplay/LevelRunner.cs`, `CurvedCourse.cs`, `MovingObstacleMotion.cs`,
-  `GameHUD.cs`, `PlaneSelector.cs`, `XrSimulatorGuard.cs`.
-- `Scripts/Editor/PlayableGameBuilder.cs`, `PlayableVrGameBuilder.cs`, `XrPlayMode.cs`,
-  `GameplayValidation.cs`.
+## Verificación y límites
 
-Las rutas de esta lista son relativas a `Assets/AvionesPapelVR`. No se añadieron managers
-ni controladores de juego duplicados. Los cambios anteriores del usuario en configuración,
-paquetes y proyecto se conservaron.
+**Resultado final del 27/09/2026, 18:08 (hora local): 547 comprobaciones aprobadas, cero errores registrados por la prueba.** Incluye rayo/Trigger XR, agarre rechazado/cancelado/normal, lanzamiento, desbloqueos, impacto y bloqueo de disparos enemigos, cinco vuelos físicos, checkpoints, campaña, Game_Playable e inicio del XR Device Simulator clásico. Los nombres completos de las tarjetas se verificaron también en la captura del menú.
+
+Consultar el resultado más reciente de `Logs/AvionesValidation.json` y las capturas de esta revisión en `Backups/Continuation/Codex_20260927_Screenshots`. Las futuras ejecuciones generan nuevas capturas en Logs. `python Tools/check_headset_setup.py` aprobó las 20 comprobaciones estáticas de configuración de Quest y PC/Link.
+
+La primera ejecución tras ajustar las rutas completó físicamente los cinco mapas con el avión inicial: 7,4; 16,9; 53,4; 44,6 y 58,6 segundos de simulación. Quedó pendiente entonces el arranque del simulador clásico por duplicación del singleton; se corrigió en el grupo 1.
+
+Las capturas de esta revisión y los resultados intermedios se conservaron en `Backups/Continuation/Codex_20260927_Screenshots` y `Backups/Continuation/Codex_20260927_*.json`. Se restauraron los csproj, logs auxiliares, ajustes y layouts regenerados por Unity para evitar cambios ajenos a estas correcciones. El resultado final se mantiene en `Logs/AvionesValidation.json`.
+
+La validación automática usa mandos simulados y no equivale a una prueba humana de comodidad, rendimiento, pérdida de tracking o renderizado estéreo. Falta probar el hardware Quest/Link y generar e instalar un APK. Los comandos de compilación existentes se conservan y no regeneran las escenas.
+
+Para probar con visor, salir de Play y elegir `Aviones de Papel VR > Input VR > Hardware Quest o Link`. Para teclado, abrir Game_Playable; para simulación, elegir uno de los dos modos del menú Input VR antes de Play. No añadir otro simulador manualmente.

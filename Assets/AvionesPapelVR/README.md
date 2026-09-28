@@ -4,7 +4,7 @@ Unity 6000.5.6f1. Prototipo de agarre, lanzamiento vectorial y planeo arcade en 
 
 ## Abrir y jugar
 
-Abre `Assets/AvionesPapelVR/Scenes/Game_VR_Oculus.unity` y pulsa Play. No necesitas regenerar escenas para jugar.
+Abre `Assets/AvionesPapelVR/00_Scenes/Game_VR_Oculus.unity` y pulsa Play. No necesitas regenerar escenas para jugar.
 En `Aviones de Papel VR > Input VR` elige **Hardware Quest o Link** o **Simulador (sin visor)** antes de Play.
 Hardware es el valor predeterminado. El simulador es una elección explícita del editor; no se instancia en Android.
 Si inicia una pantalla XR física, el monitor desactiva el simulador. Reinicia Play para cambiar de modo.

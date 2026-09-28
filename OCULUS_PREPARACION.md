@@ -1,5 +1,9 @@
 # Preparación para visor Meta/Oculus
 
+Actualización del 27/09/2026 en `F:\Avion_VR\simulator`: Unity 6000.5.6f1 abre y compila con licencia Personal; Android Build Support, SDK, NDK y OpenJDK están instalados. Las pruebas en Play Mode ya completaron los cinco mapas con mandos simulados. No había un visor conectado por ADB y sigue pendiente la prueba física y el APK. Ver `CONTINUACION_MAPAS.md` y el resultado actual en `Logs/AvionesValidation.json`.
+
+El resto de este documento conserva el registro del 24/09 y las instrucciones de uso; sus limitaciones de licencia y módulos corresponden a aquella ejecución.
+
 Estado del 24/09/2026: **cambios preparados, sin build ni prueba en visor confirmados**.
 
 ## Corregido
@@ -27,7 +31,7 @@ No se han confirmado el apuntado XR, los clics, la comodidad ni los FPS en un di
 1. En Unity Hub, iniciar sesión y activar una licencia válida para Unity 6000.5.6f1.
 2. Para instalar dentro de Quest: en esa versión del Editor, `Add modules`, instalar **Android Build Support**, **Android SDK & NDK Tools** y **OpenJDK**. Revisar y aceptar los términos que muestre el instalador. Para PC por Link no hacen falta esos módulos Android.
 3. Abrir el proyecto, esperar a que importe y comprobar la consola. Ejecutar `Aviones de Papel VR > Validar circuito (Play Mode)` fuera de Play, con las escenas guardadas. El resultado nuevo queda en `Logs/AvionesValidation.json`.
-4. Elegir `Input VR > Hardware Quest o Link`. Para probar con PC, conectar el visor mediante Meta Quest Link y configurar Meta Quest Link como runtime OpenXR activo. Abrir `Assets/AvionesPapelVR/Scenes/Game_VR_Oculus.unity` y pulsar Play.
+4. Elegir `Input VR > Hardware Quest o Link`. Para probar con PC, conectar el visor mediante Meta Quest Link y configurar Meta Quest Link como runtime OpenXR activo. Abrir `Assets/AvionesPapelVR/00_Scenes/Game_VR_Oculus.unity` y pulsar Play.
 5. Para APK, cambiar a Android/Meta Quest en `File > Build Profiles`; ejecutar `Aviones de Papel VR > Compilar visor > Quest - APK`. Salida prevista: `Builds/Quest/PaperFlight.apk`.
 6. Para PC, cambiar a Windows y ejecutar `Compilar visor > PC - Quest Link o Rift`. Salida prevista: `Builds/Link/PaperFlight.exe`; conservar toda su carpeta junto al ejecutable.
 
