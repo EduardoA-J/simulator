@@ -51,7 +51,10 @@ namespace AvionesPapelVR
         {
             var tracked = Action(node, "isTracked", "Button").ReadValue<float>() > 0.5f;
             rotation = Action(node, "deviceRotation", "Quaternion").ReadValue<Quaternion>();
-            return tracked && rotation != default;
+            var state = (InputTrackingState)Action(node, "trackingState", "Integer").ReadValue<int>();
+            float lengthSquared = Quaternion.Dot(rotation, rotation);
+            return tracked && (state & InputTrackingState.Rotation) != 0 &&
+                !float.IsNaN(lengthSquared) && !float.IsInfinity(lengthSquared) && lengthSquared > 0.5f;
         }
 
         public static bool TriggerDown(XRNode node, ref bool was)

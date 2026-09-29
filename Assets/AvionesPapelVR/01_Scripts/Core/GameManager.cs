@@ -142,6 +142,7 @@ namespace AvionesPapelVR
             }
         }
         public FlightTutorial Tutorial => _tutorial;
+        public VrFlightPause FlightPause { get; private set; }
         public event System.Action<PlaneDefinition> PlaneGrabbed;
         public event System.Action<Vector3> FlightStarted;
 
@@ -154,6 +155,7 @@ namespace AvionesPapelVR
                 return;
             }
             Instance = this;
+            FlightPause = GetComponent<VrFlightPause>() ?? gameObject.AddComponent<VrFlightPause>();
             BestScore = PlayerPrefs.GetInt("AvionesPapelVR.BestScore", 0);
             BestDistance = PlayerPrefs.GetFloat("AvionesPapelVR.BestDistance", 0f);
             _tutorial = GetComponent<FlightTutorial>();
@@ -180,6 +182,7 @@ namespace AvionesPapelVR
 
         void Update()
         {
+            if (FlightPause != null && FlightPause.IsPaused) return;
             TickPowerUps();
 
             // Trigger belongs exclusively to XRI UI. A previous-frame hover check can miss a
@@ -225,6 +228,7 @@ namespace AvionesPapelVR
 
         public void GoToMainMenu()
         {
+            FlightPause?.CancelPause();
             LastMenuTransitionFrame = Time.frameCount;
             State = GameState.MainMenu;
             if (!vrMode)

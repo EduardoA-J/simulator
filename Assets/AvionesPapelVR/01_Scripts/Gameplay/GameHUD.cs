@@ -22,6 +22,8 @@ namespace AvionesPapelVR
         Canvas _canvas;
         Font _font;
         RectTransform _menu, _flight;
+        RectTransform _pausePanel;
+        public bool PauseVisible => _pausePanel != null && _pausePanel.gameObject.activeSelf;
         Text _eyebrow, _title, _description, _footer, _primaryLabel, _page;
         readonly Text[] _statValues = new Text[3], _statLabels = new Text[3];
         readonly Image[] _statBars = new Image[3];
@@ -57,6 +59,20 @@ namespace AvionesPapelVR
         }
 
         public void SetVictory(bool value) => _victory = value;
+        public void ShowPause(bool visible)
+        {
+            if (_canvas == null) Build();
+            if (_pausePanel == null && visible)
+            {
+                _pausePanel = Panel("PausePanel", _canvas.transform, 0, 0, 760, 130, Card).rectTransform;
+                _pausePanel.anchorMin = _pausePanel.anchorMax = new Vector2(0.5f, 0.5f);
+                _pausePanel.pivot = new Vector2(0.5f, 0.5f);
+                _pausePanel.anchoredPosition = new Vector2(0, 70);
+                Label("PauseMessage", _pausePanel, 20, 20, 720, 90, 32, Cyan,
+                    "PAUSA — pulsa A para continuar").alignment = TextAnchor.MiddleCenter;
+            }
+            if (_pausePanel != null) _pausePanel.gameObject.SetActive(visible);
+        }
         public void ShowFeedback(string message, Color color)
         {
             _feedback = message; _feedbackColor = color;

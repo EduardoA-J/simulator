@@ -18,6 +18,15 @@ namespace AvionesPapelVR
         Material _sceneSkybox;
         bool _sceneSkyboxSaved;
         public float Progress01 { get; private set; }
+        [Range(1.6f, 3f)] public float droneScale = 2.4f;
+
+        float EnemyDifficulty(LevelDefinition level)
+        {
+            var gm = GameManager.Instance;
+            float order = gm != null ? Mathf.InverseLerp(1f, Mathf.Max(2, gm.levels.Count - 1), gm.CurrentLevelIndex) : 0f;
+            return Mathf.Clamp01(order * 0.65f + Mathf.InverseLerp(3f, 4.2f, level.enemySpeed) * 0.25f +
+                Mathf.InverseLerp(0.3f, 0.75f, level.windStrength) * 0.1f);
+        }
 
         [Header("DecoraciÃƒÂ³n (opcional)")]
         public GameObject deskPrefab;
@@ -182,10 +191,12 @@ namespace AvionesPapelVR
                 if (gm != null)
                     prefab = roll == 0 ? gm.enemyDronePrefab : roll == 1 ? gm.enemyBirdPrefab : gm.enemyFanPrefab;
 
-                var go = prefab != null ? Instantiate(prefab, parent) : GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                if (prefab == null) continue;
+                var go = Instantiate(prefab, parent);
                 go.transform.SetParent(parent, true);
                 go.name = "Enemy_" + roll;
                 go.transform.position = FlightPoint(x, y, z);
+                if (roll == 0) go.transform.localScale *= droneScale;
                 StripGameplay(go);
 
                 if (roll == 2)
@@ -202,6 +213,19 @@ namespace AvionesPapelVR
                     brain.moveSpeed = level.enemySpeed + roll * 0.4f;
                     brain.amplitude = 1f + level.windStrength;
                     brain.bulletPrefab = gm != null ? gm.bulletPrefab : null;
+                    if (roll == 0)
+                    {
+                        // Showcase bobbing resets the root position each frame and cancels pursuit.
+                        var showcaseMotion = go.GetComponent<SpinBob>();
+                        if (showcaseMotion != null) showcaseMotion.enabled = false;
+                        float difficulty = EnemyDifficulty(level);
+                        brain.useDroneTactics = true;
+                        brain.moveSpeed *= 1.25f;
+                        brain.bulletSpeed = Mathf.Lerp(28f, 34f, difficulty);
+                        brain.fireInterval = Mathf.Lerp(2.4f, 1.7f, difficulty);
+                        brain.engagementRange = Mathf.Lerp(24f, 30f, difficulty);
+                        brain.fireWarningDuration = Mathf.Lerp(0.35f, 0.25f, difficulty);
+                    }
                     EnsureDamageable(go, roll == 0 ? 32f : 22f, roll == 0 ? 70 : 50);
                 }
                 _spawned.Add(go);
@@ -221,7 +245,8 @@ namespace AvionesPapelVR
                 GameObject prefab = gm != null
                     ? (moving ? gm.obstacleMovingPrefab : gm.obstacleStaticPrefab)
                     : null;
-                var go = prefab != null ? Instantiate(prefab, parent) : GameObject.CreatePrimitive(PrimitiveType.Cube);
+                if (prefab == null) continue;
+                var go = Instantiate(prefab, parent);
                 go.transform.SetParent(parent, true);
                 go.name = moving ? "Obstacle_Moving" : "Obstacle_Static";
                 go.transform.position = FlightPoint(x, moving ? 1.6f : 0.9f, z);

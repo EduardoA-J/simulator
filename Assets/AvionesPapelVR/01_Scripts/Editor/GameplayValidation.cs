@@ -176,6 +176,16 @@ namespace AvionesPapelVR.Editor
             Check(gm != null && gm.State == GameState.MainMenu, "Main menu initialized");
             Check(gm.hud.InterfaceCanvas != null, "Structured interface canvas initialized");
             Check(gm.levels.Count == ExpectedLevels && gm.levels.All(l => l != null), "Exactly five referenced map assets");
+            var androidXr = UnityEditor.XR.Management.XRGeneralSettingsPerBuildTarget.XRGeneralSettingsForBuildTarget(BuildTargetGroup.Android);
+            Check(androidXr != null && androidXr.InitManagerOnStart && androidXr.Manager.activeLoaders
+                .Any(l => l is UnityEngine.XR.OpenXR.OpenXRLoader), "Quest Android starts the existing OpenXR loader");
+            var androidOpenXr = UnityEngine.XR.OpenXR.OpenXRSettings.GetSettingsForBuildTargetGroup(BuildTargetGroup.Android);
+            Check(androidOpenXr != null && androidOpenXr.GetFeature<UnityEngine.XR.OpenXR.Features.MetaQuestSupport.MetaQuestFeature>().enabled &&
+                androidOpenXr.GetFeature<UnityEngine.XR.OpenXR.Features.Interactions.OculusTouchControllerProfile>().enabled,
+                "Quest support and Oculus Touch bindings are enabled for Android");
+            Check((PlayerSettings.Android.targetArchitectures & AndroidArchitecture.ARM64) != 0 &&
+                PlayerSettings.GetScriptingBackend(UnityEditor.Build.NamedBuildTarget.Android) == ScriptingImplementation.IL2CPP,
+                "Quest player targets ARM64 with IL2CPP");
             Check(EditorBuildSettings.scenes.Any(s => s.enabled && s.path.EndsWith("/Game_VR_Oculus.unity")) &&
                 EditorBuildSettings.scenes.Any(s => s.enabled && s.path.EndsWith("/Game_Playable.unity")),
                 "VR and keyboard entry scenes are enabled in Build Settings");
@@ -448,8 +458,11 @@ namespace AvionesPapelVR.Editor
             gm.flightStartAnchor.rotation = Quaternion.Euler(0, 25f, 0);
             SetInput(right.deviceRotation, Quaternion.identity);
             SetInput(right.primary2DAxis, Vector2.zero);
+            yield return VerifyControlResponse(gm, right);
+            yield return VerifyFlightPause(gm, right);
             yield return VerifyCourses(gm);
             yield return VerifyEnemyShots(gm);
+            yield return VerifyDroneTactics(gm);
             yield return VerifyUnlocks(gm);
             for (int index = 0; index < gm.levels.Count; index++)
                 yield return FlyCourse(gm, right, index);
@@ -457,6 +470,123 @@ namespace AvionesPapelVR.Editor
             yield return VerifyKeyboardScene();
             Destroy(hand);
             if (right.added) InputSystem.RemoveDevice(right);
+        }
+
+        IEnumerator VerifyControlResponse(GameManager gm, XRSimulatedController right)
+        {
+            gm.StartSelectedLevel(1); yield return null; // Space for unscaled tracking-recovery waits.
+            gm.BeginFlightFromVrThrow(gm.planes.First(d => d.unlockedByDefault), gm.CourseRotation * Vector3.forward * 8f);
+            var pilot = gm.flightController;
+            var body = gm.Player.GetComponent<Rigidbody>();
+            body.position = gm.FlightStart + Vector3.up * 30f;
+            pilot.steering = FlightController.VrSteering.Sticks;
+            SetInput(right.primary2DAxis, Vector2.zero);
+            float previous = 0f, jump = 0f;
+            for (int i = 0; i <= 35; i++)
+            {
+                SetInput(right.primary2DAxis, new Vector2(i * 0.01f, 0f)); yield return null;
+                float current = pilot.SteeringInput.y;
+                jump = Mathf.Max(jump, Mathf.Abs(current - previous)); previous = current;
+            }
+            Check(jump < 0.04f && previous > 0.1f, "Stick leaves its dead zone continuously, without a steering step");
+            SetInput(right.primary2DAxis, Vector2.zero);
+            yield return new WaitForSeconds(0.3f);
+            SetInput(right.primary2DAxis, Vector2.right);
+            yield return null; yield return new WaitForFixedUpdate();
+            Check(pilot.AppliedSteeringInput.y > 0f && pilot.AppliedSteeringInput.y < 0.4f,
+                "Full stick starts a progressive turn rather than snapping to maximum");
+            yield return new WaitForSeconds(0.3f);
+            Check(pilot.AppliedSteeringInput.y > 0.95f, "Smooth steering still reaches full turning authority promptly");
+            SetInput(right.primary2DAxis, Vector2.zero);
+            yield return new WaitForSeconds(0.18f);
+            Check(pilot.AppliedSteeringInput.magnitude < 0.05f, "Releasing the stick quickly removes lingering turn input");
+            pilot.steering = FlightController.VrSteering.ControllerTilt;
+            SetInput(right.isTracked, 1f); SetInput(right.trackingState, 3);
+            SetInput(right.deviceRotation, Quaternion.identity); pilot.CalibrateSteering();
+            jump = 0f; previous = 0f;
+            for (int i = 0; i <= 16; i++)
+            {
+                SetInput(right.deviceRotation, Quaternion.Euler(0f, 12f, 8f + i * 0.5f)); yield return null;
+                float current = pilot.SteeringInput.y;
+                if (i > 0) jump = Mathf.Max(jump, Mathf.Abs(current - previous)); previous = current;
+            }
+            Check(jump < 0.08f, "Opposing pointing and wrist roll blend without sudden sign changes");
+            SetInput(right.deviceRotation, Quaternion.Euler(0f, -20f, 0f)); yield return null;
+            previous = pilot.SteeringInput.y; jump = 0f;
+            for (int i = 0; i <= 24; i++)
+            {
+                SetInput(right.primary2DAxis, new Vector2(i * 0.025f, 0f)); yield return null;
+                float current = pilot.SteeringInput.y;
+                jump = Mathf.Max(jump, Mathf.Abs(current - previous)); previous = current;
+            }
+            Check(jump < 0.16f && previous > 0.3f, "Opposite stick override takes control gradually from controller tilt");
+            SetInput(right.primary2DAxis, Vector2.zero);
+            SetInput(right.trackingState, 1); yield return null;
+            Check(!pilot.SteeringTracked && pilot.SteeringInput.magnitude < 0.01f && pilot.AppliedSteeringInput.magnitude < 0.01f,
+                "Position-only tracking cannot reuse stale controller rotation or filtered steering");
+            SetInput(right.deviceRotation, Quaternion.Euler(0f, 35f, 0f));
+            SetInput(right.trackingState, 3);
+            // Calibration uses unscaled time; captureDeltaTime can advance game time faster than wall time.
+            yield return new WaitForSecondsRealtime(0.3f);
+            Check(pilot.SteeringReady && pilot.SteeringInput.magnitude < 0.01f,
+                "Recovered controller tracking calibrates a neutral pose without a sudden turn");
+            SetInput(right.primary2DAxis, Vector2.right); yield return new WaitForSeconds(0.2f);
+            // SendMessage broadcasts to every component, including the separately tested flight-pause owner.
+            var controlPause = typeof(FlightController).GetMethod("OnApplicationPause",
+                System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+            controlPause.Invoke(pilot, new object[] { true }); yield return null;
+            Check(pilot.SteeringInput.magnitude < 0.01f && pilot.AppliedSteeringInput.magnitude < 0.01f,
+                "Application suspension clears live and smoothed steering");
+            SetInput(right.primary2DAxis, Vector2.zero); SetInput(right.deviceRotation, Quaternion.identity);
+            controlPause.Invoke(pilot, new object[] { false }); yield return new WaitForSecondsRealtime(0.3f);
+            Check(pilot.SteeringReady && pilot.SteeringInput.magnitude < 0.01f, "Application resume returns to neutral steering");
+            gm.GoToMainMenu(); yield return null;
+        }
+
+        IEnumerator VerifyFlightPause(GameManager gm, XRSimulatedController right)
+        {
+            gm.StartSelectedLevel(1); yield return null;
+            gm.BeginFlightFromVrThrow(gm.planes.First(d => d.unlockedByDefault), gm.CourseRotation * Vector3.forward * 8f);
+            var body = gm.Player.GetComponent<Rigidbody>();
+            body.position = gm.FlightStart + Vector3.up * 15f;
+            var level = gm.CurrentLevel;
+            int score = gm.Score, gates = gm.levelRunner.GatesPassed;
+            var pause = gm.FlightPause;
+            SetInput(right.primaryButton, 0f);
+            pause.SendMessage("OnApplicationFocus", false); yield return null;
+            Check(!pause.IsPaused && Time.timeScale == 1f, "Editor window focus changes do not pause validation");
+            pause.SendMessage("OnApplicationPause", true);
+            Vector3 position = body.position, velocity = body.linearVelocity;
+            float flightTime = gm.flightController.FlightTime;
+            Check(pause.IsPaused && Time.timeScale == 0f && AudioListener.pause && gm.hud.PauseVisible,
+                "Headset application suspension freezes time/audio and shows the existing-style pause panel");
+            CaptureView(gm, "Interface_Pause", gm.gameCamera.transform.position, gm.gameCamera.transform.rotation, false);
+            yield return new WaitForSecondsRealtime(0.15f);
+            Check(body.position == position && body.linearVelocity == velocity && gm.flightController.FlightTime == flightTime &&
+                gm.CurrentLevel == level && gm.Score == score && gm.levelRunner.GatesPassed == gates,
+                "Pause freezes flight physics and timers without losing level, score or checkpoints");
+            SetInput(right.primaryButton, 1f); yield return null;
+            SetInput(right.primaryButton, 0f); yield return null;
+            Check(pause.IsPaused, "A cannot resume while the application is still suspended");
+            pause.SendMessage("OnApplicationPause", false); yield return null;
+            Check(pause.IsPaused, "Returning to the headset waits for an explicit A confirmation");
+            SetInput(right.isTracked, 1f); SetInput(right.trackingState, 3);
+            SetInput(right.deviceRotation, Quaternion.Euler(0f, 22f, 0f));
+            int shots = gm.levelRoot.GetComponentsInChildren<Projectile>().Length;
+            SetInput(right.primaryButton, 1f); yield return null;
+            SetInput(right.primaryButton, 0f); yield return null;
+            Check(!pause.IsPaused && Time.timeScale == 1f && !AudioListener.pause && !gm.hud.PauseVisible &&
+                gm.CurrentLevel == level && gm.State == GameState.Flight && gm.flightController.enabled,
+                "A resumes the same flight and restores time, audio and the HUD");
+            Check(gm.flightController.SteeringReady && gm.flightController.SteeringInput.magnitude < 0.01f,
+                "Resume recalibrates controller tilt to the current neutral pose");
+            Check(gm.levelRoot.GetComponentsInChildren<Projectile>().Length == shots,
+                "The resume A press does not also fire a missile");
+            yield return new WaitForFixedUpdate(); yield return new WaitForFixedUpdate();
+            Check(Vector3.Distance(body.position, position) > 0.01f, "Flight physics moves again after resume");
+            pause.RequestPause(); gm.GoToMainMenu(); yield return null;
+            Check(Time.timeScale == 1f && !AudioListener.pause && !pause.IsPaused, "Leaving a paused flight cannot leave the next level frozen");
+            SetInput(right.deviceRotation, Quaternion.identity);
         }
 
         IEnumerator VerifyEnemyShots(GameManager gm)
@@ -475,6 +605,8 @@ namespace AvionesPapelVR.Editor
             drone.transform.position = body.position + Vector3.right * 2f;
             drone.moveSpeed = 0f;
             drone.fireInterval = 0.1f;
+            // This fixture isolates single-impact physics; spread is checked separately below.
+            drone.aimSpreadDegrees = 0f;
             Vector3 direction = (body.position - drone.transform.position).normalized;
             Projectile shot = null;
             float deadline = Time.time + 1.5f;
@@ -495,6 +627,21 @@ namespace AvionesPapelVR.Editor
                 "Enemy shot hits an untagged child collider, pushes the plane once and preserves flight");
             Check(Mathf.Abs(body.linearVelocity.magnitude - drone.bulletImpulse) < 0.05f,
                 "Compound player colliders cannot apply the same enemy impulse twice");
+            body.linearVelocity = Vector3.zero;
+            gm.ActivatePowerUp(PowerUpType.Shield, 5f);
+            drone.enabled = true;
+            deadline = Time.time + 1.5f;
+            while (shot == null && Time.time < deadline)
+            {
+                yield return null;
+                shot = gm.levelRoot.GetComponentsInChildren<Projectile>().FirstOrDefault(p => p.targetsPlayer);
+            }
+            Check(shot != null && gm.HasShield, "Drone fires a real projectile at a shielded plane");
+            drone.enabled = false;
+            deadline = Time.time + 1f;
+            while (shot != null && Time.time < deadline) yield return new WaitForFixedUpdate();
+            Check(shot == null && body.linearVelocity.magnitude < 0.01f && gm.State == GameState.Flight,
+                "Shield blocks enemy impulse and keeps the flight active");
             var blocker = GameObject.CreatePrimitive(PrimitiveType.Cube);
             blocker.transform.SetParent(gm.levelRoot);
             blocker.transform.position = body.position + Vector3.up * 5f;
@@ -520,6 +667,134 @@ namespace AvionesPapelVR.Editor
             yield return null;
             Check(!UnityEngine.Object.FindObjectsByType<Projectile>(FindObjectsSortMode.None).Any(p => p.targetsPlayer),
                 "Returning to maps removes enemy projectiles with their level");
+        }
+
+        IEnumerator VerifyDroneTactics(GameManager gm)
+        {
+            foreach (var velocity in new[] { Vector3.zero, Vector3.right * 24f, Vector3.forward * 30f })
+            {
+                Vector3 offset = velocity.z > 0f ? Vector3.back * 10f : new Vector3(10f, 0f, 10f);
+                Check(EnemyBrain.TryInterceptDirection(Vector3.zero, offset, velocity, 30f, out var aim),
+                    "Prediction handles stationary, crossing and equal-speed approaching targets: " + velocity);
+                Vector3 closing = aim * 30f - velocity;
+                float time = Vector3.Dot(offset, closing) / closing.sqrMagnitude;
+                Check(time > 0 && time <= 2.5f && (closing * time - offset).magnitude < 0.001f,
+                    "Predicted projectile meets the moving target within its lifetime");
+            }
+            Check(!EnemyBrain.TryInterceptDirection(Vector3.zero, Vector3.forward * 10f, Vector3.forward * 40f, 30f, out _),
+                "Prediction rejects a receding target that cannot be intercepted");
+            gm.StartSelectedLevel(1); yield return null;
+            gm.BeginFlightFromVrThrow(gm.planes.First(d => d.unlockedByDefault), gm.CourseRotation * Vector3.forward * 8f);
+            gm.flightController.enabled = false;
+            var body = gm.Player.GetComponent<Rigidbody>();
+            body.position = gm.FlightStart + Vector3.up * 20f;
+            var initialVelocity = gm.CourseRotation * Vector3.right * 12f;
+            body.linearVelocity = initialVelocity;
+            var drone = gm.levelRoot.GetComponentsInChildren<EnemyBrain>().First(e => e.useDroneTactics);
+            foreach (var enemy in gm.levelRoot.GetComponentsInChildren<EnemyBrain>()) enemy.enabled = enemy == drone;
+            drone.transform.position = body.position + gm.CourseRotation * new Vector3(8f, 0f, 10f);
+            drone.moveSpeed = 0f; drone.fireInterval = 0.1f;
+            Check(drone.aimSpreadDegrees > 0f && drone.aimSpreadDegrees <= 2f && drone.fireWarningDuration >= 0.25f,
+                "Live drones have a small configurable spread and a visible warning");
+            drone.aimSpreadDegrees = 0f; // Deterministic moving-body intercept, without a random miss.
+            float deadline = Time.time + 1.5f;
+            bool warned = false;
+            Projectile shot = null;
+            while (shot == null && Time.time < deadline)
+            {
+                yield return null;
+                warned |= drone.IsPreparingShot;
+                shot = gm.levelRoot.GetComponentsInChildren<Projectile>().FirstOrDefault(p => p.targetsPlayer);
+            }
+            Check(warned && shot != null, "Drone warns before firing at a plane moving sideways at 12 m/s");
+            drone.enabled = false;
+            deadline = Time.time + 1.5f;
+            while (shot != null && Time.time < deadline) yield return new WaitForFixedUpdate();
+            Check(shot == null && Mathf.Abs((body.linearVelocity - initialVelocity).magnitude - drone.bulletImpulse) < 0.05f,
+                "Predictive enemy shot physically intercepts a moving plane with exactly one impulse");
+            body.linearVelocity = Vector3.zero;
+            body.position = drone.transform.position - gm.CourseRotation * Vector3.forward * 8f;
+            drone.enabled = true;
+            deadline = Time.time + 0.5f;
+            while (!drone.IsPreparingShot && Time.time < deadline) yield return null;
+            Check(drone.IsPreparingShot, "Drone starts a fresh warning for an eligible target");
+            body.position = drone.transform.position - gm.CourseRotation * Vector3.forward * 80f;
+            yield return new WaitForSeconds(0.6f);
+            Check(!drone.IsPreparingShot && !gm.levelRoot.GetComponentsInChildren<Projectile>().Any(p => p.targetsPlayer),
+                "Leaving range during the warning cancels the shot");
+            body.position = drone.transform.position + gm.CourseRotation * Vector3.forward * 4f;
+            yield return new WaitForSeconds(0.6f);
+            Check(!drone.IsPreparingShot && !gm.levelRoot.GetComponentsInChildren<Projectile>().Any(p => p.targetsPlayer),
+                "A drone cannot fire from behind a plane that has passed it");
+            // Sample actual emitted directions, leaving the target still to isolate spread.
+            body.position = drone.transform.position - gm.CourseRotation * Vector3.forward * 8f;
+            drone.aimSpreadDegrees = 1.25f;
+            for (int i = 0; i < 5; i++)
+            {
+                shot = null; deadline = Time.time + 1f;
+                while (shot == null && Time.time < deadline)
+                {
+                    yield return null;
+                    shot = gm.levelRoot.GetComponentsInChildren<Projectile>().FirstOrDefault(p => p.targetsPlayer);
+                }
+                Check(shot != null && Vector3.Angle(shot.GetComponent<Rigidbody>().linearVelocity,
+                    body.position - drone.transform.position) <= drone.aimSpreadDegrees + 0.01f,
+                    "Emitted shot remains inside the configured spread cone " + i);
+                Destroy(shot.gameObject); yield return null;
+            }
+            gm.GoToMainMenu(); yield return null;
+            gm.StartSelectedLevel(1); yield return null;
+            gm.BeginFlightFromVrThrow(gm.planes.First(d => d.unlockedByDefault), gm.CourseRotation * Vector3.forward * 8f);
+            gm.flightController.enabled = false;
+            body = gm.Player.GetComponent<Rigidbody>(); body.isKinematic = true;
+            drone = gm.levelRoot.GetComponentsInChildren<EnemyBrain>().First(e => e.useDroneTactics);
+            drone.bulletPrefab = null;
+            Vector3 origin = drone.transform.position;
+            Vector3 localOrigin = gm.CoursePoint(origin);
+            body.position = gm.CourseOrigin + gm.CourseRotation * gm.CurrentLevel.PathPoint(localOrigin.z - 6f);
+            float before = Vector3.Distance(body.position, origin);
+            yield return new WaitForSeconds(1.5f);
+            Check(Vector3.Distance(body.position, drone.transform.position) < before - 1f &&
+                Vector3.Distance(origin, drone.transform.position) <= drone.pursuitLeash + 0.01f,
+                "Drone pursues noticeably but stays inside its spawn leash; before=" + before +
+                "; after=" + Vector3.Distance(body.position, drone.transform.position) +
+                "; travel=" + Vector3.Distance(origin, drone.transform.position) +
+                "; origin=" + gm.CoursePoint(origin) + "; drone=" + gm.CoursePoint(drone.transform.position) +
+                "; player=" + gm.CoursePoint(body.position));
+            Vector3 localDrone = gm.CoursePoint(drone.transform.position);
+            float lateral = Mathf.Abs(Vector3.Dot(localDrone - gm.CurrentLevel.PathPoint(localDrone.z),
+                gm.CurrentLevel.GroundRotation(localDrone.z) * Vector3.right));
+            Check(lateral >= 3f && lateral <= 8.5f, "Pursuing drone leaves the course centre open");
+            body.position = drone.transform.position - gm.CourseRotation * Vector3.forward;
+            float separation = Vector3.Distance(body.position, drone.transform.position);
+            yield return new WaitForSeconds(0.5f);
+            Check(Vector3.Distance(body.position, drone.transform.position) >= separation - 0.01f,
+                "Drone does not approach further when the plane is inside minimum separation");
+            var health = drone.GetComponent<Damageable>();
+            health.TakeDamage(health.maxHealth, drone.transform.position);
+            yield return null;
+            Check(drone == null, "Enlarged drone remains destructible through its existing Damageable");
+            gm.GoToMainMenu(); gm.flightController.enabled = true; yield return null;
+            var dronePrefab = gm.enemyDronePrefab; var birdPrefab = gm.enemyBirdPrefab; var fanPrefab = gm.enemyFanPrefab;
+            var staticPrefab = gm.obstacleStaticPrefab; var movingPrefab = gm.obstacleMovingPrefab;
+            try
+            {
+                gm.enemyDronePrefab = gm.enemyBirdPrefab = gm.enemyFanPrefab = null;
+                gm.obstacleStaticPrefab = gm.obstacleMovingPrefab = null;
+                gm.StartSelectedLevel(1); yield return null;
+                gm.BeginFlightFromVrThrow(gm.planes.First(d => d.unlockedByDefault), gm.CourseRotation * Vector3.forward * 8f);
+                Check(!gm.levelRoot.GetComponentsInChildren<EnemyBrain>().Any() &&
+                    !gm.levelRoot.GetComponentsInChildren<WindFanForce>().Any() &&
+                    !gm.levelRoot.GetComponentsInChildren<Damageable>().Any(d => d.name.StartsWith("Obstacle_")),
+                    "Missing enemy and obstacle prefabs are skipped without inventing replacement objects");
+            }
+            finally
+            {
+                gm.enemyDronePrefab = dronePrefab; gm.enemyBirdPrefab = birdPrefab; gm.enemyFanPrefab = fanPrefab;
+                gm.obstacleStaticPrefab = staticPrefab; gm.obstacleMovingPrefab = movingPrefab;
+                gm.GoToMainMenu();
+            }
+            yield return null;
         }
 
         IEnumerator VerifyUnlocks(GameManager gm)
@@ -674,9 +949,17 @@ namespace AvionesPapelVR.Editor
             yield return null;
         }
 
+        void CheckClearObstacleSweep(Vector3 world, Damageable[] obstacles, int index, int phase)
+        {
+            if (Physics.OverlapSphere(world, 0.7f, ~0, QueryTriggerInteraction.Ignore)
+                .Any(c => obstacles.Contains(c.GetComponentInParent<Damageable>())))
+                throw new Exception("Moving obstacle blocks map " + (index + 1) + " at " + world + ", phase " + phase);
+        }
+
         IEnumerator VerifyCourses(GameManager gm)
         {
             var originalRig = gm.xrOrigin;
+            float previousBulletSpeed = 0f, previousInterval = float.MaxValue;
             int last = gm.levels.Count - 1;
             for (int index = 1; index <= last; index++)
             {
@@ -712,6 +995,21 @@ namespace AvionesPapelVR.Editor
                         "Map " + (index + 1) + " is authored with its own route and escalating enemies");
                 var obstacles = gm.levelRoot.GetComponentsInChildren<Damageable>().Where(d => d.name.StartsWith("Obstacle_")).ToArray();
                 Check(obstacles.Length == level.obstacleCount, "All authored obstacles are built");
+                var drones = gm.levelRoot.GetComponentsInChildren<EnemyBrain>().Where(e => e.useDroneTactics).ToArray();
+                Check(drones.Length == (level.enemyCount + 2) / 3 && drones.All(e =>
+                    Vector3.Distance(e.transform.localScale, gm.enemyDronePrefab.transform.localScale * gm.levelRunner.droneScale) < 0.001f),
+                    "Map " + (index + 1) + " scales only existing drone instances by " + gm.levelRunner.droneScale);
+                Check(drones.All(e => e.GetComponent<Damageable>().maxHealth == 32f && e.GetComponentsInChildren<Collider>().Any(c => !c.isTrigger)),
+                    "Larger drones retain destructible solid colliders and original health");
+                Check(drones.All(e => e.GetComponent<SpinBob>() == null || !e.GetComponent<SpinBob>().enabled) &&
+                    gm.enemyDronePrefab.GetComponent<SpinBob>().enabled,
+                    "Drone instances disable conflicting showcase motion without changing the shared prefab");
+                var bird = gm.levelRoot.GetComponentsInChildren<EnemyBrain>().First(e => e.name == "Enemy_1");
+                Check(!bird.useDroneTactics && bird.transform.localScale == gm.enemyBirdPrefab.transform.localScale && bird.bulletSpeed == 8f,
+                    "Bird scale and existing shooting behaviour remain unchanged");
+                Check(drones[0].bulletSpeed > previousBulletSpeed && drones[0].fireInterval < previousInterval,
+                    "Drone projectile speed and cadence increase with map difficulty");
+                previousBulletSpeed = drones[0].bulletSpeed; previousInterval = drones[0].fireInterval;
                 Physics.SyncTransforms();
                 for (float z = 8; z < level.length - 8; z += 0.75f)
                 {
@@ -721,6 +1019,22 @@ namespace AvionesPapelVR.Editor
                     if (blockers.Length > 0) throw new Exception("Blocked route at " + z + ": " + blockers[0].transform.root.name);
                 }
                 Check(true, "Map " + (index + 1) + " centreline has at least 0.7 m obstacle clearance");
+                var moving = obstacles.Select(o => o.GetComponent<MovingObstacleMotion>()).Where(m => m != null).ToArray();
+                var positions = moving.Select(m => m.transform.position).ToArray();
+                for (int phase = -4; phase <= 4; phase++)
+                {
+                    for (int i = 0; i < moving.Length; i++)
+                        moving[i].transform.position = positions[i] + moving[i].axis.normalized * moving[i].distance * phase / 4f;
+                    Physics.SyncTransforms();
+                    for (float z = 8; z < level.length - 8; z += 0.75f)
+                    {
+                        Vector3 world = gm.CourseOrigin + gm.CourseRotation * level.PathPoint(z);
+                        CheckClearObstacleSweep(world, obstacles, index, phase);
+                    }
+                }
+                for (int i = 0; i < moving.Length; i++) moving[i].transform.position = positions[i];
+                Physics.SyncTransforms();
+                Check(true, "Map " + (index + 1) + " keeps 0.7 m clearance across nine moving-obstacle phases, including both extremes");
                 CaptureView(gm, "Map" + (index + 1) + "_Course", gm.CourseOrigin + gm.CourseRotation *
                     (level.PathPoint(index == 1 ? 28 : 185) + new Vector3(-7, 8, -12)),
                     gm.CourseRotation * Quaternion.Euler(20, 24, 0), true);
@@ -810,6 +1124,59 @@ namespace AvionesPapelVR.Editor
             Check(gm.BoostsCollected > 2, "Physical flight collects the route's energy boosts");
         }
 
+        IEnumerator VerifyMouseFlight(GameManager gm)
+        {
+            var mouse = InputSystem.AddDevice<Mouse>();
+            var keyboard = InputSystem.AddDevice<Keyboard>();
+            try
+            {
+                gm.StartSelectedLevel(0); yield return null;
+                Click(gm, "Primary");
+                gm.BeginFlight(gm.CourseRotation * Vector3.forward * 8f);
+                var pilot = gm.flightController;
+                var body = gm.Player.GetComponent<Rigidbody>();
+                body.position = gm.FlightStart + Vector3.up * 30f;
+                float startYaw = body.rotation.eulerAngles.y;
+                var readControls = typeof(FlightController).GetMethod("Update",
+                    System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+                // Mouse delta resets at the next Input System update. Consume each injected sample in its frame.
+                Cursor.lockState = CursorLockMode.Locked;
+                SetInput(mouse.delta, new Vector2(120f, 0f)); readControls.Invoke(pilot, null);
+                SetInput(mouse.delta, Vector2.zero);
+                Check(pilot.SteeringInput.y > 0.2f, "Mouse motion actually commands aircraft steering without keyboard input");
+                yield return new WaitForSeconds(1.2f);
+                float turned = Mathf.DeltaAngle(startYaw, body.rotation.eulerAngles.y);
+                Check(turned > 10f && turned < 19f && Mathf.Abs(pilot.AppliedSteeringInput.y) < 0.08f,
+                    "Mouse selects a heading, reaches it smoothly and stops turning; degrees=" + turned);
+                float rightYaw = body.rotation.eulerAngles.y;
+                SetInput(mouse.delta, new Vector2(-180f, 0f)); readControls.Invoke(pilot, null);
+                SetInput(mouse.delta, Vector2.zero); yield return new WaitForSeconds(0.7f);
+                Check(Mathf.DeltaAngle(rightYaw, body.rotation.eulerAngles.y) < -10f,
+                    "Moving the mouse left changes the aircraft heading left");
+                SetInput(mouse.delta, new Vector2(0f, 100f)); readControls.Invoke(pilot, null);
+                SetInput(mouse.delta, Vector2.zero); yield return new WaitForSeconds(0.4f);
+                Check(pilot.SteeringInput.x > 0.3f && Mathf.DeltaAngle(0f, body.rotation.eulerAngles.x) < -4f,
+                    "Moving the mouse up pitches the aircraft up with bounded control");
+                SetInput(keyboard.sKey, 1f); SetInput(keyboard.dKey, 1f); yield return null;
+                Check(pilot.SteeringInput.x < -0.9f && pilot.SteeringInput.y > 0.9f,
+                    "Keyboard corrections override mouse pitch and heading");
+                SetInput(keyboard.sKey, 0f); SetInput(keyboard.dKey, 0f); yield return new WaitForSeconds(0.2f);
+                Check(pilot.SteeringInput.magnitude < 0.01f, "Releasing keyboard correction does not snap back to an old mouse heading");
+                SetInput(keyboard.escapeKey, 1f); readControls.Invoke(pilot, null);
+                SetInput(keyboard.escapeKey, 0f); yield return null;
+                SetInput(mouse.delta, new Vector2(300f, 300f)); readControls.Invoke(pilot, null);
+                SetInput(mouse.delta, Vector2.zero);
+                Check(Cursor.lockState == CursorLockMode.None && pilot.SteeringInput.magnitude < 0.01f,
+                    "Escape releases the cursor and mouse movement no longer steers the plane");
+                gm.GoToMainMenu(); yield return null;
+            }
+            finally
+            {
+                if (mouse.added) InputSystem.RemoveDevice(mouse);
+                if (keyboard.added) InputSystem.RemoveDevice(keyboard);
+            }
+        }
+
         IEnumerator VerifyKeyboardScene()
         {
             UnityEngine.SceneManagement.SceneManager.LoadScene("Game_Playable");
@@ -834,6 +1201,7 @@ namespace AvionesPapelVR.Editor
                 Check(gm.State == GameState.Flight && gm.CurrentLevelIndex == index, "Keyboard launch builds the selected map");
                 gm.GoToMainMenu();
             }
+            yield return VerifyMouseFlight(gm);
 #pragma warning disable CS0618
             // Both simulators own the same XRI lifecycle singleton, even while inactive.
             if (XRInteractionSimulator.instance != null) Destroy(XRInteractionSimulator.instance.gameObject);

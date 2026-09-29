@@ -109,6 +109,7 @@ namespace AvionesPapelVR
                 bool moving = pattern == 1;
                 bool beam = advanced && pattern >= 2;
                 var prefab = moving ? GameManager.Instance.obstacleMovingPrefab : GameManager.Instance.obstacleStaticPrefab;
+                if (!beam && prefab == null) continue;
                 var go = !beam && prefab != null ? Instantiate(prefab, parent) : GameObject.CreatePrimitive(PrimitiveType.Cube);
                 go.transform.SetParent(parent, false);
                 go.name = beam ? (pattern == 2 ? "Obstacle_HighBeam" : "Obstacle_LowHurdle") :
@@ -120,15 +121,17 @@ namespace AvionesPapelVR
                 if (beam)
                 {
                     go.transform.localScale = new Vector3(6.6f, 0.45f, 0.55f);
-                    Tint(go, pattern == 2 ? new Color(0.95f, 0.59f, 0.23f) : new Color(0.25f, 0.67f, 0.74f));
                 }
+                Color obstacleColor = beam && pattern == 3 ? new Color(0.2f, 0.85f, 0.95f) :
+                    moving ? new Color(1f, 0.35f, 0.15f) : new Color(1f, 0.65f, 0.2f);
+                foreach (var renderer in go.GetComponentsInChildren<Renderer>()) Tint(renderer.gameObject, obstacleColor);
                 StripGameplay(go);
                 if (moving)
                 {
                     var motion = go.GetComponent<MovingObstacleMotion>() ?? go.AddComponent<MovingObstacleMotion>();
                     motion.axis = level.PathRotation(z) * Vector3.right;
                     motion.distance = advanced ? 0.65f : 0.4f;
-                    motion.speed = advanced ? 1.15f : 0.8f;
+                    motion.speed = Mathf.Lerp(0.8f, 1.25f, EnemyDifficulty(level));
                 }
                 EnsureDamageable(go, 55f, 25);
                 _obstacles.Add(go.transform);

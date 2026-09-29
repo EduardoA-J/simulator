@@ -26,6 +26,17 @@ namespace AvionesPapelVR.Editor
             RequireEditMode();
             KeyboardPlaySetup.SetXrStartup("Standalone Settings", true);
             KeyboardPlaySetup.SetXrStartup("Android Settings", true);
+            var settings = AssetDatabase.LoadAssetAtPath<UnityEngine.ScriptableObject>(
+                "Assets/XRI/Settings/Resources/XRDeviceSimulatorSettings.asset");
+            var serialized = new SerializedObject(settings);
+            serialized.FindProperty("m_AutomaticallyInstantiateSimulatorPrefab").boolValue = false;
+            serialized.ApplyModifiedPropertiesWithoutUndo();
+            var manager = UnityEditor.XR.Management.XRGeneralSettingsPerBuildTarget
+                .XRGeneralSettingsForBuildTarget(BuildTargetGroup.Standalone).Manager;
+            foreach (var loader in new System.Collections.Generic.List<UnityEngine.XR.Management.XRLoader>(manager.activeLoaders))
+                if (loader != null && loader.GetType().Name == "SimulationLoader") manager.TryRemoveLoader(loader);
+            EditorUtility.SetDirty(manager);
+            AssetDatabase.SaveAssets();
             EditorPrefs.SetBool(XrSimulatorGuard.SimulationPreference, false);
             EditorPrefs.SetBool(XrSimulatorGuard.DeviceSimulationPreference, false);
         }

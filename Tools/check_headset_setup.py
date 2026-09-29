@@ -1,6 +1,7 @@
 """Read-only asset checks; this does not replace Unity compilation or headset testing."""
 from pathlib import Path
 import re
+import struct
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -30,6 +31,8 @@ for platform in ("Android", "Standalone"):
     check("m_InitManagerOnStart: 1" in general, platform + ": XR starts automatically")
     manager_id = re.search(r"m_LoaderManagerInstance: \{fileID: (-?\d+)", general)[1]
     check(loader_guid in xr[manager_id], platform + ": OpenXR loader assigned")
+    if platform == "Standalone":
+        check("264fc24f5797ff047bba4514d92ed96d" not in xr[manager_id], "Standalone: no SimulationLoader")
     settings = next(b for b in openxr.values() if f"  m_Name: {platform}\n" in b)
     feature_ids = re.findall(r"  - \{fileID: (-?\d+)\}", settings)
     features = [openxr[i] for i in feature_ids]
@@ -43,6 +46,20 @@ player = read("ProjectSettings/ProjectSettings.asset")
 check("AndroidTargetArchitectures: 2" in player, "Android: ARM64")
 check(re.search(r"scriptingBackend:\s+Android: 1", player), "Android: IL2CPP")
 check("activeInputHandler: 1" in player, "Input System enabled")
+check("companyName: David" in player and "productName: Aviones de Papel VR" in player, "App identity: David / Aviones de Papel VR")
+check("Android: com.david.avionespapel" in player, "Android application identifier")
+check("AndroidMinSdkVersion: 32" in player and "AndroidTargetSdkVersion: 34" in player, "Android SDK: minimum 32, target 34")
+icon_path = "Assets/AvionesPapelVR/07_Textures/AppIcon.png"
+icon = (ROOT / icon_path).read_bytes()
+check(icon[:8] == b"\x89PNG\r\n\x1a\n" and struct.unpack(">II", icon[16:24]) == (512, 512), "App icon: 512x512 PNG")
+icon_guid = re.search(r"guid: (\w+)", read(icon_path + ".meta"))[1]
+default_icons = player.split("m_BuildTargetIcons:", 1)[1].split("m_BuildTargetPlatformIcons:", 1)[0]
+android_icons = player.split("m_BuildTargetPlatformIcons:", 1)[1].split("m_BuildTarget: Android", 1)[1].split("m_BuildTarget:", 1)[0]
+check(icon_guid in default_icons and icon_guid in android_icons, "App icon assigned to default and Android slots")
+quest = next(b for b in openxr.values() if "m_Name: MetaQuestFeature Android" in b)
+devices = dict(re.findall(r"manifestName: (\w+)\s+enabled: (\d+)", quest))
+check(devices.get("quest", "0") == "0" and all(devices.get(name) == "1" for name in ("quest2", "cambria", "eureka", "quest3s")),
+      "Quest 2, Pro, 3 and 3S enabled; Quest 1 excluded")
 check("m_AutomaticallyInstantiateSimulatorPrefab: 0" in read(
     "Assets/XRI/Settings/Resources/XRDeviceSimulatorSettings.asset"), "No automatic simulated controllers")
 scene = read("Assets/AvionesPapelVR/00_Scenes/Game_VR_Oculus.unity")

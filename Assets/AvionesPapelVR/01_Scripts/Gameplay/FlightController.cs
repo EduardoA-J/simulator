@@ -20,12 +20,16 @@ namespace AvionesPapelVR
         public VrSteering steering = VrSteering.ControllerTilt;
         [Range(10f, 60f)] public float tiltRange = 30f;
         [Range(0f, 10f)] public float tiltDeadZone = 3f;
+        [Range(0f, 0.3f)] public float stickDeadZone = 0.08f;
+        [Range(0f, 0.5f)] public float centreSoftness = 0.2f;
+        [Range(0.02f, 0.25f)] public float controlSmoothTime = 0.1f;
+        [Range(0.02f, 0.2f)] public float controlReleaseTime = 0.06f;
         Quaternion _neutralTilt;
         float _calibrateAt;
         public bool SteeringReady => !vrMode || steering == VrSteering.Sticks || _tiltCalibrated;
         public bool SteeringTracked { get; private set; }
         bool _tiltCalibrated, _modeWas, _recenterWas, _comfortWas;
-        public string ControlHint => !vrMode ? "W/S: pitch | A/D: roll" :
+        public string ControlHint => !vrMode ? "Ratón: dirigir | WASD: corregir | Esc: cursor" :
             (steering == VrSteering.Sticks ? "Stick derecho: dirigir | Izquierdo: girar" :
              steering == VrSteering.HeadTilt ? "Cabeza: inclina para pilotar" : "Apunta el mando derecho para pilotar") +
             " | X: modo | Y: recalibrar";
@@ -49,6 +53,7 @@ namespace AvionesPapelVR
 
         public void CalibrateSteering()
         {
+            ResetSteeringFilter();
             _tiltCalibrated = ReadTilt(out _neutralTilt);
             SteeringTracked = _tiltCalibrated;
         }
@@ -56,7 +61,7 @@ namespace AvionesPapelVR
         float TiltAxis(float angle)
         {
             float signed = Mathf.DeltaAngle(0f, angle);
-            return Mathf.Sign(signed) * Mathf.Clamp01((Mathf.Abs(signed) - tiltDeadZone) / Mathf.Max(1f, tiltRange - tiltDeadZone));
+            return Soften(Mathf.Sign(signed) * Mathf.Clamp01((Mathf.Abs(signed) - tiltDeadZone) / Mathf.Max(1f, tiltRange - tiltDeadZone)));
         }
 
         Transform _plane;
@@ -68,12 +73,17 @@ namespace AvionesPapelVR
         float _yaw, _pitch, _roll, _pitchInput, _rollInput;
         float _flightTime;
         float _smoothPitch, _smoothRoll;
+        float _pitchInputVelocity, _rollInputVelocity;
+        bool _applicationPaused, _applicationFocused = true;
+        float _mouseHeading, _mousePitch;
+        bool _mouseSteering;
         Vector3 _lastPosition;
         public float Speed => _rb != null ? _rb.linearVelocity.magnitude : 0f;
         public float Distance { get; private set; }
         public float FlightTime => _flightTime;
         public bool IsActive => _active;
         public Vector2 SteeringInput => new Vector2(_pitchInput, _rollInput);
+        public Vector2 AppliedSteeringInput => new Vector2(_smoothPitch, _smoothRoll);
         public Transform Plane => _plane;
         float SpeedLimit => Mathf.Min(_def.EffectiveMaxSpeed,
             GameManager.Instance != null && GameManager.Instance.CurrentLevel != null ? GameManager.Instance.CurrentLevel.flightSpeedLimit : _def.EffectiveMaxSpeed);
@@ -101,10 +111,11 @@ namespace AvionesPapelVR
             if (launchVelocity.sqrMagnitude > 0.001f)
                 _rb.rotation = Quaternion.LookRotation(launchVelocity.normalized, Vector3.up);
             _yaw = _rb.rotation.eulerAngles.y;
+            _mouseHeading = _yaw; _mousePitch = 0f; _mouseSteering = false;
             _pitch = Mathf.DeltaAngle(0f, _rb.rotation.eulerAngles.x);
             _roll = 0f;
             _pitchInput = _rollInput = 0f;
-            _smoothPitch = _smoothRoll = 0f;
+            ResetSteeringFilter();
             Distance = _flightTime = 0f;
             _lastPosition = _rb.position;
             _active = true;
@@ -138,6 +149,8 @@ namespace AvionesPapelVR
         void Update()
         {
             if (!_active || _plane == null) return;
+            if (_applicationPaused || !_applicationFocused)
+            { _pitchInput = _rollInput = 0f; return; }
             if (vrMode)
             {
                 Vector2 left = VrInput.Stick(XRNode.LeftHand), right = VrInput.Stick(XRNode.RightHand);
@@ -173,13 +186,21 @@ namespace AvionesPapelVR
                         float pitch = TiltAxis(Mathf.Asin(Mathf.Clamp(aim.y, -1f, 1f)) * Mathf.Rad2Deg);
                         float pointTurn = TiltAxis(Mathf.Atan2(aim.x, aim.z) * Mathf.Rad2Deg);
                         float bankTurn = -TiltAxis(relative.eulerAngles.z);
-                        float turn = Mathf.Abs(pointTurn) > Mathf.Abs(bankTurn) ? pointTurn : bankTurn;
-                        // Sticks remain an immediate override, even in motion-control modes.
-                        if (Mathf.Abs(_pitchInput) < 0.15f) _pitchInput = pitch;
-                        if (Mathf.Abs(_rollInput) < 0.15f) _rollInput = turn;
+                        // Opposing wrist roll and pointing cancel smoothly instead of switching signs.
+                        float turn = Mathf.Clamp(pointTurn + bankTurn, -1f, 1f);
+                        _pitchInput = BlendStickOverride(pitch, _pitchInput);
+                        _rollInput = BlendStickOverride(turn, _rollInput);
                     }
                 }
-                else { _tiltCalibrated = false; SteeringTracked = false; }
+                else
+                {
+                    if (SteeringTracked)
+                    {
+                        ResetSteeringFilter();
+                        _calibrateAt = Time.unscaledTime + 0.2f;
+                    }
+                    _tiltCalibrated = false; SteeringTracked = false;
+                }
             }
             else
             {
@@ -188,9 +209,9 @@ namespace AvionesPapelVR
                     bool locked = Cursor.lockState == CursorLockMode.Locked;
                     Cursor.lockState = locked ? CursorLockMode.None : CursorLockMode.Locked;
                     Cursor.visible = locked;
+                    _mouseSteering = false; _mousePitch = 0f;
                 }
-                _rollInput = GameInput.MoveX();
-                _pitchInput = GameInput.MoveY();
+                ReadMouseAndKeyboard();
             }
             if (invertPitch) _pitchInput = -_pitchInput;
             if (invertRoll) _rollInput = -_rollInput;
@@ -219,9 +240,8 @@ namespace AvionesPapelVR
             _lastPosition = _rb.position;
             float speed = Speed;
             float authority = Mathf.Clamp01(speed / Mathf.Max(0.1f, _def.stallSpeed));
-            float response = 1f - Mathf.Exp(-12f * dt);
-            _smoothPitch = Mathf.Lerp(_smoothPitch, _pitchInput, response);
-            _smoothRoll = Mathf.Lerp(_smoothRoll, _rollInput, response);
+            _smoothPitch = SmoothControl(_smoothPitch, _pitchInput, ref _pitchInputVelocity, dt);
+            _smoothRoll = SmoothControl(_smoothRoll, _rollInput, ref _rollInputVelocity, dt);
             // Hold an angle rather than accumulating pitch until the aircraft dives or stalls.
             float targetPitch = Mathf.Clamp(2f - _smoothPitch * 28f, -pitchLimit, pitchLimit);
             _pitch = Mathf.MoveTowards(_pitch, targetPitch, _def.pitchSensitivity * authority * 1.8f * dt);
@@ -272,6 +292,69 @@ namespace AvionesPapelVR
             _cam.transform.rotation = Quaternion.LookRotation(_plane.forward, Vector3.up);
         }
 
-        static float DeadZone(float value) => Mathf.Abs(value) < 0.15f ? 0f : value;
+        float Soften(float value) => Mathf.Lerp(value, value * value * value, centreSoftness);
+
+        void ReadMouseAndKeyboard()
+        {
+            if (Cursor.lockState == CursorLockMode.Locked)
+            {
+                Vector2 delta = GameInput.MouseDelta();
+                if (delta.sqrMagnitude > 0.0001f)
+                {
+                    if (!_mouseSteering) _mouseHeading = _yaw;
+                    _mouseSteering = true;
+                    // Relative mouse motion selects a heading, rather than requiring endless dragging to turn.
+                    _mouseHeading = Mathf.Repeat(_mouseHeading + delta.x * lookSensitivity * (invertRoll ? -1f : 1f), 360f);
+                    _mousePitch = Mathf.Clamp(_mousePitch + delta.y * lookSensitivity / 28f, -1f, 1f);
+                }
+            }
+            else { _mouseSteering = false; _mousePitch = 0f; }
+            _rollInput = _mouseSteering ? Mathf.Clamp(Mathf.DeltaAngle(_yaw, _mouseHeading) * 3f /
+                Mathf.Max(1f, _def.turnSpeed), -1f, 1f) : 0f;
+            if (invertRoll) _rollInput = -_rollInput; // Global inversion below still applies once to keyboard input.
+            _pitchInput = _mousePitch;
+            float turn = GameInput.MoveX(), pitch = GameInput.MoveY();
+            if (turn != 0f) { _rollInput = turn; _mouseSteering = false; }
+            if (pitch != 0f) { _pitchInput = pitch; _mousePitch = 0f; }
+        }
+
+        float DeadZone(float value) => Soften(Mathf.Sign(value) *
+            Mathf.Clamp01((Mathf.Abs(value) - stickDeadZone) / Mathf.Max(0.01f, 1f - stickDeadZone)));
+
+        static float BlendStickOverride(float tilt, float stick) =>
+            Mathf.Lerp(tilt, stick, Mathf.SmoothStep(0f, 1f, Mathf.Abs(stick) / 0.35f));
+
+        float SmoothControl(float current, float target, ref float velocity, float dt) =>
+            Mathf.SmoothDamp(current, target, ref velocity,
+                Mathf.Abs(target) < 0.001f ? controlReleaseTime : controlSmoothTime, Mathf.Infinity, dt);
+
+        void ResetSteeringFilter()
+        {
+            _smoothPitch = _smoothRoll = _pitchInputVelocity = _rollInputVelocity = 0f;
+        }
+
+        void SuspendSteering()
+        {
+            _pitchInput = _rollInput = 0f;
+            _mouseSteering = false; _mousePitch = 0f;
+            ResetSteeringFilter();
+            _tiltCalibrated = false; SteeringTracked = false;
+            _calibrateAt = Time.unscaledTime + 0.2f;
+        }
+
+        void OnApplicationPause(bool paused)
+        {
+            _applicationPaused = paused;
+            SuspendSteering();
+        }
+
+        void OnApplicationFocus(bool focused)
+        {
+            // Editor focus changes are needed for simulator/testing; headset focus is handled in players.
+#if !UNITY_EDITOR
+            _applicationFocused = focused;
+            SuspendSteering();
+#endif
+        }
     }
 }
